@@ -11,3 +11,8 @@
 @media(max-width:620px){.breed-hero{min-height:134vh}.hero-pinned{height:calc(100svh - 64px);margin-bottom:calc(-100svh + 64px)}.hero-pinned .hero-scrim{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.16) 37%,rgba(255,255,255,.77) 66%,rgba(255,255,255,.98))}.breed-hero .hero-layout{min-height:calc(100svh - 64px);height:calc(100svh - 64px)}.hero-pinned .pan-wall{top:-7vh;left:-100vw;width:300vw;height:142vh;display:block}.hero-pinned .pan-tile{left:calc(var(--x)*1vw);top:calc(var(--y)*1vh);width:calc(var(--w)*1vw);border-radius:6px}}
 @media(prefers-reduced-motion:reduce){.hero-pinned .pan-wall{margin-top:0}}
 @media(prefers-reduced-motion:reduce){.hero-pinned .pan-wall{transform:translate3d(-3vw,-2vh,0)}}
+
+/* Keep the rotating card captions inside the visible carousel after adding a 13th card. */
+.carousel-track{top:42%;width:300px;height:200px}
+@media(max-width:900px){.carousel-track{top:43%;width:250px;height:167px}}
+@media(max-width:620px){.carousel-track{top:47%;width:145px;height:97px}}
