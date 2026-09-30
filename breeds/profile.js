@@ -7,7 +7,7 @@ document.querySelector('meta[name="description"]').setAttribute('content',`${bre
 const distance=item=>Object.keys(labels).reduce((total,key)=>total+Math.abs(item.stats[key]-breed.stats[key]),0);
 const related=[...BREEDS].filter(item=>item.id!==breed.id).sort((a,b)=>distance(a)-distance(b)).slice(0,4);
 const assetUrl=media=>media.url||`https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(media.file)}?width=1200`;
-const featured=FEATURED_MEDIA[breed.id]||breed.media;
+const featured=breed.profileMedia||FEATURED_MEDIA[breed.id]||breed.media;
 const mediaUrl=assetUrl(featured);
 const kitten=KITTEN_MEDIA[breed.id];
 const kittenUrl=assetUrl(kitten);

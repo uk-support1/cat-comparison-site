@@ -29,5 +29,5 @@ if(heroGallery){
   }
 }
 if(carousel){
-  carousel.innerHTML=`<div class="carousel-track" style="--count:${BREEDS.length}">${BREEDS.map((breed,index)=>`<a class="carousel-card" href="profile.html?breed=${encodeURIComponent(breed.id)}" style="--i:${index}"><span class="carousel-card-face carousel-card-front"><img src="${imagePath(breed.media)}" alt=""><span class="carousel-label">${breed.name}<small>${breed.en}</small></span></span><span class="carousel-card-face carousel-card-back" aria-hidden="true"><img src="${imagePath(breed.media)}" alt=""><span class="carousel-label">${breed.name}<small>${breed.en}</small></span></span></a>`).join('')}</div>`;
+  carousel.innerHTML=`<div class="carousel-track" style="--count:${BREEDS.length}">${BREEDS.map((breed,index)=>`<a class="carousel-card" href="profile.html?breed=${encodeURIComponent(breed.id)}" style="--i:${index}"><span class="carousel-card-face carousel-card-front"><img src="${imagePath(breed.carouselMedia||breed.media)}" alt=""><span class="carousel-label">${breed.name}<small>${breed.en}</small></span></span><span class="carousel-card-face carousel-card-back" aria-hidden="true"><img src="${imagePath(breed.carouselMedia||breed.media)}" alt=""><span class="carousel-label">${breed.name}<small>${breed.en}</small></span></span></a>`).join('')}</div>`;
 }
