@@ -18,3 +18,5 @@
 .carousel-track{top:34%;width:280px;height:187px}
 @media(max-width:900px){.breed-carousel{height:580px}.carousel-track{top:35%;width:235px;height:157px}}
 @media(max-width:620px){.carousel-section{padding-bottom:128px}.breed-carousel{height:450px}.carousel-track{top:38%;width:135px;height:90px}}
+/* Preserve the cats' full faces while the carousel rotates. */
+.carousel-card-face{background:linear-gradient(145deg,#faf7f2,#e9e2d9)}.carousel-card img{object-fit:contain;object-position:center;background:#f7f3ee}
