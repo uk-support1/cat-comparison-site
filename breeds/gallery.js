@@ -13,5 +13,5 @@ if(heroGallery){
   heroGallery.addEventListener('pointercancel',finish);
 }
 if(carousel){
-  carousel.innerHTML=`<div class="carousel-track">${BREEDS.map((breed,index)=>`<a class="carousel-card" href="profile.html?breed=${encodeURIComponent(breed.id)}" style="--i:${index}"><img src="${imagePath(breed.media.file)}" alt=""><span>${breed.name}<small>${breed.en}</small></span></a>`).join('')}</div>`;
+  carousel.innerHTML=`<div class="carousel-track" style="--count:${BREEDS.length}">${BREEDS.map((breed,index)=>`<a class="carousel-card" href="profile.html?breed=${encodeURIComponent(breed.id)}" style="--i:${index}"><span class="carousel-card-face carousel-card-front"><img src="${imagePath(breed.media.file)}" alt=""><span class="carousel-label">${breed.name}<small>${breed.en}</small></span></span><span class="carousel-card-face carousel-card-back" aria-hidden="true"><img src="${imagePath(breed.media.file)}" alt=""><span class="carousel-label">${breed.name}<small>${breed.en}</small></span></span></a>`).join('')}</div>`;
 }
