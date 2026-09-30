@@ -22,13 +22,13 @@ header{height:64px;display:flex;align-items:center;background:rgba(251,250,247,.
 .point-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.point{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px}.point .num{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#fff3ed;color:var(--accent);font-size:12px;font-weight:900;margin-bottom:12px}.point h3{font-size:17px;margin:0 0 8px}.point p{font-size:13px;color:var(--muted);margin:0}.point strong{color:var(--ink)}
 .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}.catcard{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden}.catcard img{width:100%;height:170px;object-fit:cover}.catcard div{padding:15px}.catcard b{display:block;font-size:15px;margin-bottom:4px}.catcard p{font-size:12px;color:var(--muted);margin:0}.cat-compat{width:100%;min-width:900px;border-collapse:separate;border-spacing:0;text-align:center}.cat-compat th,.cat-compat td{padding:12px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.cat-compat th{background:#faf8f4}.cat-compat .axis{position:sticky;left:0;background:#fff;text-align:left;font-weight:800;z-index:3}.cat-compat thead .axis{background:#faf8f4}
 .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.product-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;display:flex;flex-direction:column;min-height:420px}.product-card img{height:205px;width:100%;object-fit:contain;margin-bottom:12px}.product-card h3{font-size:15px;line-height:1.45;margin:0 0 8px}.product-card p{font-size:12px;color:var(--muted);margin:0 0 12px}.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}.chip{font-size:9px;padding:5px 8px;border-radius:999px;background:#f4efe8;color:#655f59}.product-card .link{display:block;margin-top:14px;padding:10px;border-radius:10px;border:1px solid var(--line);font-size:11px;font-weight:900;text-align:center}.product-card .link:hover{background:#f9f6f2}
-.faq{display:grid;gap:10px}.faq details{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px}.faq summary{cursor:pointer;font-weight:900;font-size:14px}.faq p{font-size:12px;color:var(--muted);margin:10px 0 0}.reveal{opacity:0;transform:translateY(20px);transition:.65s ease}.reveal.show{opacity:1;transform:none}footer{padding:42px 0 56px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}
-@media(max-width:920px){.top4{grid-template-columns:1fr 1fr}.point-grid,.product-grid{grid-template-columns:1fr 1fr}.cat-grid{grid-template-columns:1fr 1fr}.hero{height:620px}.nav{display:none}}
-@media(max-width:600px){.hero{min-height:520px;height:72vh}.hero::after{background:linear-gradient(rgba(255,251,247,.7),rgba(255,251,247,.35))}.hero h1{font-size:44px}.section{padding:50px 0}.section-head{display:block}.section-head p{margin-top:10px}.top4,.point-grid,.product-grid,.cat-grid{grid-template-columns:1fr}.winner img{height:180px}.mini{width:155px}.ticker{padding:10px 0}}
+.faq{display:grid;gap:10px}.faq details{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px}.faq summary{cursor:pointer;font-weight:900;font-size:14px}.faq p{font-size:12px;color:var(--muted);margin:10px 0 0}.article-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.article-card{display:flex;flex-direction:column;min-height:210px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;transition:transform .2s ease,box-shadow .2s ease}.article-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.article-card .type{font-size:10px;font-weight:900;letter-spacing:.12em;color:var(--accent)}.article-card h3{font-size:17px;line-height:1.45;margin:10px 0}.article-card p{font-size:12px;color:var(--muted);margin:0 0 16px}.article-card .read{font-size:12px;font-weight:900;margin-top:auto}.site-note{padding:16px 18px;border-left:4px solid var(--gold);background:#fff9e8;border-radius:0 14px 14px 0;color:#5f5954;font-size:12px}.footer-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}.footer-links a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:920px){.top4{grid-template-columns:1fr 1fr}.point-grid,.product-grid,.article-grid{grid-template-columns:1fr 1fr}.cat-grid{grid-template-columns:1fr 1fr}.hero{height:620px}.nav{display:none}}
+@media(max-width:600px){.hero{min-height:520px;height:72vh}.hero::after{background:linear-gradient(rgba(255,251,247,.7),rgba(255,251,247,.35))}.hero h1{font-size:44px}.section{padding:50px 0}.section-head{display:block}.section-head p{margin-top:10px}.top4,.point-grid,.product-grid,.cat-grid,.article-grid{grid-template-columns:1fr}.winner img{height:180px}.mini{width:155px}.ticker{padding:10px 0}}
 </style>
 </head>
 <body>
-<header><div class="wrap head"><div class="brand">猫好きのための比較サイト<small>ねこと暮らす人の、迷わない商品選び</small></div><nav class="nav"><a href="#top4">おすすめ4選</a><a href="#howto">選び方</a><a href="#cats">猫タイプ別</a><a href="#products">12商品</a></nav></div></header>
+<header><div class="wrap head"><div class="brand">猫好きのための比較サイト<small>ねこと暮らす人の、迷わない商品選び</small></div><nav class="nav"><a href="#top4">おすすめ4選</a><a href="#howto">選び方</a><a href="#cats">猫タイプ別</a><a href="#products">12商品</a><a href="articles/">記事一覧</a></nav></div></header>
 
 <section class="hero">
   <video autoplay muted loop playsinline preload="metadata" poster="https://images.pexels.com/videos/12109323/free-video-12109323.jpg?auto=compress&cs=tinysrgb&fit=crop&h=720&w=1280">
@@ -48,10 +48,10 @@ header{height:64px;display:flex;align-items:center;background:rgba(251,250,247,.
   <div class="section-head"><div><div class="eyebrow">まず結論</div><h2>選び方別、おすすめ4選。</h2></div><p>「何を重視するか」で最初に絞ると、猫砂選びはかなりラクになります。</p></div>
   <p class="lead"><span class="marker">迷ったら、まずこの4つから。</span> それぞれ得意分野が違うので、生活スタイルに合わせて選べます。</p>
   <div class="top4 reveal">
-    <article class="winner"><span class="rank">総合バランス</span><img src="https://www.pgt.jp/wp/wp-content/themes/pgt2016/images/sub-lineup-img02.jpg" alt="トフカスサンドK"><h3>トフカスサンドK 7L</h3><div class="why"><strong>固まり・消臭・粉立ち</strong>のバランス型。</div><a class="buybtn" href="#">Amazonで見る</a></article>
-    <article class="winner"><span class="rank">消臭重視</span><img src="https://www.lion-pet.co.jp/img/product/sanitary/sanitary_okara/catsuna_okara.jpg" alt="ライオン ニオイをとるおから砂"><h3>ライオン ニオイをとるおから砂</h3><div class="why"><strong>おからの中和消臭</strong>＋流せる設計。</div><a class="buybtn" href="#">Amazonで見る</a></article>
-    <article class="winner"><span class="rank">固まり重視</span><img src="https://pidan.jp/cdn/shop/files/dba601929ebce76be27c8ea81baf6bc1.jpg?v=1721706379&width=800" alt="pidan おからベントナイトミックス"><h3>pidan おからベントナイトミックス</h3><div class="why"><strong>おから＋ベントナイト</strong>のミックス型。</div><a class="buybtn" href="#">Amazonで見る</a></article>
-    <article class="winner"><span class="rank">飛び散り対策</span><img src="https://www.pgt.jp/wp/wp-content/themes/pgt2016/images/sub-lineup-img03.jpg" alt="トフカスタブ"><h3>トフカスタブ 7L</h3><div class="why"><strong>タブレット型</strong>で転がりにくい。</div><a class="buybtn" href="#">Amazonで見る</a></article>
+    <article class="winner"><span class="rank">総合バランス</span><img src="https://www.pgt.jp/wp/wp-content/themes/pgt2016/images/sub-lineup-img02.jpg" alt="トフカスサンドK"><h3>トフカスサンドK 7L</h3><div class="why"><strong>固まり・消臭・粉立ち</strong>のバランス型。</div><a class="buybtn" href="articles/tofukasu-k-guide.html">解説を読む</a></article>
+    <article class="winner"><span class="rank">消臭重視</span><img src="https://www.lion-pet.co.jp/img/product/sanitary/sanitary_okara/catsuna_okara.jpg" alt="ライオン ニオイをとるおから砂"><h3>ライオン ニオイをとるおから砂</h3><div class="why"><strong>おからの中和消臭</strong>＋流せる設計。</div><a class="buybtn" href="articles/lion-okara-guide.html">解説を読む</a></article>
+    <article class="winner"><span class="rank">固まり重視</span><img src="https://pidan.jp/cdn/shop/files/dba601929ebce76be27c8ea81baf6bc1.jpg?v=1721706379&width=800" alt="pidan おからベントナイトミックス"><h3>pidan おからベントナイトミックス</h3><div class="why"><strong>おから＋ベントナイト</strong>のミックス型。</div><a class="buybtn" href="articles/pidan-guide.html">解説を読む</a></article>
+    <article class="winner"><span class="rank">飛び散り対策</span><img src="https://www.pgt.jp/wp/wp-content/themes/pgt2016/images/sub-lineup-img03.jpg" alt="トフカスタブ"><h3>トフカスタブ 7L</h3><div class="why"><strong>タブレット型</strong>で転がりにくい。</div><a class="buybtn" href="articles/tofukasu-tab-guide.html">解説を読む</a></article>
   </div>
   <div class="compare-shell reveal"><table class="compare"><thead><tr><th class="axis">比較ポイント</th>
     <th><div class="prodhead"><img src="https://www.pgt.jp/wp/wp-content/themes/pgt2016/images/sub-lineup-img02.jpg" alt=""><b>トフカスサンドK</b></div></th>
@@ -106,6 +106,24 @@ header{height:64px;display:flex;align-items:center;background:rgba(251,250,247,.
   <div class="product-grid" id="productGrid"></div>
 </div></section>
 
+<section id="guides" class="section"><div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">ORIGINAL GUIDES</div><h2>迷いをほどく、10本のガイド。</h2></div><p>メーカー公表情報をそのまま並べるのではなく、暮らし方と猫の行動に沿って整理した記事です。</p></div>
+  <div class="article-grid">
+    <a class="article-card reveal" href="articles/tofukasu-k-guide.html"><span class="type">PRODUCT GUIDE</span><h3>トフカスサンドKを、生活目線で読む</h3><p>固まり・粉立ち・処理方法を、選ぶ前に確認したいポイントで整理。</p><span class="read">記事を読む →</span></a>
+    <a class="article-card reveal" href="articles/lion-okara-guide.html"><span class="type">PRODUCT GUIDE</span><h3>ニオイをとるおから砂の特徴と注意点</h3><p>香りの受け止め方と、消臭重視で比較するための視点。</p><span class="read">記事を読む →</span></a>
+    <a class="article-card reveal" href="articles/pidan-guide.html"><span class="type">PRODUCT GUIDE</span><h3>pidanミックス型はどんな猫に向く？</h3><p>おからとベントナイトを組み合わせる意味を、掃除の場面から解説。</p><span class="read">記事を読む →</span></a>
+    <a class="article-card reveal" href="articles/tofukasu-tab-guide.html"><span class="type">PRODUCT GUIDE</span><h3>トフカスタブで飛び散りは減らせる？</h3><p>粒の形、肉球への付きやすさ、トイレ周りの掃除に着目。</p><span class="read">記事を読む →</span></a>
+    <a class="article-card reveal" href="articles/okara-basics.html"><span class="type">BASICS</span><h3>おから猫砂の基本：向く家庭・向かない家庭</h3><p>素材の特徴を押さえ、初めて試すときの選び方をまとめます。</p><span class="read">記事を読む →</span></a>
+    <a class="article-card reveal" href="articles/how-to-choose.html"><span class="type">HOW TO</span><h3>猫砂選びで最初に見る6つのこと</h3><p>猫種より先に確認したい、体格・年齢・砂かき・生活環境。</p><span class="read">記事を読む →</span></a>
+    <a class="article-card reveal" href="articles/odor-control.html"><span class="type">HOW TO</span><h3>消臭重視の猫砂選び</h3><p>多頭飼い・留守時間・置き場所から、優先順位を考えます。</p><span class="read">記事を読む →</span></a>
+    <a class="article-card reveal" href="articles/clumping.html"><span class="type">HOW TO</span><h3>「固まりやすい」は何がうれしい？</h3><p>掃除のしやすさと猫砂の減り方に関わる、固まりの見方。</p><span class="read">記事を読む →</span></a>
+    <a class="article-card reveal" href="articles/kitten-guide.html"><span class="type">CAT LIFE</span><h3>子猫の猫砂選びで気をつけること</h3><p>体の小ささ、慣れないトイレ、香りや粒の扱いを考えます。</p><span class="read">記事を読む →</span></a>
+    <a class="article-card reveal" href="articles/multi-cat-guide.html"><span class="type">CAT LIFE</span><h3>多頭飼いの猫砂：続けやすさの作り方</h3><p>におい、掃除回数、トイレ数を無理なく整えるための基本。</p><span class="read">記事を読む →</span></a>
+  </div>
+</div></section>
+
+<section class="section alt"><div class="wrap"><div class="site-note"><strong>申請準備中のお知らせ</strong><br>当サイトは現在、Amazonアソシエイト・プログラムの申請に向けて記事を整備しています。アソシエイトリンクおよびAmazonの参加者表示は、承認後に正しい情報とともに掲載します。</div></div></section>
+
 <section class="section"><div class="wrap"><div class="section-head"><div><div class="eyebrow">FAQ</div><h2>よくある疑問。</h2></div></div>
   <div class="faq">
     <details><summary>トイレに流せる猫砂なら、まとめて流していい？</summary><p>いいえ。商品ごとの注意事項に従い、少量ずつ流すのが基本です。浄化槽では使用できない商品もあります。</p></details>
@@ -114,7 +132,7 @@ header{height:64px;display:flex;align-items:center;background:rgba(251,250,247,.
   </div>
 </div></section>
 
-<footer><div class="wrap">猫好きのための比較サイト｜デモ版<br>商品画像・仕様は各メーカー公開情報を参照。価格は変動するため、Amazonアソシエイト導入後は最新価格リンク表示を基本とします。</div></footer>
+<footer><div class="wrap">猫好きのための比較サイト<br>商品画像・仕様は各メーカー公開情報を参照し、記事は編集部の選定基準に基づいて作成しています。価格・在庫・仕様は変動するため、購入前に販売元の最新情報をご確認ください。<div class="footer-links"><a href="articles/">記事一覧</a><a href="editorial-policy.html">編集・広告ポリシー</a><a href="privacy.html">プライバシーポリシー</a><a href="about.html">運営者情報</a></div></div></footer>
 
 <script>
 const products=[
@@ -134,7 +152,7 @@ const products=[
 const mini=p=>`<div class="mini"><img src="${p.img}" alt="${p.name}"><div><b>${p.name}</b><span>${p.tags.join('・')}</span></div></div>`;
 document.getElementById('tickerA').innerHTML=products.map(mini).join('');
 document.getElementById('tickerB').innerHTML=products.map(mini).join('');
-const card=p=>`<article class="product-card reveal"><img src="${p.img}" alt="${p.name}"><h3>${p.name}</h3><p>${p.desc}</p><div class="chips">${p.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div><a class="link" href="#">Amazonで見る →</a></article>`;
+const card=p=>`<article class="product-card reveal"><img src="${p.img}" alt="${p.name}"><h3>${p.name}</h3><p>${p.desc}</p><div class="chips">${p.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div><a class="link" href="articles/">選び方ガイドを見る →</a></article>`;
 document.getElementById('productGrid').innerHTML=products.map(card).join('');
 const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
