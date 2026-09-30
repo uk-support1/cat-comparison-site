@@ -5,6 +5,7 @@ const rankCopy=document.getElementById('rankCopy');
 const rankList=document.getElementById('rankList');
 const breedGrid=document.getElementById('breedGrid');
 const breedSearch=document.getElementById('breedSearch');
+const mediaUrl=file=>`https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}?width=900`;
 function renderRanking(id){
   const category=RANKINGS.find(item=>item.id===id)||RANKINGS[0];
   document.querySelectorAll('.rank-tab').forEach(button=>button.setAttribute('aria-selected',String(button.dataset.id===category.id)));
@@ -17,7 +18,7 @@ rankTabs.addEventListener('click',event=>{const button=event.target.closest('.ra
 function renderBreeds(query=''){
   const normalized=query.trim().toLowerCase();
   const list=BREEDS.filter(breed=>!normalized||`${breed.name} ${breed.en}`.toLowerCase().includes(normalized));
-  breedGrid.innerHTML=list.map(breed=>`<a class="breed-card" href="${profileHref(breed.id)}"><div class="breed-card-top"><span class="breed-mark" style="--breed:${breed.color}">${breed.mark}</span><span class="coat">${breed.coat}</span></div><h3>${breed.name}</h3><span class="en">${breed.en}</span><p>${breed.summary}</p><span class="chips">${breed.traits.map(trait=>`<span class="chip">${trait}</span>`).join('')}</span><span class="read">プロフィールを見る →</span></a>`).join('')||'<p>該当する猫種が見つかりませんでした。</p>';
+  breedGrid.innerHTML=list.map(breed=>`<a class="breed-card" href="${profileHref(breed.id)}"><span class="breed-card-photo"><img src="${mediaUrl(breed.media.file)}" alt="${breed.name}の写真" loading="lazy" decoding="async"></span><div class="breed-card-top"><span class="breed-mark" style="--breed:${breed.color}">${breed.mark}</span><span class="coat">${breed.coat}</span></div><h3>${breed.name}</h3><span class="en">${breed.en}</span><p>${breed.summary}</p><span class="chips">${breed.traits.map(trait=>`<span class="chip">${trait}</span>`).join('')}</span><span class="read">プロフィールを見る →</span></a>`).join('')||'<p>該当する猫種が見つかりませんでした。</p>';
 }
 breedSearch.addEventListener('input',event=>renderBreeds(event.target.value));
 renderRanking(RANKINGS[0].id);renderBreeds();
