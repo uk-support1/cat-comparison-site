@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="ねこパートナーの小さな肉球バブルゲーム。肉球を見つけてタップして遊べます。">
+  <link rel="icon" type="image/png" href="../assets/neko-partner-favicon.png">
+  <link rel="stylesheet" href="paw-pop.css">
+  <title>肉球バブルで遊ぶ｜ねこパートナー</title>
+</head>
+<body>
+  <header class="game-header"><a href="../index.html" class="brand" aria-label="ねこパートナー トップ"><img src="../assets/neko-partner-logo.png" alt="ねこパートナー"><span>くらしパートナーが運営</span></a><a class="back-link" href="index.html">猫図鑑へ戻る</a></header>
+  <main class="game-page">
+    <section class="game-intro">
+      <p class="eyebrow">PAW BUBBLE POP</p>
+      <h1>肉球を、<br>ぽんっと見つけよう。</h1>
+      <p>ふわふわ浮かぶ肉球をタップすると、猫から小さなリアクションが届きます。</p>
+    </section>
+    <section class="game-shell" aria-labelledby="gameTitle">
+      <div class="game-topbar"><div><span class="eyebrow">PLAY TIME</span><h2 id="gameTitle">肉球バブルポップ</h2></div><div class="score" aria-live="polite"><span>POP</span><b id="scoreValue">0</b></div></div>
+      <div id="pawStage" class="paw-stage" aria-label="肉球バブルをタップするゲーム">
+        <div class="stage-photo" aria-hidden="true"></div>
+        <div class="stage-wash" aria-hidden="true"></div>
+        <div class="stage-copy"><span id="stageMessage">スタートを押すと肉球が現れます。</span></div>
+        <div class="cat-comment" id="catComment" aria-live="polite">今日は何個見つけられるかな？</div>
+        <button id="startButton" class="start-button" type="button">肉球を探す <span>🐾</span></button>
+      </div>
+      <div class="game-footer"><p>音なし・約30秒で遊べるミニゲームです。</p><button id="resetButton" class="reset-button" type="button" hidden>もう一度遊ぶ</button></div>
+    </section>
+  </main>
+  <script src="paw-pop.js"></script>
+</body>
+</html>

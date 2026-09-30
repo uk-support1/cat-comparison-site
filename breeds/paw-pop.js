@@ -1,0 +1,17 @@
+const stage=document.getElementById('pawStage');
+const startButton=document.getElementById('startButton');
+const resetButton=document.getElementById('resetButton');
+const scoreValue=document.getElementById('scoreValue');
+const stageMessage=document.getElementById('stageMessage');
+const catComment=document.getElementById('catComment');
+const reactions=['みつけた！','いい肉球センス。','ぽんっ、正解！','もうひとつあるかも。','猫パンチ、成功！','ふわっと消えたね。'];
+let score=0;
+let timer;
+let running=false;
+const setComment=text=>{catComment.textContent=text;catComment.classList.remove('is-reacting');requestAnimationFrame(()=>catComment.classList.add('is-reacting'));};
+const popSpark=(x,y)=>{for(let i=0;i<8;i+=1){const spark=document.createElement('i');const angle=(Math.PI*2/8)*i;const distance=32+Math.random()*28;spark.className='paw-spark';spark.style.left=`${x}px`;spark.style.top=`${y}px`;spark.style.setProperty('--x',`${Math.cos(angle)*distance}px`);spark.style.setProperty('--y',`${Math.sin(angle)*distance}px`);spark.style.setProperty('--spark',['#ef7a65','#e9b94f','#7c9b82'][i%3]);stage.append(spark);spark.addEventListener('animationend',()=>spark.remove(),{once:true});}};
+const removeBubbles=()=>stage.querySelectorAll('.paw-bubble,.paw-spark').forEach(node=>node.remove());
+const addBubble=()=>{if(!running||stage.querySelectorAll('.paw-bubble').length>=5)return;const bubble=document.createElement('button');const padding=12;const left=padding+Math.random()*74;const top=18+Math.random()*61;bubble.className='paw-bubble';bubble.type='button';bubble.setAttribute('aria-label','肉球バブルをポップする');bubble.style.left=`${left}%`;bubble.style.top=`${top}%`;bubble.style.setProperty('--float-duration',`${2.4+Math.random()*1.8}s`);bubble.style.setProperty('--float-delay',`${-Math.random()*2}s`);bubble.textContent='🐾';bubble.addEventListener('click',()=>{const rect=bubble.getBoundingClientRect();const stageRect=stage.getBoundingClientRect();popSpark(rect.left-stageRect.left+rect.width/2,rect.top-stageRect.top+rect.height/2);bubble.classList.add('is-popped');score+=1;scoreValue.textContent=score;setComment(reactions[score%reactions.length]);stageMessage.textContent=score>=10?'たくさん見つけたね！':'肉球を見つけて、ぽんっとタップ。';setTimeout(()=>bubble.remove(),420);setTimeout(addBubble,180);});stage.append(bubble);};
+const startGame=()=>{score=0;running=true;scoreValue.textContent='0';removeBubbles();startButton.hidden=true;resetButton.hidden=false;stageMessage.textContent='肉球を見つけて、ぽんっとタップ。';setComment('いくよ、準備はいい？');for(let i=0;i<3;i+=1)setTimeout(addBubble,i*250);clearInterval(timer);timer=setInterval(addBubble,1100);};
+const resetGame=()=>{running=false;clearInterval(timer);removeBubbles();startButton.hidden=false;resetButton.hidden=true;scoreValue.textContent='0';stageMessage.textContent='スタートを押すと肉球が現れます。';setComment('今日は何個見つけられるかな？');};
+startButton.addEventListener('click',startGame);resetButton.addEventListener('click',resetGame);

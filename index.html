@@ -31,6 +31,7 @@ header{height:64px;display:flex;align-items:center;background:rgba(251,250,247,.
 @media(max-width:600px){.hero{min-height:600px;height:78vh}.hero::after{background:linear-gradient(rgba(255,251,247,.78) 0%,rgba(255,251,247,.42) 52%,rgba(255,251,247,.14) 100%)}.hero-copy{align-items:flex-start;padding-top:60px}.hero h1{font-size:44px}.hero-paw-scene{right:-13px;bottom:-20px;width:220px;height:280px;opacity:.88}.paw-hint{display:none}.section{padding:50px 0}.section-head{display:block}.section-head p{margin-top:10px}.top4,.point-grid,.product-grid,.cat-grid,.article-grid{grid-template-columns:1fr}.breed-preview{grid-template-columns:1fr}.breed-preview a{min-height:150px}.winner img{height:180px}.mini{width:155px}.ticker{padding:10px 0}}@media(prefers-reduced-motion:reduce){.paw-phone,.cat-hand,.paw-print,.paw-hint{animation:none!important}.cat-hand{transform:translate(0,0) rotate(-5deg)}.paw-print{opacity:1}.paw-print:nth-child(2){opacity:.72}.paw-print:nth-child(3){opacity:.46}}
 .section.breed-zone{background:#f3eee7}
 .brand-lockup{display:flex;align-items:center;gap:10px;line-height:1.1}.brand-logo-img{width:148px;height:52px;object-fit:contain;object-position:left center;flex:none}.brand-copy{display:grid;gap:2px}.brand-parent{font-size:9px;letter-spacing:.06em;color:#0b8f8e;font-weight:900}.brand-lockup small{font-size:9px}@media(max-width:600px){.brand-logo-img{width:126px;height:46px}.brand-parent{display:none}}
+.hero-cursor-paw{position:absolute;z-index:8;top:0;left:0;display:grid;place-items:center;width:42px;height:42px;margin:-23px 0 0 -20px;border-radius:50%;background:rgba(255,255,255,.88);font-size:24px;line-height:1;opacity:0;pointer-events:none;filter:drop-shadow(0 8px 8px rgba(45,42,39,.18));transition:opacity .16s ease}.hero.has-paw-cursor{cursor:none}.hero.has-paw-cursor .hero-cursor-paw{opacity:1}.hero:hover .paw-phone,.hero:hover .cat-hand,.hero:hover .paw-print,.hero:hover .paw-hint{animation-play-state:running}@media(hover:none),(pointer:coarse){.hero-cursor-paw{display:none}}
 </style>
 </head>
 <body>
@@ -48,10 +49,9 @@ header{height:64px;display:flex;align-items:center;background:rgba(251,250,247,.
   </div></div>
   <div class="hero-paw-scene" aria-hidden="true">
     <div class="paw-hint">肉球、ぺたっ。</div>
-    <div class="paw-prints"><span class="paw-print">🐾</span><span class="paw-print">🐾</span><span class="paw-print">🐾</span></div>
     <div class="paw-phone"><div class="paw-screen"><video autoplay muted loop playsinline preload="none" poster="assets/mii-mix-cat.jpg" onloadeddata="this.closest('.paw-screen').classList.add('is-playing')"><source src="https://videos.pexels.com/video-files/12109323/12109323-hd_1080_1920_25fps.mp4" type="video/mp4"></video></div><img class="iphone-frame" src="assets/iphone-15-frame.png" alt=""></div>
-    <div class="cat-hand"><span class="paw-pad"></span></div>
   </div>
+  <span class="hero-cursor-paw" aria-hidden="true">🐾</span>
 </section>
 
 <section class="ticker" aria-label="掲載商品"><div class="ticker-track"><div class="ticker-group" id="tickerA"></div><div class="ticker-group" id="tickerB" aria-hidden="true"></div></div></section>
@@ -182,6 +182,14 @@ const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecti
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 const mo=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('is-active')}),{threshold:.6});
 document.querySelectorAll('.marker').forEach(el=>mo.observe(el));
+const interactiveHero=document.querySelector('.hero');
+const cursorPaw=document.querySelector('.hero-cursor-paw');
+if(interactiveHero&&cursorPaw&&window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+  const movePaw=event=>{const rect=interactiveHero.getBoundingClientRect();cursorPaw.style.transform=`translate(${event.clientX-rect.left}px,${event.clientY-rect.top}px) rotate(${event.movementX*.65}deg)`;};
+  interactiveHero.addEventListener('pointerenter',event=>{interactiveHero.classList.add('has-paw-cursor');movePaw(event);});
+  interactiveHero.addEventListener('pointermove',movePaw);
+  interactiveHero.addEventListener('pointerleave',()=>interactiveHero.classList.remove('has-paw-cursor'));
+}
 </script>
 </body>
 </html>
