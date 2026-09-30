@@ -4,6 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="icon" type="image/png" href="assets/neko-partner-favicon.png">
+<script defer src="assets/paw-cursor.js?v=20261001-1"></script>
 <meta name="google-site-verification" content="MS0Nk9H3uADEbkS4mQRKa8CIbMS9fhwAsp_efAz0tuo" />
 <link rel="canonical" href="https://uk-support1.github.io/cat-comparison-site/" />
 <title>ねこパートナー｜おから猫砂をタイプ別に比較</title>
@@ -51,7 +52,6 @@ header{height:64px;display:flex;align-items:center;background:rgba(251,250,247,.
     <div class="paw-hint">肉球、ぺたっ。</div>
     <div class="paw-phone"><div class="paw-screen"><video autoplay muted loop playsinline preload="none" poster="assets/mii-mix-cat.jpg" onloadeddata="this.closest('.paw-screen').classList.add('is-playing')"><source src="https://videos.pexels.com/video-files/12109323/12109323-hd_1080_1920_25fps.mp4" type="video/mp4"></video></div><img class="iphone-frame" src="assets/iphone-15-frame.png" alt=""></div>
   </div>
-  <img class="hero-cursor-paw" src="assets/pink-paw.png" alt="" aria-hidden="true">
 </section>
 
 <section class="ticker" aria-label="掲載商品"><div class="ticker-track"><div class="ticker-group" id="tickerA"></div><div class="ticker-group" id="tickerB" aria-hidden="true"></div></div></section>
@@ -182,14 +182,6 @@ const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecti
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 const mo=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('is-active')}),{threshold:.6});
 document.querySelectorAll('.marker').forEach(el=>mo.observe(el));
-const interactiveHero=document.querySelector('.hero');
-const cursorPaw=document.querySelector('.hero-cursor-paw');
-if(interactiveHero&&cursorPaw&&window.matchMedia('(hover:hover) and (pointer:fine)').matches){
-  const movePaw=event=>{const rect=interactiveHero.getBoundingClientRect();cursorPaw.style.transform=`translate(${event.clientX-rect.left}px,${event.clientY-rect.top}px) rotate(${event.movementX*.65}deg)`;};
-  interactiveHero.addEventListener('pointerenter',event=>{interactiveHero.classList.add('has-paw-cursor');movePaw(event);});
-  interactiveHero.addEventListener('pointermove',movePaw);
-  interactiveHero.addEventListener('pointerleave',()=>interactiveHero.classList.remove('has-paw-cursor'));
-}
 </script>
 </body>
 </html>
