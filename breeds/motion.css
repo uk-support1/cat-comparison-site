@@ -12,7 +12,9 @@
 @media(prefers-reduced-motion:reduce){.hero-pinned .pan-wall{margin-top:0}}
 @media(prefers-reduced-motion:reduce){.hero-pinned .pan-wall{transform:translate3d(-3vw,-2vh,0)}}
 
-/* Keep the rotating card captions inside the visible carousel after adding a 13th card. */
-.carousel-track{top:42%;width:300px;height:200px}
-@media(max-width:900px){.carousel-track{top:43%;width:250px;height:167px}}
-@media(max-width:620px){.carousel-track{top:47%;width:145px;height:97px}}
+/* Keep all rotating card captions inside the visible carousel after adding a 13th card. */
+.carousel-section{padding-bottom:172px}
+.breed-carousel{height:670px}
+.carousel-track{top:34%;width:280px;height:187px}
+@media(max-width:900px){.breed-carousel{height:580px}.carousel-track{top:35%;width:235px;height:157px}}
+@media(max-width:620px){.carousel-section{padding-bottom:128px}.breed-carousel{height:450px}.carousel-track{top:38%;width:135px;height:90px}}
