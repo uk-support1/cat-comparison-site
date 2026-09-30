@@ -11,6 +11,16 @@ if(heroGallery){
   heroGallery.addEventListener('pointermove',event=>{if(!active)return;wall.style.translate=`${offsetX+event.clientX-startX}px ${offsetY+event.clientY-startY}px`;});
   heroGallery.addEventListener('pointerup',event=>{if(!active)return;offsetX+=event.clientX-startX;offsetY+=event.clientY-startY;finish();});
   heroGallery.addEventListener('pointercancel',finish);
+  const heroScene=heroGallery.closest('.breed-hero');
+  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(heroScene&&!reduceMotion){
+    let queued=false;
+    const updateParallax=()=>{const rect=heroScene.getBoundingClientRect();const distance=Math.max(heroScene.offsetHeight-window.innerHeight,1);const progress=Math.min(1,Math.max(0,-rect.top/distance));heroGallery.style.setProperty('--parallax-y',`${-72*progress}px`);queued=false;};
+    const schedule=()=>{if(!queued){queued=true;requestAnimationFrame(updateParallax);}};
+    window.addEventListener('scroll',schedule,{passive:true});
+    window.addEventListener('resize',schedule);
+    updateParallax();
+  }
 }
 if(carousel){
   carousel.innerHTML=`<div class="carousel-track" style="--count:${BREEDS.length}">${BREEDS.map((breed,index)=>`<a class="carousel-card" href="profile.html?breed=${encodeURIComponent(breed.id)}" style="--i:${index}"><span class="carousel-card-face carousel-card-front"><img src="${imagePath(breed.media.file)}" alt=""><span class="carousel-label">${breed.name}<small>${breed.en}</small></span></span><span class="carousel-card-face carousel-card-back" aria-hidden="true"><img src="${imagePath(breed.media.file)}" alt=""><span class="carousel-label">${breed.name}<small>${breed.en}</small></span></span></a>`).join('')}</div>`;
