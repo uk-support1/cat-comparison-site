@@ -24,7 +24,7 @@ if(breed.id==='ragdoll'){
   const lifestyleCopy=document.createElement('div');
   lifestyleCopy.className='ragdoll-lifestyle-copy';
   while(lifestyleCard.firstChild)lifestyleCopy.append(lifestyleCard.firstChild);
-  lifestyleCard.insertAdjacentHTML('afterbegin',`<figure class="ragdoll-lifestyle-photo"><img src="../assets/breeds/ragdoll-kitten-related-v2.png" alt="青い目とふわふわの被毛のラグドールの子猫" width="1086" height="1448" loading="lazy" decoding="async"></figure>`);
+  lifestyleCard.insertAdjacentHTML('afterbegin',`<figure class="ragdoll-lifestyle-photo"><div class="ragdoll-lifestyle-image"><img src="../assets/breeds/ragdoll-kitten-related-v2.png" alt="青い目とふわふわの被毛のラグドールの子猫" width="1086" height="1448" loading="lazy" decoding="async"></div><figcaption>ラグドールの子猫ちゃん</figcaption></figure>`);
   lifestyleCard.append(lifestyleCopy);
   const basicProfile=root.querySelector('.profile-main .profile-card');
   basicProfile.classList.add('ragdoll-basic-profile');

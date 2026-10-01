@@ -72,17 +72,20 @@ html body .ragdoll-profile-hero .ragdoll-hero-backdrop-fill-right{
 .paw-pop-link{display:inline-flex;align-items:center;gap:7px;margin-top:17px;padding:10px 14px;border-radius:999px;background:#fff;color:var(--ink);font-size:12px;font-weight:900;box-shadow:var(--shadow);transition:transform .2s ease,box-shadow .2s ease}.paw-pop-link:hover{transform:translateY(-2px) rotate(-1deg);box-shadow:0 14px 28px rgba(45,42,39,.13)}.site-header .nav{gap:10px;font-size:14px;font-weight:800;color:#4e4741}.site-header .nav a{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:7px 9px;border-radius:12px;line-height:1.2;transition:transform .18s ease,background .18s ease}.site-header .nav a:hover{background:#f2ede7;transform:translateY(-1px)}.site-header .nav .nav-guide{border:1px solid #eadfce;background:#fff8ef;color:#564333}.site-header .nav .nav-icon{font-size:19px;line-height:1}.site-header .nav .nav-game{padding:5px 11px 5px 7px;border:1px solid #ffcbd6;background:linear-gradient(135deg,#fff9fb,#fff0f4);color:#b74d68;box-shadow:0 7px 16px rgba(224,108,137,.13);animation:nav-paw-bob 2.8s ease-in-out infinite}.site-header .nav .nav-game img{width:28px;height:28px;object-fit:contain;filter:drop-shadow(0 2px 2px rgba(154,72,89,.16))}@keyframes nav-paw-bob{50%{transform:translateY(-2px)}}
 /* The kitten photo blends into the lifestyle card; other breeds keep their layout. */
 .profile-card.ragdoll-lifestyle-card{display:grid;grid-template-columns:minmax(0,.38fr) minmax(0,.62fr);padding:0;overflow:hidden;background:#fffdfb}
-.ragdoll-lifestyle-photo{position:relative;min-height:340px;margin:0;overflow:hidden;background:#f5eee6}
+.ragdoll-lifestyle-photo{display:grid;grid-template-rows:minmax(340px,1fr) auto;margin:0;overflow:hidden;background:#fffdfb}
+.ragdoll-lifestyle-image{position:relative;overflow:hidden;background:#f5eee6}
+.ragdoll-lifestyle-photo figcaption{padding:9px 14px;text-align:center;font-size:12px;line-height:1.7;letter-spacing:.03em;color:#756f69}
 .ragdoll-lifestyle-photo img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center 42%;filter:brightness(1.03) saturate(.92)}
-.ragdoll-lifestyle-photo::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 60%,rgba(255,253,251,.35) 80%,#fffdfb 100%)}
+.ragdoll-lifestyle-image::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 60%,rgba(255,253,251,.35) 80%,#fffdfb 100%)}
 .ragdoll-lifestyle-copy{position:relative;min-width:0;padding:26px 24px 26px 14px;align-self:center}
 .ragdoll-lifestyle-copy .profile-list{margin:0;line-height:1.9}
 .ragdoll-lifestyle-copy h3{margin-top:24px}
 @media(max-width:620px){
   .profile-card.ragdoll-lifestyle-card{grid-template-columns:1fr}
-  .ragdoll-lifestyle-photo{min-height:0;height:clamp(250px,60vw,320px)}
+  .ragdoll-lifestyle-photo{grid-template-rows:auto auto}
+  .ragdoll-lifestyle-image{height:clamp(250px,60vw,320px)}
   .ragdoll-lifestyle-photo img{object-position:center 20%}
-  .ragdoll-lifestyle-photo::after{background:linear-gradient(180deg,transparent 60%,rgba(255,253,251,.3) 78%,#fffdfb 100%)}
+  .ragdoll-lifestyle-image::after{background:linear-gradient(180deg,transparent 60%,rgba(255,253,251,.3) 78%,#fffdfb 100%)}
   .ragdoll-lifestyle-copy{padding:12px 24px 24px}
 }
 /* Keep the Ragdoll video alongside its profile, inside the existing card. */
