@@ -1,0 +1,23 @@
+.contact-form{padding:28px;background:var(--card);border:1px solid var(--line);border-radius:18px;margin:24px 0 0}
+.contact-form fieldset{min-width:0;border:0;padding:0;margin:0}
+.contact-form .contact-note{margin:0 0 22px;font-size:12px;color:var(--muted)}
+.contact-field{margin-bottom:22px}
+.contact-field label{display:block;margin-bottom:8px;font-size:15px;font-weight:700}
+.contact-field label span{margin-left:8px;padding:3px 7px;border-radius:6px;background:var(--soft);color:#75604d;font-size:10px;font-weight:500}
+.contact-field input,.contact-field textarea{display:block;width:100%;min-width:0;border:1px solid #cfc6bb;border-radius:10px;padding:12px 14px;background:#fff;color:var(--ink);font:inherit;font-size:16px;line-height:1.6}
+.contact-field textarea{resize:vertical;min-height:160px}
+.contact-field input:focus-visible,.contact-field textarea:focus-visible,.contact-submit:focus-visible{outline:3px solid #7c9b82;outline-offset:3px}
+.contact-form .contact-hint,.article .contact-hint{margin:8px 0 0;font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+.contact-hint a{text-decoration:underline;text-underline-offset:3px}
+.contact-submit{display:inline-flex;justify-content:center;align-items:center;min-height:48px;margin-top:22px;padding:12px 32px;border:0;border-radius:999px;background:var(--ink);color:#fff;font:inherit;font-size:14px;font-weight:700;cursor:pointer}
+.contact-submit:hover{background:#48413a}
+.contact-form fieldset:disabled .contact-submit{opacity:.65;cursor:wait}
+.article .contact-status{font-size:14px;margin:12px 0 0;overflow-wrap:anywhere}
+.contact-status:empty{display:none}
+.contact-status[data-state="error"]{padding:14px 18px;border-left:4px solid var(--accent);background:#fff4ef;border-radius:0 10px 10px 0;color:#803d30}
+.contact-success h3{margin-top:0;color:#4b6c51}
+.contact-success a{font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.contact-success:focus{outline:2px solid #7c9b82;outline-offset:4px}
+.contact-form[hidden],.contact-success[hidden]{display:none}
+.contact-sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:600px){.contact-form{padding:20px}.contact-submit{width:100%}}

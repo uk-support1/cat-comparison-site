@@ -19,7 +19,7 @@ https://uk-support1.github.io/cat-comparison-site/
 
 ## アソシエイト申請前の確認
 
-Amazonアソシエイトへの申請前に、`about.html` の運営者情報と `contact.html` の問い合わせ先が現在の運営体制と一致していることを確認してください。問い合わせ用メールアドレスは `fukushi.it.partner@gmail.com` です。申請承認後に、Amazonが提供するタグ付きの特別リンクと必須の参加者表示を追加します。
+Amazonアソシエイトへの申請前に、`about.html` の運営者情報と `contact.html` の問い合わせ先が現在の運営体制と一致していることを確認してください。お問い合わせはFormspreeフォーム（`https://formspree.io/f/xvkgynqy`）で受け付けます。受信用メールアドレスや運営責任者の個人名はサイトに掲載しません。申請承認後に、Amazonが提供するタグ付きの特別リンクと必須の参加者表示を追加します。
 
 ## エントリーポイント
 `index.html`
