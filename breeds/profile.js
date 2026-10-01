@@ -17,9 +17,15 @@ if(breed.id==='ragdoll'){
   const heroPhoto=root.querySelector('.profile-photo');
   hero.classList.add('ragdoll-profile-hero');
   hero.insertAdjacentHTML('afterbegin',`<div class="ragdoll-hero-backdrop" aria-hidden="true"><img class="ragdoll-hero-backdrop-fill" src="${mediaUrl}" alt=""><img class="ragdoll-hero-backdrop-fill-right" src="${mediaUrl}" alt=""><img class="ragdoll-hero-backdrop-main" src="${mediaUrl}" alt=""></div><a class="ragdoll-backdrop-credit" href="${featured.page}" target="_blank" rel="noopener">背景写真：${escapeHtml(featured.author)}／${escapeHtml(featured.license)} ↗</a>`);
-  heroPhoto.classList.add('ragdoll-hero-phone');
-  heroPhoto.innerHTML=`<div class="ragdoll-hero-screen"><img src="../assets/breeds/ragdoll-kitten-related-v2.png" alt="${breed.name}の子猫"><span class="ragdoll-kitten-label">ラグドールの子猫ちゃん</span></div><img class="ragdoll-hero-frame" src="../assets/iphone-15-frame.png" alt="">`;
+  heroPhoto.remove();
   root.querySelector('.kitten-card')?.remove();
+  const lifestyleCard=[...root.querySelectorAll('.profile-main .profile-card')].find(card=>card.querySelector('h2')?.textContent==='向きやすい暮らし');
+  lifestyleCard.classList.add('ragdoll-lifestyle-card');
+  const lifestyleCopy=document.createElement('div');
+  lifestyleCopy.className='ragdoll-lifestyle-copy';
+  while(lifestyleCard.firstChild)lifestyleCopy.append(lifestyleCard.firstChild);
+  lifestyleCard.insertAdjacentHTML('afterbegin',`<figure class="ragdoll-lifestyle-photo"><img src="../assets/breeds/ragdoll-kitten-related-v2.png" alt="青い目とふわふわの被毛のラグドールの子猫" width="1086" height="1448" loading="lazy" decoding="async"></figure>`);
+  lifestyleCard.append(lifestyleCopy);
   const basicProfile=root.querySelector('.profile-main .profile-card');
   basicProfile.classList.add('ragdoll-basic-profile');
   const details=document.createElement('div');
