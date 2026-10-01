@@ -19,10 +19,7 @@ if(breed.id==='ragdoll'){
   hero.classList.add('ragdoll-profile-hero');
   hero.insertAdjacentHTML('afterbegin',`<div class="ragdoll-hero-backdrop" aria-hidden="true"><img src="${mediaUrl}" alt=""></div><a class="ragdoll-backdrop-credit" href="${featured.page}" target="_blank" rel="noopener">背景写真：${escapeHtml(featured.author)}／${escapeHtml(featured.license)} ↗</a>`);
   heroPhoto.classList.add('ragdoll-hero-phone');
-  heroPhoto.querySelector('img').src=kittenUrl;
-  heroPhoto.querySelector('img').alt=`${breed.name}の子猫`;
-  heroPhoto.querySelector('figcaption').innerHTML=`<a href="${kitten.page}" target="_blank" rel="noopener">子猫写真：${escapeHtml(kitten.author)}／${escapeHtml(kitten.license)} ↗</a>`;
-  heroPhoto.insertAdjacentHTML('afterbegin','<img class="ragdoll-hero-frame" src="../assets/iphone-15-frame.png" alt="">');
+  heroPhoto.innerHTML=`<div class="ragdoll-hero-screen"><img src="${kittenUrl}" alt="${breed.name}の子猫"></div><img class="ragdoll-hero-frame" src="../assets/iphone-15-frame.png" alt=""><figcaption><a href="${kitten.page}" target="_blank" rel="noopener">子猫写真：${escapeHtml(kitten.author)}／${escapeHtml(kitten.license)} ↗</a></figcaption>`;
   root.querySelector('.kitten-card')?.remove();
 }
 }
