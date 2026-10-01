@@ -38,11 +38,11 @@ amazon.find('tofukasu-k').url=originalUrl;
 assert.equal(amazon.button('トフカスサンドK 6L'),'');
 assert.notEqual(amazon.find('トフカスサンドK 7L'),amazon.find('トフカスサンド 7L'));
 assert.equal(amazon.find('トフカスＲｅｅ　７Ｌ').id,'tofukasu-ree');
-const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
+const index=fs.readFileSync(path.join(root,'compare/okara-litter.html'),'utf8');
 const catalog=vm.runInNewContext(index.match(/const products=(\[[\s\S]*?\]);/)[1]);
 assert.equal(catalog.length,12);
 assert.deepEqual(Array.from(catalog).filter(p=>!amazon.find(p.name)?.url).map(p=>p.name),['pidan おからベントナイトミックス']);
-for(const file of ['index.html','articles/tofukasu-k-guide.html','articles/lion-okara-guide.html','articles/tofukasu-tab-guide.html']){
+for(const file of ['compare/okara-litter.html','articles/tofukasu-k-guide.html','articles/lion-okara-guide.html','articles/tofukasu-tab-guide.html']){
   const html=fs.readFileSync(path.join(root,file),'utf8');
   assert.ok(html.includes('amazon-links.js'));
   assert.ok(html.includes('amazon-links.css'));

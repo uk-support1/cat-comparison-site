@@ -34,3 +34,21 @@ Amazonアソシエイトへの申請前に、`about.html` の運営者情報と 
 - 現在の導線：おすすめ3商品、比較表3商品、全商品カードのうち11商品、3本の商品解説記事。既存の解説・選び方ガイドへのリンクは維持しています。
 - 参加者表記の根拠：[Amazonの開示についてのヘルプ](https://affiliate.amazon.co.jp/help/node/topic/GPXFHVYZMTGPUMPE)。リンク周辺の広告表示と、トップ・対象記事・編集広告ポリシーの参加者表示を併用しています。
 - 変更後の確認：`node tests/amazon-links.test.cjs` でURL保持・照合・未提供商品の非表示・記事導線・広告表記を検証します。
+
+## 親サイトと比較カテゴリ
+
+確認コマンド：`node tests/site-structure.test.cjs` と `node tests/amazon-links.test.cjs`。内部リンク・アンカー、共通ナビ、GitHub Pagesのベースパス、旧URL引き継ぎ、商品リンクを確認します。
+
+- `index.html`: ねこパートナーTOP。比較ジャンルの入口と猫種図鑑・肉球ゲームへの入口。
+- `compare/okara-litter.html`: 既存のおから猫砂比較。商品・比較表・Amazon導線は維持。
+- `assets/site.css` / `assets/site.js`: 全ページ共通のヘッダー、スマホメニュー、フッター用スタイルとカテゴリ設定。
+- `assets/home.css`: TOP専用のレイアウト。
+
+### 猫トイレ／キャリーバッグを公開するには
+
+1. `compare/cat-toilets.html`（または `compare/carriers.html`）を作り、猫砂比較と同じ共通ヘッダー・フッター、`../assets/site.css` と `../assets/site.js` を使います。相対パスは親ディレクトリを基準にします。
+2. `assets/site.js` の `categories` 内の該当 `href: null` を `'compare/cat-toilets.html'` に変更します。TOPカードと全ページのヘッダーがリンクに切り替わります。必要なら `cta` も変更します。
+3. ページの title / description / canonical と `sitemap.xml` を更新します。
+4. JavaScript無効時の表示も公開済みにする場合は、各HTMLの同じ `data-category-nav` とTOPの `data-category-card` をアンカーに変更します。
+
+新ジャンルは `categories` へ追加すると全ページのナビに追加されます。TOPのカードに同じ `data-category-card` IDを持つ要素を追加してください。JavaScript無効時用の静的ナビも必要に応じて更新します。将来プルダウンにする場合は `assets/site.js` の `navigation` と共通CSSを変更します。商品データは各比較ページ、Amazonリンクは従来通り `assets/amazon-links.js` で管理します。旧TOPの `#top4` / `#howto` / `#cats` / `#products` は新しい猫砂比較URLへ引き継ぎます。
