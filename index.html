@@ -38,6 +38,9 @@ header{height:64px;display:flex;align-items:center;background:rgba(251,250,247,.
 @media(min-width:921px){.head{justify-content:flex-start}.nav-actions{margin-left:10px}.nav-links{margin-left:auto}}
 @media(max-width:920px){header{height:auto;min-height:64px}.head{width:min(1180px,94%);flex-wrap:wrap;padding:5px 0}.nav-desktop{display:none}.nav-mobile{display:flex;order:2;width:100%;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;gap:4px;padding:3px 0 2px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.nav-mobile::-webkit-scrollbar{display:none}.nav-mobile a{flex:none;min-height:32px;padding:6px 9px;font-size:12px;white-space:nowrap}.nav-mobile .nav-guide .nav-icon{font-size:16px}.nav-mobile .nav-game{padding:4px 9px 4px 6px}.nav-mobile .nav-game img{width:23px;height:23px}}
 @media(max-width:600px){.head{width:94%;padding:4px 0}.brand-logo-img{width:116px;height:40px}.nav-mobile{padding-top:2px}.nav-mobile a{min-height:30px;padding:5px 8px;font-size:11px}.nav-mobile .nav-game img{width:21px;height:21px}.nav-game-label-full{display:none}.nav-game-label-short{display:inline}}
+.type-with-photo{display:flex;align-items:center;gap:10px;min-width:170px}.type-with-photo img{width:54px;height:44px;object-fit:cover;border-radius:12px;box-shadow:0 3px 10px rgba(45,42,39,.12)}
+.breed-intro{position:relative;overflow:hidden;isolation:isolate;background:#2f2d2b}.breed-intro-media{position:absolute;z-index:0;inset:0}.breed-intro-media::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,rgba(28,26,24,.94) 0%,rgba(28,26,24,.76) 48%,rgba(28,26,24,.32) 100%)}.breed-intro-media video{width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.82) brightness(.86)}.breed-intro>:not(.breed-intro-media){position:relative;z-index:1}.breed-preview a{justify-content:flex-start;overflow:hidden}.breed-preview-image{width:calc(100% + 36px);height:126px;object-fit:cover;margin:-18px -18px 14px;border-radius:21px 21px 15px 15px;transition:transform .35s ease}.breed-preview a:hover .breed-preview-image{transform:scale(1.05)}.breed-preview .mono{width:42px;height:42px;margin:-35px 0 11px;position:relative;z-index:1;box-shadow:0 5px 12px rgba(45,42,39,.14)}
+@media(max-width:600px){.type-with-photo{min-width:160px}.breed-intro{min-height:330px}.breed-preview-image{height:150px}}
 </style>
 </head>
 <body>
@@ -99,21 +102,13 @@ header{height:64px;display:flex;align-items:center;background:rgba(251,250,247,.
 
 <section id="cats" class="section"><div class="wrap">
   <div class="section-head"><div><div class="eyebrow">CAT TYPE</div><h2>猫タイプ別に見ると、もっと選びやすい。</h2></div><p>猫種だけで決めつけず、毛の長さ・体格・年齢・砂のかき方を基準にしています。</p></div>
-  <div class="cat-grid">
-    <article class="catcard reveal"><img src="https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&fit=crop&w=900&q=85" alt="長毛の猫"><div><b>長毛タイプ</b><p>毛に付きにくく、飛び散りにくい粒を優先。</p></div></article>
-    <article class="catcard reveal"><img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=900&q=85" alt="大型の猫"><div><b>大型・よく砂をかく</b><p>固まりやすさと飛び散り対策を重視。</p></div></article>
-    <article class="catcard reveal"><img src="https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?auto=format&fit=crop&w=900&q=85" alt="子猫"><div><b>子猫</b><p>粉立ち・香りの強さ・誤食には特に注意。</p></div></article>
-    <article class="catcard reveal"><img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=900&q=85" alt="シニア猫"><div><b>シニア</b><p>出入りしやすいトイレと、踏み心地も一緒に考える。</p></div></article>
-    <article class="catcard reveal"><img src="https://images.unsplash.com/photo-1571566882372-1598d88abd90?auto=format&fit=crop&w=900&q=85" alt="多頭飼いの猫"><div><b>多頭飼い</b><p>消臭力と掃除のしやすさを優先。</p></div></article>
-    <article class="catcard reveal"><img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=900&q=85" alt="短毛の猫"><div><b>短毛・標準体格</b><p>クセが少ないので、生活スタイルで選びやすい。</p></div></article>
-  </div>
   <div class="compare-shell reveal"><table class="cat-compat"><thead><tr><th class="axis">猫タイプ</th><th>トフカスK</th><th>ライオン</th><th>pidan</th><th>トフカスタブ</th></tr></thead><tbody>
-    <tr><td class="axis">長毛</td><td>○</td><td>○</td><td>○</td><td>◎</td></tr>
-    <tr><td class="axis">大型・砂かき強め</td><td>◎</td><td>○</td><td>◎</td><td>◎</td></tr>
-    <tr><td class="axis">子猫</td><td>○</td><td>△</td><td>○</td><td>○</td></tr>
-    <tr><td class="axis">シニア</td><td>○</td><td>○</td><td>○</td><td>○</td></tr>
-    <tr><td class="axis">多頭飼い</td><td>◎</td><td>◎</td><td>◎</td><td>○</td></tr>
-    <tr><td class="axis">短毛・標準体格</td><td>◎</td><td>◎</td><td>◎</td><td>○</td></tr>
+    <tr><td class="axis"><span class="type-with-photo"><img src="https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?auto=format&fit=crop&w=180&q=80" alt="長毛の猫"><span>長毛</span></span></td><td>○</td><td>○</td><td>○</td><td>◎</td></tr>
+    <tr><td class="axis"><span class="type-with-photo"><img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=180&q=80" alt="大型の猫"><span>大型・砂かき強め</span></span></td><td>◎</td><td>○</td><td>◎</td><td>◎</td></tr>
+    <tr><td class="axis"><span class="type-with-photo"><img src="https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?auto=format&fit=crop&w=180&q=80" alt="子猫"><span>子猫</span></span></td><td>○</td><td>△</td><td>○</td><td>○</td></tr>
+    <tr><td class="axis"><span class="type-with-photo"><img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=180&q=80" alt="シニア猫"><span>シニア</span></span></td><td>○</td><td>○</td><td>○</td><td>○</td></tr>
+    <tr><td class="axis"><span class="type-with-photo"><img src="https://images.unsplash.com/photo-1571566882372-1598d88abd90?auto=format&fit=crop&w=180&q=80" alt="多頭飼いの猫"><span>多頭飼い</span></span></td><td>◎</td><td>◎</td><td>◎</td><td>○</td></tr>
+    <tr><td class="axis"><span class="type-with-photo"><img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=180&q=80" alt="短毛の猫"><span>短毛・標準体格</span></span></td><td>◎</td><td>◎</td><td>◎</td><td>○</td></tr>
   </tbody></table></div>
   <p class="tiny" style="margin-top:10px">※猫種そのものではなく、体格・被毛・年齢・行動傾向から見た目安です。猫ごとの好みには個体差があります。</p>
 </div></section>
@@ -121,11 +116,11 @@ header{height:64px;display:flex;align-items:center;background:rgba(251,250,247,.
 <section id="breeds" class="section breed-zone"><div class="wrap">
   <div class="section-head"><div><div class="eyebrow">CAT BREED GUIDE</div><h2>猫種を、暮らしから知る。</h2></div><p>甘えん坊、抱っこ、マイペース、遊び好き。一般的な傾向を入口に、12猫種のプロフィールを見られます。</p></div>
   <div class="breed-hub">
-    <div class="breed-intro"><div class="eyebrow">7 LIFESTYLE RANKINGS</div><h3>どんな距離感で、<br>一緒に暮らしたい？</h3><p>猫種ランキングは優劣ではなく、暮らしを想像するためのガイド。個体差を前提に、7つの軸で比較します。</p><a class="breed-cta" href="breeds/">猫種別ランキングを見る →</a></div>
+    <div class="breed-intro"><div class="breed-intro-media" aria-hidden="true"><video autoplay muted loop playsinline preload="metadata"><source src="assets/breeds/ragdoll-motion.mp4" type="video/mp4"></video></div><div class="eyebrow">7 LIFESTYLE RANKINGS</div><h3>どんな距離感で、<br>一緒に暮らしたい？</h3><p>猫種ランキングは優劣ではなく、暮らしを想像するためのガイド。個体差を前提に、7つの軸で比較します。</p><a class="breed-cta" href="breeds/">猫種別ランキングを見る →</a></div>
     <div class="breed-preview">
-      <a href="breeds/profile.html?breed=scottish-fold"><span class="mono">SF</span><b>スコティッシュ<br>フォールド</b><span>穏やか・人好き・静かめ</span></a>
-      <a href="breeds/profile.html?breed=munchkin"><span class="mono">MK</span><b>マンチカン</b><span>好奇心・遊び好き・社交的</span></a>
-      <a href="breeds/profile.html?breed=ragamuffin"><span class="mono">RM</span><b>ラガマフィン</b><span>甘えん坊・穏やか・長毛</span></a>
+      <a href="breeds/profile.html?breed=scottish-fold"><img class="breed-preview-image" src="assets/breeds/scottish-fold-adult.png" alt="スコティッシュフォールド"><span class="mono">SF</span><b>スコティッシュ<br>フォールド</b><span>穏やか・人好き・静かめ</span></a>
+      <a href="breeds/profile.html?breed=munchkin"><img class="breed-preview-image" src="assets/breeds/munchkin-adult.png" alt="マンチカン"><span class="mono">MK</span><b>マンチカン</b><span>好奇心・遊び好き・社交的</span></a>
+      <a href="breeds/profile.html?breed=ragamuffin"><img class="breed-preview-image" src="assets/breeds/ragamuffin-adult.png" alt="ラガマフィン"><span class="mono">RM</span><b>ラガマフィン</b><span>甘えん坊・穏やか・長毛</span></a>
     </div>
   </div>
 </div></section>

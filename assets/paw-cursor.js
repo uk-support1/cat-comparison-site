@@ -2,6 +2,8 @@
   const finePointer=window.matchMedia('(hover:hover) and (pointer:fine)');
   const reducedMotion=window.matchMedia('(prefers-reduced-motion:reduce)');
   if(!finePointer.matches||reducedMotion.matches)return;
+  const pawZone=document.querySelector('#top4');
+  if(!pawZone)return;
 
   const style=document.createElement('style');
   style.textContent=`
@@ -28,6 +30,11 @@
   let pressTimer;
   document.addEventListener('pointermove',event=>{
     if(event.pointerType!=='mouse')return;
+    if(!pawZone.contains(event.target)){
+      document.body.classList.remove('has-paw-cursor');
+      cursor.classList.remove('is-action','is-pressing');
+      return;
+    }
     document.body.classList.add('has-paw-cursor');
     cursor.style.setProperty('--paw-x',`${event.clientX}px`);
     cursor.style.setProperty('--paw-y',`${event.clientY}px`);
@@ -35,7 +42,7 @@
     cursor.classList.toggle('is-action',isAction(event.target));
   },{passive:true});
   document.addEventListener('pointerdown',event=>{
-    if(event.pointerType!=='mouse')return;
+    if(event.pointerType!=='mouse'||!pawZone.contains(event.target))return;
     cursor.classList.add('is-pressing');
     clearTimeout(pressTimer);
     pressTimer=setTimeout(()=>cursor.classList.remove('is-pressing'),150);
