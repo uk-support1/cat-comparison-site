@@ -19,7 +19,18 @@ https://uk-support1.github.io/cat-comparison-site/
 
 ## アソシエイト申請前の確認
 
-Amazonアソシエイトへの申請前に、`about.html` の運営者情報と `contact.html` の問い合わせ先が現在の運営体制と一致していることを確認してください。お問い合わせはFormspreeフォーム（`https://formspree.io/f/xvkgynqy`）で受け付けます。受信用メールアドレスや運営責任者の個人名はサイトに掲載しません。申請承認後に、Amazonが提供するタグ付きの特別リンクと必須の参加者表示を追加します。
+Amazonアソシエイトへの申請前に、`about.html` の運営者情報と `contact.html` の問い合わせ先が現在の運営体制と一致していることを確認してください。お問い合わせはFormspreeフォーム（`https://formspree.io/f/xvkgynqy`）で受け付けます。受信用メールアドレスや運営責任者の個人名はサイトに掲載しません。Amazonの購入リンクと参加者表示は実装済みです。掲載する特別リンクがご自身のアソシエイトアカウント・登録サイトに対応していることを確認してください。
 
 ## エントリーポイント
 `index.html`
+
+## Amazonリンクの管理
+
+- 商品ID・商品名・表記ゆれ・提供URL・セット数量注記は `assets/amazon-links.js` の `products` に一元管理しています。
+- URLは提供された短縮URLのまま保持してください。展開先への置換やタグの削除はしません。
+- 既存ページの任意の購入位置に `<div data-amazon-product="tofukasu-k"></div>` を置き、共通JS/CSSを読み込みます。比較表などは `data-amazon-compact` を追加できます。
+- 動的カードは `NekoAmazon.button(商品IDまたは商品名)` を使用します。照合は登録名・別名の完全一致のみで、別商品への曖昧な紐付けを防ぎます。
+- URL未提供のpidanは `url:null` として管理しています。正しいURLが届くまではAmazonのCTAを表示しません。
+- 現在の導線：おすすめ3商品、比較表3商品、全商品カードのうち11商品、3本の商品解説記事。既存の解説・選び方ガイドへのリンクは維持しています。
+- 参加者表記の根拠：[Amazonの開示についてのヘルプ](https://affiliate.amazon.co.jp/help/node/topic/GPXFHVYZMTGPUMPE)。リンク周辺の広告表示と、トップ・対象記事・編集広告ポリシーの参加者表示を併用しています。
+- 変更後の確認：`node tests/amazon-links.test.cjs` でURL保持・照合・未提供商品の非表示・記事導線・広告表記を検証します。

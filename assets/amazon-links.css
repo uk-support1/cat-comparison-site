@@ -1,0 +1,16 @@
+.amazon-action{margin-top:14px;min-width:0}
+.affiliate-label{display:block;margin-bottom:4px;color:var(--muted,#756f69);font-size:10px;font-weight:600;line-height:1.5}
+.amazon-cta{display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px;width:100%;padding:11px 12px;border:1px solid #b74833;border-radius:10px;background:#b74833;color:#fff;font-size:13px;font-weight:800;line-height:1.5;text-align:center;text-decoration:none;transition:background .18s ease,box-shadow .18s ease}
+.amazon-cta:hover{background:#973c2b;border-color:#973c2b;box-shadow:0 5px 14px rgba(151,60,43,.15)}
+.amazon-cta:focus-visible{outline:3px solid #7c9b82;outline-offset:3px}
+.amazon-offer-note{display:block;margin-top:6px;color:var(--muted,#756f69);font-size:11px;line-height:1.5}
+.affiliate-disclosure{margin:18px 0;color:var(--muted,#756f69);font-size:12px;line-height:1.8}
+.winner .amazon-action{margin-top:12px}
+.winner [data-amazon-product]+.buybtn{background:#fff;color:var(--ink,#2d2a27);border:1px solid var(--line,#e8e2da)}
+.compare .amazon-action{margin:0}
+.compare .amazon-cta{font-size:12px}
+.amazon-product-detail{margin:28px 0;padding:20px;border:1px solid var(--line,#e8e2da);border-radius:18px;background:#fffdf9}
+.amazon-product-detail strong{display:block;font-size:16px}
+.amazon-product-detail .amazon-action{max-width:340px}
+.amazon-product-detail p{margin:10px 0 0;font-size:12px;color:var(--muted,#756f69)}
+@media(max-width:600px){.amazon-cta{min-height:46px}.amazon-product-detail{padding:18px}.amazon-product-detail .amazon-action{max-width:none}}
