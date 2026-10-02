@@ -9,8 +9,9 @@
   window.NekoSite = {categories};
   const url = path => new URL(path, siteRoot).href;
   // Central navigation registry; static HTML remains a no-script fallback.
+  const pawGameName='肉球バブルであそぶ';
   const navActions = [
-    {name:'肉球であそぶ',href:'breeds/paw-pop.html',action:'paw'},
+    {name:pawGameName,href:'breeds/paw-pop.html',action:'paw'},
     {name:'猫種図鑑',href:'breeds/',action:'breeds'}
   ];
   const navigation = [{name:'TOP',href:'index.html'}, ...categories, {name:'運営情報',href:'about.html'}];
@@ -43,9 +44,12 @@
   if(navigationRoot){
     const items=navActionsRoot
       ? [...navActions.map(item=>({...item,className:'np-nav-action-copy'})),...navigation]
-      : [{name:'TOP',href:'index.html'},...categories,{name:'猫種図鑑',href:'breeds/'},{name:'肉球で遊ぶ',href:'breeds/paw-pop.html'},{name:'運営情報',href:'about.html'}];
+      : [{name:'TOP',href:'index.html'},...categories,{name:'猫種図鑑',href:'breeds/'},{name:pawGameName,href:'breeds/paw-pop.html'},{name:'運営情報',href:'about.html'}];
     navigationRoot.replaceChildren(...makeNavigation(items));
   }
+  document.querySelectorAll('footer.np-footer a[href*="breeds/paw-pop.html"]').forEach(link=>{link.textContent=pawGameName;});
+  document.querySelectorAll('.np-play-card h3').forEach(title=>{title.textContent=pawGameName;});
+  document.querySelectorAll('.np-play-card .np-text-link').forEach(link=>{link.textContent=`${pawGameName} →`;});
   const pathname = location.pathname.replace(/index\.html$/, '');
   document.querySelectorAll('.np-navigation a').forEach(a => {
     if (new URL(a.href).pathname.replace(/index\.html$/, '') === pathname) a.setAttribute('aria-current','page');
