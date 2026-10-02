@@ -3,7 +3,7 @@
   const siteRoot = new URL('../', document.currentScript.src);
   const categories = [
     {id:'litter', name:'猫砂', href:'compare/okara-litter.html', cta:'おから猫砂・全12商品を比較'},
-    {id:'toilets', name:'猫トイレ', href:null, cta:'猫トイレを比較'},
+    {id:'toilets', name:'猫トイレ', href:'compare/cat-toilets.html', cta:'おすすめ4タイプを比較'},
     {id:'carriers', name:'キャリーバッグ', href:null, cta:'キャリーバッグを比較'}
   ];
   window.NekoSite = {categories};

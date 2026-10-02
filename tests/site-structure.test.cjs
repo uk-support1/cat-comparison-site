@@ -26,7 +26,7 @@ const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
 assert.equal((home.match(/<h1\b/g)||[]).length,1);
 assert.ok(!home.includes('const products='));
 for(const category of ['litter','toilets','carriers'])assert.ok(home.includes('data-category-card="'+category+'"'));
-assert.ok(home.includes('<article class="np-category-card np-category-soon" data-category-card="toilets">'));
+assert.ok(home.includes('href="compare/cat-toilets.html" data-category-card="toilets"'));
 const contact=fs.readFileSync(path.join(root,'contact.html'),'utf8');
 assert.ok(contact.includes('https://formspree.io/f/xvkgynqy'));
 assert.ok(!contact.includes('mailto:'));
@@ -50,7 +50,7 @@ for(const hash of ['', '#top4', '#howto', '#cats', '#products']){
  assert.equal(nav.children.length,7);
  assert.equal(nav.children[1].href,'https://example.test/cat-comparison-site/compare/okara-litter.html');
  assert.equal(context.window.NekoSite.categories.length,3);
- assert.equal(context.window.NekoSite.categories[1].href,null);
+ assert.equal(context.window.NekoSite.categories[1].href,'compare/cat-toilets.html');
  assert.equal(redirect,hash?'https://example.test/cat-comparison-site/compare/okara-litter.html?v=test'+hash:null);
 }
 console.log('PASS: centralized seven-item navigation, pending categories, GitHub Pages base path and four legacy anchors.');
