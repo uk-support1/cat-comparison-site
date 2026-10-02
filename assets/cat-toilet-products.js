@@ -8,7 +8,7 @@
     {
       name: 'デオトイレ 子猫〜5kgの成猫用 本体セット',
       type: 'システムトイレ / コンパクト',
-      imageUrl: 'https://jp.unicharmpet.com/content/dam/sites/jp_unicharmpet_com/pet/products-cat/deotoilet_c/4520699635544.png',
+      imageUrl: 'https://jp.unicharmpet.com/content/dam/sites/jp_unicharmpet_com/deotoilet/top/lineup_set_image_01.png',
       imageSource: 'ユニ・チャーム ペット公式',
       officialUrl: 'https://jp.unicharmpet.com/ja/brand/deotoilet-c.html',
       amazonUrl: '',
@@ -19,7 +19,7 @@
     {
       name: 'デオトイレ らくらくシンプル本体セット',
       type: 'システムトイレ / シンプル',
-      imageUrl: 'https://jp.unicharmpet.com/content/dam/sites/jp_unicharmpet_com/pet/products-cat/deotoilet_c/4520699614068.png',
+      imageUrl: 'https://jp.unicharmpet.com/content/dam/sites/jp_unicharmpet_com/deotoilet/top/lineup_set_image_02.png',
       imageSource: 'ユニ・チャーム ペット公式',
       officialUrl: 'https://jp.unicharmpet.com/ja/brand/deotoilet-c.html',
       amazonUrl: '',
@@ -30,7 +30,7 @@
     {
       name: 'デオトイレ 脱臭ファン＋本体セット',
       type: 'システムトイレ / ニオイ対策',
-      imageUrl: 'https://jp.unicharmpet.com/content/dam/sites/jp_unicharmpet_com/pet/products-cat/deotoilet_c/4520699678749.png',
+      imageUrl: 'https://jp.unicharmpet.com/content/dam/sites/jp_unicharmpet_com/deotoilet/top/lineup_set_image_06.png',
       imageSource: 'ユニ・チャーム ペット公式',
       officialUrl: 'https://jp.unicharmpet.com/ja/brand/deotoilet-c.html',
       amazonUrl: '',

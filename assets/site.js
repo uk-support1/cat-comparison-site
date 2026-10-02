@@ -10,8 +10,8 @@
   const url = path => new URL(path, siteRoot).href;
   // Central navigation registry; static HTML remains a no-script fallback.
   const navActions = [
-    {name:'肉球であそぶ',href:'breeds/paw-pop.html'},
-    {name:'猫種図鑑',href:'breeds/'}
+    {name:'肉球であそぶ',href:'breeds/paw-pop.html',action:'paw'},
+    {name:'猫種図鑑',href:'breeds/',action:'breeds'}
   ];
   const navigation = [{name:'TOP',href:'index.html'}, ...categories, {name:'運営情報',href:'about.html'}];
   const makeNavigation = (items, extraClass='') => items.map(item=>{
@@ -19,6 +19,7 @@
     element.textContent=item.name;
     if(extraClass || item.className) element.className=[extraClass,item.className].filter(Boolean).join(' ');
     if(item.id)element.dataset.categoryNav=item.id;
+    if(item.action)element.dataset.navAction=item.action;
     if(item.href)element.href=url(item.href);
     else{
       element.className=[element.className,'np-pending'].filter(Boolean).join(' ');
@@ -26,7 +27,17 @@
     }
     return element;
   });
-  const navActionsRoot=document.querySelector('.np-nav-actions');
+  let navActionsRoot=document.querySelector('.np-nav-actions');
+  if(!navActionsRoot){
+    const headerInner=document.querySelector('.np-header-inner');
+    const navigationRoot=headerInner?.querySelector('.np-navigation');
+    if(headerInner&&navigationRoot){
+      navActionsRoot=document.createElement('nav');
+      navActionsRoot.className='np-nav-actions';
+      navActionsRoot.setAttribute('aria-label','楽しむコンテンツ');
+      headerInner.insertBefore(navActionsRoot,headerInner.querySelector('.np-menu-toggle')||navigationRoot);
+    }
+  }
   if(navActionsRoot) navActionsRoot.replaceChildren(...makeNavigation(navActions));
   const navigationRoot=document.querySelector('.np-navigation');
   if(navigationRoot){
