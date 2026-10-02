@@ -9,25 +9,31 @@
   window.NekoSite = {categories};
   const url = path => new URL(path, siteRoot).href;
   // Central navigation registry; static HTML remains a no-script fallback.
-  const navigation = [
-    {name:'TOP',href:'index.html'}, ...categories,
-    {name:'猫種図鑑',href:'breeds/'},
-    {name:'肉球で遊ぶ',href:'breeds/paw-pop.html'},
-    {name:'運営情報',href:'about.html'}
+  const navActions = [
+    {name:'肉球であそぶ',href:'breeds/paw-pop.html'},
+    {name:'猫種図鑑',href:'breeds/'}
   ];
+  const navigation = [{name:'TOP',href:'index.html'}, ...categories, {name:'運営情報',href:'about.html'}];
+  const makeNavigation = (items, extraClass='') => items.map(item=>{
+    const element=document.createElement(item.href?'a':'span');
+    element.textContent=item.name;
+    if(extraClass || item.className) element.className=[extraClass,item.className].filter(Boolean).join(' ');
+    if(item.id)element.dataset.categoryNav=item.id;
+    if(item.href)element.href=url(item.href);
+    else{
+      element.className=[element.className,'np-pending'].filter(Boolean).join(' ');
+      const status=document.createElement('small');status.textContent='準備中';element.append(status);
+    }
+    return element;
+  });
+  const navActionsRoot=document.querySelector('.np-nav-actions');
+  if(navActionsRoot) navActionsRoot.replaceChildren(...makeNavigation(navActions));
   const navigationRoot=document.querySelector('.np-navigation');
   if(navigationRoot){
-    navigationRoot.replaceChildren(...navigation.map(item=>{
-      const element=document.createElement(item.href?'a':'span');
-      element.textContent=item.name;
-      if(item.id)element.dataset.categoryNav=item.id;
-      if(item.href)element.href=url(item.href);
-      else{
-        element.className='np-pending';
-        const status=document.createElement('small');status.textContent='準備中';element.append(status);
-      }
-      return element;
-    }));
+    const items=navActionsRoot
+      ? [...navActions.map(item=>({...item,className:'np-nav-action-copy'})),...navigation]
+      : [{name:'TOP',href:'index.html'},...categories,{name:'猫種図鑑',href:'breeds/'},{name:'肉球で遊ぶ',href:'breeds/paw-pop.html'},{name:'運営情報',href:'about.html'}];
+    navigationRoot.replaceChildren(...makeNavigation(items));
   }
   const pathname = location.pathname.replace(/index\.html$/, '');
   document.querySelectorAll('.np-navigation a').forEach(a => {
