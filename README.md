@@ -1,4 +1,4 @@
-# 猫好きのための商品比較サイト（仮）
+# くらしパートナー / ねこパートナー
 
 Amazonアソシエイト向けの商品比較メディアの初期デモです。
 
@@ -15,7 +15,10 @@ Amazonアソシエイト向けの商品比較メディアの初期デモです�
 
 ## 公開URL
 
-https://uk-support1.github.io/cat-comparison-site/
+- 親ブランド（くらしパートナー）：https://kurashi-partner-ku.com/
+- 猫の専門メディア（ねこパートナー）：https://uk-support1.github.io/cat-comparison-site/
+
+同一のGitHub Pages配信元で両サイトを共存させています。独自ドメインのトップは親ブランドのポータル、従来のGitHub Pages URLは `cat-home.html` のねこパートナーへ案内します。独自ドメイン・GitHub Pagesの設定およびCNAMEの管理はGitHub側で維持してください。
 
 ## アソシエイト申請前の確認
 
@@ -39,7 +42,8 @@ Amazonアソシエイトへの申請前に、`about.html` の運営者情報と 
 
 確認コマンド：`node tests/site-structure.test.cjs` と `node tests/amazon-links.test.cjs`。内部リンク・アンカー、共通ナビ、GitHub Pagesのベースパス、旧URL引き継ぎ、商品リンクを確認します。
 
-- `index.html`: ねこパートナーTOP。比較ジャンルの入口と猫種図鑑・肉球ゲームへの入口。
+- `index.html`: くらしパートナーTOP。専門メディアの入口と今後の展開を紹介。
+- `cat-home.html`: ねこパートナーTOP。比較ジャンルの入口と猫種図鑑・肉球ゲームへの入口。
 - `compare/okara-litter.html`: 既存のおから猫砂比較。商品・比較表・Amazon導線は維持。
 - `assets/site.css` / `assets/site.js`: 全ページ共通のヘッダー、スマホメニュー、フッター用スタイルとカテゴリ設定。
 - `assets/home.css`: TOP専用のレイアウト。

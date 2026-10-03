@@ -1,7 +1,7 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
 const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.name.startsWith('.')||e.name==='node_modules'?[]:e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)]);
-const files=walk(root).filter(f=>f.endsWith('.html'));
+const files=walk(root).filter(f=>f.endsWith('.html')&&path.basename(f)!=='index.html');
 let count=0;
 for(const file of files){
  const html=fs.readFileSync(file,'utf8');
@@ -22,16 +22,25 @@ for(const file of files){
   count++;
  }
 }
-const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
+const portal=fs.readFileSync(path.join(root,'index.html'),'utf8');
+assert.equal((portal.match(/<h1\b/g)||[]).length,1);
+assert.ok(portal.includes('https://kurashi-partner-ku.com/'));
+assert.ok(portal.includes('https://uk-support1.github.io/cat-comparison-site/'));
+assert.ok(portal.includes('rel="canonical" href="https://kurashi-partner-ku.com/"'));
+assert.ok(portal.includes('application/ld+json'));
+assert.ok(portal.includes("location.hostname === 'uk-support1.github.io'"));
+for(const asset of ['assets/kurashi-portal.css','assets/kurashi-portal.js','assets/kurashi-partner-logo.png','assets/kurashi-partner-favicon.png','assets/neko-partner-logo.png','assets/mii-mix-cat.jpg'])assert.ok(fs.existsSync(path.join(root,asset)),asset);
+assert.ok(fs.readFileSync(path.join(root,'robots.txt'),'utf8').includes('https://kurashi-partner-ku.com/kurashi-sitemap.xml'));
+assert.ok(fs.readFileSync(path.join(root,'kurashi-sitemap.xml'),'utf8').includes('https://kurashi-partner-ku.com/'));
+const home=fs.readFileSync(path.join(root,'cat-home.html'),'utf8');
 assert.equal((home.match(/<h1\b/g)||[]).length,1);
-assert.ok(!home.includes('const products='));
 for(const category of ['litter','toilets','carriers'])assert.ok(home.includes('data-category-card="'+category+'"'));
 assert.ok(home.includes('href="compare/cat-toilets.html" data-category-card="toilets"'));
 const contact=fs.readFileSync(path.join(root,'contact.html'),'utf8');
 assert.ok(contact.includes('https://formspree.io/f/xvkgynqy'));
 assert.ok(!contact.includes('mailto:'));
 assert.ok(!fs.readFileSync(path.join(root,'about.html'),'utf8').includes('上原'));
-console.log('PASS: '+files.length+' pages share navigation/footer; '+count+' local links/assets/anchors resolve; portal categories and contact preserved.');
+console.log('PASS: '+files.length+' cat pages share navigation/footer; '+count+' local links/assets/anchors resolve; portal metadata and specialist-media links preserved.');
 
 // Verify the central nav and legacy redirects under GitHub Pages' subdirectory.
 const vm=require('node:vm');

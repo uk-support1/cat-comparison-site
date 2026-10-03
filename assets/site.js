@@ -50,6 +50,15 @@
   document.querySelectorAll('footer.np-footer a[href*="breeds/paw-pop.html"]').forEach(link=>{link.textContent=pawGameName;});
   document.querySelectorAll('.np-play-card h3').forEach(title=>{title.textContent=pawGameName;});
   document.querySelectorAll('.np-play-card .np-text-link').forEach(link=>{link.textContent=`${pawGameName} →`;});
+  // Keep the specialist site visibly connected to its parent brand without changing its own navigation.
+  const footerBrand=document.querySelector('.np-footer-top > div');
+  if(footerBrand && !footerBrand.querySelector('.np-parent-link')){
+    const parentLink=document.createElement('a');
+    parentLink.className='np-parent-link'; parentLink.href='https://kurashi-partner-ku.com/';
+    parentLink.textContent='くらしパートナー'; parentLink.setAttribute('rel','home');
+    parentLink.setAttribute('aria-label','親ブランド「くらしパートナー」へ');
+    footerBrand.append(parentLink);
+  }
   const pathname = location.pathname.replace(/index\.html$/, '');
   document.querySelectorAll('.np-navigation a').forEach(a => {
     if (new URL(a.href).pathname.replace(/index\.html$/, '') === pathname) a.setAttribute('aria-current','page');

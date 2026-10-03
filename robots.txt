@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://kurashi-partner-ku.com/kurashi-sitemap.xml
 Sitemap: https://uk-support1.github.io/cat-comparison-site/sitemap.xml

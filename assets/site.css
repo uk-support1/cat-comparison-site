@@ -19,6 +19,7 @@ footer.np-footer{display:block;background:#f3eee7;color:var(--np-ink);padding:45
 .np-footer-top{display:grid;grid-template-columns:1fr 1.4fr;gap:50px}
 .np-footer-brand{font-size:21px;font-weight:800;text-decoration:none;color:inherit}
 .np-footer p{color:var(--np-muted);line-height:1.8}
+.np-parent-link{display:inline-flex;align-items:center;min-height:34px;margin-top:4px;color:var(--np-coral);font-size:12px;font-weight:700;text-decoration:none}.np-parent-link::before{content:"運営：";margin-right:2px;color:var(--np-muted);font-weight:400}.np-parent-link:hover{text-decoration:underline}
 .np-footer nav{display:flex;flex-wrap:wrap;align-content:start;gap:10px 23px}
 .np-footer nav a{display:inline-flex;align-items:center;min-height:32px;text-decoration:none;color:inherit}
 .np-footer nav a:hover{text-decoration:underline}
