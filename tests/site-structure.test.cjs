@@ -28,7 +28,7 @@ assert.ok(portal.includes('https://kurashi-partner-ku.com/'));
 assert.ok(portal.includes('https://uk-support1.github.io/cat-comparison-site/'));
 assert.ok(portal.includes('rel="canonical" href="https://kurashi-partner-ku.com/"'));
 assert.ok(portal.includes('application/ld+json'));
-assert.ok(portal.includes("location.hostname === 'uk-support1.github.io'"));
+assert.ok(portal.includes("location.pathname.startsWith('/cat-comparison-site/')"));
 for(const asset of ['assets/kurashi-portal.css','assets/kurashi-portal.js','assets/kurashi-partner-logo.png','assets/kurashi-partner-favicon.png','assets/neko-partner-logo.png','assets/mii-mix-cat.jpg'])assert.ok(fs.existsSync(path.join(root,asset)),asset);
 assert.ok(fs.readFileSync(path.join(root,'robots.txt'),'utf8').includes('https://kurashi-partner-ku.com/kurashi-sitemap.xml'));
 assert.ok(fs.readFileSync(path.join(root,'kurashi-sitemap.xml'),'utf8').includes('https://kurashi-partner-ku.com/'));
