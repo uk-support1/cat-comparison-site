@@ -1,7 +1,7 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
 const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.name.startsWith('.')||e.name==='node_modules'?[]:e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)]);
-const files=walk(root).filter(f=>f.endsWith('.html')&&path.basename(f)!=='index.html');
+const files=walk(root).filter(f=>f.endsWith('.html')&&path.basename(f)!=='cat-home.html');
 let count=0;
 for(const file of files){
  const html=fs.readFileSync(file,'utf8');
@@ -22,20 +22,27 @@ for(const file of files){
   count++;
  }
 }
-const portal=fs.readFileSync(path.join(root,'index.html'),'utf8');
-assert.equal((portal.match(/<h1\b/g)||[]).length,1);
-assert.ok(portal.includes('https://kurashi-partner-ku.com/'));
-assert.ok(portal.includes('https://uk-support1.github.io/cat-comparison-site/'));
-assert.ok(portal.includes('rel="canonical" href="https://kurashi-partner-ku.com/"'));
-assert.ok(portal.includes('application/ld+json'));
-assert.ok(portal.includes("location.pathname.startsWith('/cat-comparison-site/')"));
-for(const asset of ['assets/kurashi-portal.css','assets/kurashi-portal.js','assets/kurashi-partner-logo.png','assets/kurashi-partner-favicon.png','assets/neko-partner-logo.png','assets/mii-mix-cat.jpg'])assert.ok(fs.existsSync(path.join(root,asset)),asset);
-assert.ok(fs.readFileSync(path.join(root,'robots.txt'),'utf8').includes('https://kurashi-partner-ku.com/kurashi-sitemap.xml'));
-assert.ok(fs.readFileSync(path.join(root,'kurashi-sitemap.xml'),'utf8').includes('https://kurashi-partner-ku.com/'));
-const home=fs.readFileSync(path.join(root,'cat-home.html'),'utf8');
+const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
 assert.equal((home.match(/<h1\b/g)||[]).length,1);
+assert.ok(home.includes('https://cat.kurashi-partner-ku.com/'));
+assert.ok(home.includes('https://kurashi-partner-ku.com/'));
+assert.ok(home.includes('rel="canonical" href="https://cat.kurashi-partner-ku.com/"'));
+assert.ok(home.includes('property="og:url" content="https://cat.kurashi-partner-ku.com/"'));
+assert.ok(home.includes('assets/neko-partner-favicon.png'));
+assert.ok(home.includes('application/ld+json'));
+for(const asset of ['assets/site.css','assets/home.css','assets/neko-partner-logo.png','assets/neko-partner-favicon.png','assets/mii-mix-cat.jpg'])assert.ok(fs.existsSync(path.join(root,asset)),asset);
+assert.equal(fs.readFileSync(path.join(root,'CNAME'),'utf8').trim(),'cat.kurashi-partner-ku.com');
+assert.ok(fs.readFileSync(path.join(root,'robots.txt'),'utf8').includes('https://cat.kurashi-partner-ku.com/sitemap.xml'));
+for(const page of ['compare/okara-litter.html','compare/cat-toilets.html']){
+ const html=fs.readFileSync(path.join(root,page),'utf8');
+ assert.ok(html.includes('https://cat.kurashi-partner-ku.com/'+page),page+' canonical');
+}
+assert.ok(!fs.readFileSync(path.join(root,'sitemap.xml'),'utf8').includes('uk-support1.github.io'));
 for(const category of ['litter','toilets','carriers'])assert.ok(home.includes('data-category-card="'+category+'"'));
 assert.ok(home.includes('href="compare/cat-toilets.html" data-category-card="toilets"'));
+const legacyHome=fs.readFileSync(path.join(root,'cat-home.html'),'utf8');
+assert.ok(legacyHome.includes('meta http-equiv="refresh"'));
+assert.ok(!legacyHome.includes('<script'));
 const contact=fs.readFileSync(path.join(root,'contact.html'),'utf8');
 assert.ok(contact.includes('https://formspree.io/f/xvkgynqy'));
 assert.ok(!contact.includes('mailto:'));
