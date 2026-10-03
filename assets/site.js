@@ -1,3 +1,20 @@
+// Shared Google tag: initialize once, even if the shared script is included twice.
+(() => {
+  const measurementId = 'G-XNJBENZKBD';
+  if (!document.head || window.nekoAnalyticsInitialized) return;
+  window.nekoAnalyticsInitialized = true;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+  window.gtag('js', new Date());
+  window.gtag('config', measurementId);
+  if (!document.querySelector('script[src="https://www.googletagmanager.com/gtag/js?id=' + measurementId + '"]')) {
+    const tag = document.createElement('script');
+    tag.async = true;
+    tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+    document.head.append(tag);
+  }
+})();
+
 /* One category registry: set href when a new comparison is ready; paths are site-root relative. */
 (() => {
   const siteRoot = new URL('../', document.currentScript.src);
