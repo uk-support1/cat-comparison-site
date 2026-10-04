@@ -24,6 +24,99 @@ window.BREEDS.push(
 );
 window.BREEDS.push({id:'siberian',name:'サイベリアン',en:'Siberian',mark:'SB',color:'#a58c6c',size:'中〜大型',coat:'長毛',origin:'ロシア',summary:'厚く豊かな被毛と、たくましい体つきが特徴。人への親しみと好奇心を持ち、家族のそばで過ごしやすい長毛種。',traits:['人好き','好奇心','穏やか'],stats:{affection:4,cuddle:3,independence:3,play:4,quiet:4,talk:2,care:2},character:'周囲を探索したり、家族の行動を見守ったりすることを楽しむ傾向があります。がっしりした体と密な被毛を持ち、さまざまな毛色や模様が見られます。人との交流を好みやすい一方、抱っこや触れ合いの好みは個体ごとに確かめます。',living:'体格に合う安定したタワーや寝床を用意し、探索と休息の両方を選べる室内を整えます。成長に合わせてトイレやキャリーの広さを見直し、季節や被毛の状態に合わせたお手入れを習慣にします。',goodFor:['猫と毎日交流する時間を持てる家庭','大型猫に合う安定した用品を用意できる人','長毛のお手入れを続けられる人'],carePoints:['脇、お腹、尾の付け根などのもつれをこまめに確認する','換毛期や被毛の状態に合わせてやさしくとかす','体格に合う広い寝床と、安全な上下運動環境を用意する'],litter:'豊かな長毛への付着と、大きな体でも向きを変えられる広さを重視します。毛に付きにくい粒や出口マットを比較し、その猫の使い方に合わせて調整します。',source:'https://cfa.org/breed/siberian/',reviewed:'2026年10月4日'});
 const localBreedMedia=(file,label)=>({url:`../assets/breeds/${file}`,file,label,author:'ねこパートナー提供',license:'サイト掲載許諾済み',licenseUrl:`../assets/breeds/${file}`,page:`../assets/breeds/${file}`});
+// Rating definitions and evidence are shared by every profile. Numeric scores are
+// editorial ordinal guides, not validated clinical measurements or probabilities.
+window.LIVING_RATING_ITEMS=[
+  {key:'lowShedding',label:'抜け毛の少なさ',help:'5＝比較的少ない、1＝多め。被毛構造・アンダーコート・換毛も考慮した目安です。'},
+  {key:'lowHairball',label:'毛玉を吐きにくさ',help:'5＝ヘアボールへの配慮が比較的少ない、1＝配慮が必要。被毛・抜け毛からの目安で、猫種別の嘔吐発生率ではありません。'},
+  {key:'alone',label:'留守番のしやすさ',help:'5＝ひとり時間に比較的適応しやすい、1＝交流を特に必要とする傾向。長時間の放置を勧める評価ではありません。'},
+  {key:'children',label:'子どもとの暮らしやすさ',help:'5＝比較的適応しやすい、1＝静かな環境などへの配慮が必要。大人の見守りと猫の逃げ場所は、どの猫種にも必要です。'},
+  {key:'multiPet',label:'多頭飼いのしやすさ',help:'5＝段階的な導入に比較的適応しやすい、1＝導入に特に慎重さが必要。他猫・他のペットとの相性は個体差が大きく、同居を保証しません。'},
+  {key:'beginner',label:'初心者向き',help:'5＝初めての家庭にも比較的合わせやすい、1＝経験や管理の準備が特に必要。運動・交流・被毛・体格・健康管理を総合した編集目安です。'},
+  {key:'allergy',label:'アレルギー配慮度',help:'5＝低アレルゲン候補としての言及が多い、1＝その根拠を確認できない。医学的な安全性や発症しない確率ではなく、短毛・抜け毛の少なさからは採点していません。'}
+];
+window.RATING_REFERENCES={
+  hairball:{label:'Cornell大学：ヘアボールの注意点',url:'https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/danger-hairballs'},
+  allergy:{label:'AAAAI：ペットアレルギー',url:'https://www.aaaai.org/conditions-treatments/allergies/pet-allergy'},
+  siberianAllergy:{label:'サイベリアンとFel d 1の探索的研究（2017）',url:'https://pmc.ncbi.nlm.nih.gov/articles/PMC5753643/'},
+  allergyMention:{label:'Blue Cross：低アレルゲン猫種という通説の注意点',url:'https://www.bluecross.org.uk/advice/hyopallergenic-cat-myths'},
+  fold:{label:'TRPV4と骨軟骨異形成の研究（2016）',url:'https://pubmed.ncbi.nlm.nih.gov/27063440/'},
+  persian:{label:'RVC VetCompass：ペルシャの診療調査',url:'https://www.rvc.ac.uk/Media/Default/VetCompass/VC_26092019PCATS_v01.pdf'},
+  hcmMaine:{label:'UC Davis VGL：メインクーンのHCM',url:'https://vgl.ucdavis.edu/test/maine-coon-hcm'},
+  hcmRagdoll:{label:'UC Davis VGL：ラグドール関連のHCM',url:'https://vgl.ucdavis.edu/test/ragdoll-hcm'},
+  pk:{label:'UC Davis VGL：ピルビン酸キナーゼ欠損症',url:'https://vgl.vetmed.ucdavis.edu/test/pk-deficiency-cat'},
+  pra:{label:'UC Davis VGL：進行性網膜萎縮',url:'https://vgl.ucdavis.edu/services/cat/pra'},
+  genetics:{label:'UC Davis VGL：猫の遺伝子検査資料',url:'https://vgl.vetmed.ucdavis.edu/tests?field_species_target_id=216'},
+  gsd:{label:'UC Davis VGL：ノルウェージャンの糖原病IV型',url:'https://vgl.vetmed.ucdavis.edu/test/gsd-iv-cat'},
+  pkd:{label:'UC Davis：猫の多発性嚢胞腎の研究',url:'https://www.ucdavis.edu/news/discovery-flawed-gene-holds-promise-treating-kidney-disease-cats-and-humans'},
+  individual:{label:'Cats Protection：個体に合う猫選び',url:'https://www.cats.org.uk/adopt-a-cat/choosing-a-cat'}
+};
+// Only confirmed changes to existing scores; five requested sets are exact.
+const revisedTraitStats={
+  'american-curl':{affection:5,cuddle:4,independence:3,play:5,quiet:4,talk:2,care:4},
+  somali:{affection:4,cuddle:3,independence:3,play:5,quiet:4,talk:2,care:4},
+  abyssinian:{affection:4,cuddle:2,independence:3,play:5,quiet:4,talk:2,care:5},
+  exotic:{affection:5,cuddle:5,independence:3,play:3,quiet:5,talk:1,care:4},
+  himalayan:{affection:4,cuddle:5,independence:4,play:3,quiet:5,talk:2,care:1},
+  ragamuffin:{care:4},ragdoll:{care:3},'maine-coon':{care:3},'norwegian-forest':{care:3},siberian:{care:3},mix:{affection:3,care:3}
+};
+const livingRatingData={
+  'scottish-fold':{lowShedding:3,lowHairball:3,alone:2,children:4,multiPet:3,beginner:2,allergy:1},
+  munchkin:{lowShedding:3,lowHairball:3,alone:3,children:3,multiPet:4,beginner:3,allergy:1},
+  ragamuffin:{lowShedding:3,lowHairball:2,alone:2,children:5,multiPet:5,beginner:4,allergy:1},
+  ragdoll:{lowShedding:3,lowHairball:2,alone:2,children:5,multiPet:5,beginner:4,allergy:1},
+  'maine-coon':{lowShedding:2,lowHairball:2,alone:3,children:5,multiPet:4,beginner:3,allergy:1},
+  'british-shorthair':{lowShedding:2,lowHairball:3,alone:4,children:4,multiPet:4,beginner:4,allergy:1},
+  'american-shorthair':{lowShedding:3,lowHairball:4,alone:4,children:5,multiPet:4,beginner:5,allergy:1},
+  'russian-blue':{lowShedding:3,lowHairball:4,alone:4,children:3,multiPet:3,beginner:4,allergy:2},
+  bengal:{lowShedding:4,lowHairball:4,alone:2,children:4,multiPet:3,beginner:2,allergy:2},
+  persian:{lowShedding:2,lowHairball:1,alone:3,children:3,multiPet:4,beginner:2,allergy:1},
+  siamese:{lowShedding:3,lowHairball:4,alone:1,children:4,multiPet:4,beginner:3,allergy:1},
+  'norwegian-forest':{lowShedding:2,lowHairball:2,alone:4,children:4,multiPet:4,beginner:3,allergy:1},
+  mix:{lowShedding:3,lowHairball:3,alone:3,children:3,multiPet:3,beginner:3,allergy:1},
+  'american-curl':{lowShedding:4,lowHairball:3,alone:3,children:4,multiPet:4,beginner:4,allergy:1},
+  somali:{lowShedding:3,lowHairball:3,alone:2,children:4,multiPet:4,beginner:3,allergy:1},
+  abyssinian:{lowShedding:4,lowHairball:4,alone:2,children:4,multiPet:4,beginner:3,allergy:1},
+  exotic:{lowShedding:2,lowHairball:3,alone:3,children:4,multiPet:4,beginner:2,allergy:1},
+  himalayan:{lowShedding:2,lowHairball:1,alone:3,children:3,multiPet:4,beginner:2,allergy:1},
+  siberian:{lowShedding:2,lowHairball:2,alone:3,children:4,multiPet:4,beginner:3,allergy:3}
+};
+const healthRatingData={
+  'scottish-fold':{caution:5,points:['骨軟骨異形成と関節・骨格のケア','歩き方や尾の動き、痛みのサインの観察'],sources:['fold']},
+  munchkin:{caution:3,points:['短い脚に合わせた移動環境・関節の観察','体重管理と無理のない運動'],sources:['individual','hcmRagdoll']},
+  ragamuffin:{caution:3,points:['心臓（HCM）に関する家系・検査情報','体重管理と定期健診'],sources:['hcmRagdoll']},
+  ragdoll:{caution:4,points:['心臓（HCM）に関する家系・検査情報','体重管理と日々の活動量'],sources:['hcmRagdoll']},
+  'maine-coon':{caution:4,points:['心臓（HCM）の検査・健診情報','遺伝性疾患（SMAなど）の家系情報','大きな体に合う関節・体重のケア'],sources:['hcmMaine','genetics']},
+  'british-shorthair':{caution:3,points:['血液型の把握（輸血が必要な場合に備えて）','体重管理と口腔ケア'],sources:['individual']},
+  'american-shorthair':{caution:3,points:['体重管理と日々の運動','心臓の健診・家系情報の確認'],sources:['genetics']},
+  'russian-blue':{caution:2,points:['体重管理と口腔ケア','食欲・排泄など普段との違いの観察'],sources:['individual']},
+  bengal:{caution:3,points:['目（PRA）の家系・検査情報','遺伝性貧血（PK欠損症）の検査情報','心臓の健診と活動量の管理'],sources:['genetics','pk']},
+  persian:{caution:5,points:['顔の形に関連する呼吸・目のケア','歯と被毛の管理','腎臓（PKD）の家系・検査情報'],sources:['persian','pkd']},
+  siamese:{caution:4,points:['目（PRA）の家系・検査情報','アミロイドーシスなどの家系情報','口腔ケアと定期健診'],sources:['pra']},
+  'norwegian-forest':{caution:3,points:['糖原病IV型（GSD IV）の家系・検査情報','遺伝性貧血（PK欠損症）の検査情報','大きな体に合う体重・関節のケア'],sources:['gsd','pk']},
+  mix:{caution:2,points:['体重・口腔・食欲や排泄の観察','年齢・家系・個体に合わせた定期健診'],sources:['individual']},
+  'american-curl':{caution:3,points:['耳の形に合わせたやさしい観察・ケア','体重・口腔ケアと定期健診'],sources:['individual']},
+  somali:{caution:3,points:['遺伝性貧血（PK欠損症）の検査情報','目（PRA）の家系・検査情報','歯肉や口腔のケア'],sources:['pk','pra']},
+  abyssinian:{caution:4,points:['遺伝性貧血（PK欠損症）の検査情報','目（PRA）の家系・検査情報','歯肉・腎臓に関する健診相談'],sources:['pk','pra']},
+  exotic:{caution:5,points:['顔の形に関連する呼吸・目のケア','歯と密な被毛の管理','腎臓（PKD）の家系・検査情報'],sources:['persian','pkd']},
+  himalayan:{caution:4,points:['顔の形に関連する呼吸・目のケア','腎臓（PKD）の家系・検査情報','歯と長毛の管理'],sources:['pkd','persian']},
+  siberian:{caution:3,points:['遺伝性貧血（PK欠損症）の検査情報','体重・口腔ケアと定期健診'],sources:['pk']}
+};
+window.BREEDS.forEach(breed=>{
+  Object.assign(breed.stats,revisedTraitStats[breed.id]||{});
+  breed.livingStats=livingRatingData[breed.id];
+  breed.health=healthRatingData[breed.id];
+  breed.ratingReviewed='2026年10月4日';
+  const cfaSlug={'maine-coon':'maine-coon-cat','norwegian-forest':'norwegian-forest-cat',himalayan:'persian'}[breed.id]||breed.id;
+  const ticaSlug={'norwegian-forest':'norwegian-forest',exotic:'exotic-shorthair'}[breed.id]||breed.id;
+  breed.ratingSources=breed.id==='mix'
+    ? [{label:'Cats Protection：個体と暮らしの相性',url:window.RATING_REFERENCES.individual.url},{label:'CFA：さまざまな背景のコンパニオンキャット',url:'https://cfa.org/companion-cat-world/'}]
+    : breed.id==='munchkin'
+      ? [{label:'TICA：マンチカン',url:breed.source},{label:'Purina：マンチカン',url:'https://www.purina.co.uk/find-a-pet/cat-breeds/munchkin'}]
+      : [{label:'CFA：猫種プロフィール',url:`https://cfa.org/breed/${cfaSlug}/`},breed.id==='ragamuffin'
+        ? {label:'GCCF：ラガマフィン',url:'https://www.gccfcats.org/getting-a-cat/choosing/cat-breeds/ragamuffin/'}
+        : {label:'TICA：猫種プロフィール',url:`https://tica.org/breed/${ticaSlug}/`}];
+});
 // Supplied generated footage. Keep breed IDs aligned with the shared profile template.
 window.PROFILE_VIDEOS={
   abyssinian:'../assets/breeds/abyssinian-generated.mp4',
