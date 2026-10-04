@@ -5,9 +5,9 @@ const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const context={window:{}};
 vm.runInNewContext(read('breeds/data.js'),context);
 const data=context.window;
-const added=['american-curl','somali','abyssinian','exotic','himalayan'];
-assert.equal(data.BREEDS.length,18);
-assert.equal(new Set(data.BREEDS.map(b=>b.id)).size,18);
+const added=['american-curl','somali','abyssinian','exotic','himalayan','siberian'];
+assert.equal(data.BREEDS.length,19);
+assert.equal(new Set(data.BREEDS.map(b=>b.id)).size,19);
 const manifest=JSON.parse(read('breeds/photo-sources.json'));
 for(const photo of manifest.photos){
   const bytes=fs.readFileSync(path.join(root,'assets/breeds',photo.file));
@@ -31,6 +31,7 @@ for(const id of added){
   assert.ok(read('sitemap.xml').includes('profile.html?breed='+id));
 }
 assert.equal(data.POPULAR_BREEDS.length,10);
+assert.equal(Array.from(data.POPULAR_BREEDS).join(','),'american-shorthair,ragamuffin,british-shorthair,siberian,ragdoll,scottish-fold,munchkin,maine-coon,norwegian-forest,persian');
 for(const id of data.POPULAR_BREEDS)assert.ok(data.BREEDS.some(b=>b.id===id));
 const css=read('breeds/popular.css');
 assert.ok(css.includes('repeat(5,minmax(0,1fr))'));
@@ -39,7 +40,9 @@ assert.ok(css.includes('.popular-breed-item:nth-child(n+10){display:none}'));
 assert.ok(css.includes('border-radius:50%'));
 assert.ok(css.includes('object-fit:cover'));
 const html=read('breeds/index.html');
-assert.ok(html.includes('17猫種＋ミックス'));
+assert.ok(html.includes('18猫種＋ミックス'));
+assert.ok(html.includes('<h2 id="popular-breeds-title">人気の猫種ランキング</h2>'));
+assert.ok(!html.includes('ランキングから子猫を探す'));
 assert.ok(html.includes('href="#encyclopedia"'));
 assert.ok(html.includes('販売・登録数に基づく人気順位ではありません'));
 assert.ok(read('breeds/profile.js').includes('動画準備中'));
@@ -62,4 +65,4 @@ assert.equal(data.ENTRY_MOBILE_CROPS['scottish-fold'][1],'0% 0%');
 assert.ok(read('breeds/style.css').includes('.ragdoll-basic-profile .ragdoll-profile-video-screen video{display:block;width:100%;height:100%;object-fit:cover}'));
 assert.ok(!read('breeds/style.css').includes('.ragdoll-profile-video-screen::before'));
 assert.ok(!read('breeds/profile.js').includes('--profile-video-poster'));
-console.log('PASS: 17 breeds + mix, 5 new shared-template profiles, 23 photo hashes, 9 supplied clip hashes, podium crowns and responsive ranking/photos.');
+console.log('PASS: 18 breeds + mix, 6 shared-template additions, supplied photo/clip hashes, requested ranking order, podium crowns and responsive ranking/photos.');

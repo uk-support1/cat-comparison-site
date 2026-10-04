@@ -161,6 +161,20 @@
       "sourceFile": "himalayan_kitten.png",
       "file": "himalayan-kitten.png",
       "sha256": "2f5f5d3305ba494ba4697c2f94ab38b033371ee7ee7b2d6d39d47504ccea4ce9"
+    },
+    {
+      "breed": "siberian",
+      "role": "adult",
+      "sourceFile": "サイベリアン親 .png",
+      "file": "siberian-adult.png",
+      "sha256": "6977fd5999cb984f3983d7c365704609720363e48a4b28db65dbcd5f6ecc281a"
+    },
+    {
+      "breed": "siberian",
+      "role": "kitten",
+      "sourceFile": "サイベリアン子.png",
+      "file": "siberian-kitten.png",
+      "sha256": "97083e96dfe2da6d9beb160e46b2e5b8d6b66abf36bb4d0eb65c86a113d1ea74"
     }
   ]
 }
