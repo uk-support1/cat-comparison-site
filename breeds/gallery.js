@@ -2,6 +2,10 @@ const imagePath=media=>media.url||`https://commons.wikimedia.org/wiki/Special:Fi
 const galleryAdult=breed=>breed.entryMedia||breed.profileMedia||breed.media;
 const heroGallery=document.getElementById('heroGallery');
 const carousel=document.getElementById('breedCarousel');
+// Adjacent centres are at least one card width plus the requested gap apart.
+// Derive the radius from the actual breed count, not a hard-coded 19-card ring.
+const carouselRadius=(count,size,gap)=>Math.ceil((size+gap)/(2*Math.sin(Math.PI/Math.max(3,count))));
+const carouselBoxesOverlap=(a,b,gap)=>a.left<b.right+gap&&a.right>b.left-gap&&a.top<b.bottom+gap&&a.bottom>b.top-gap;
 if(heroGallery){
   const scatteredTiles=[
     [4,7,15,1.34],[23,-2,20,1.38],[47,8,14,1.16],[67,2,18,1.42],[86,8,16,1.28],
@@ -30,5 +34,92 @@ if(heroGallery){
   }
 }
 if(carousel){
-  carousel.innerHTML=`<div class="carousel-track" style="--count:${BREEDS.length}">${BREEDS.map((breed,index)=>`<a class="carousel-card" href="profile.html?breed=${encodeURIComponent(breed.id)}" style="--i:${index}"><span class="carousel-card-face carousel-card-front"><img src="${imagePath(breed.carouselMedia||breed.media)}" alt=""><span class="carousel-label">${breed.name}<small>${breed.en}</small></span></span><span class="carousel-card-face carousel-card-back" aria-hidden="true"><img src="${imagePath(breed.carouselMedia||breed.media)}" alt=""><span class="carousel-label">${breed.name}<small>${breed.en}</small></span></span></a>`).join('')}</div>`;
+  const escapeGallery=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  carousel.innerHTML=`<div class="carousel-track">${BREEDS.map(breed=>{const url=escapeGallery(imagePath(breed.carouselMedia||breed.media));return `<a class="carousel-card" data-breed="${breed.id}" href="profile.html?breed=${encodeURIComponent(breed.id)}" aria-label="${escapeGallery(breed.name)}のプロフィール"><span class="carousel-card-face"><img class="carousel-photo-bg" src="${url}" alt="" aria-hidden="true" decoding="async"><img class="carousel-photo-main" src="${url}" alt="${escapeGallery(breed.name)}の写真" decoding="async"><span class="carousel-label">${escapeGallery(breed.name)}<small>${escapeGallery(breed.en)}</small></span></span></a>`}).join('')}</div>`;
+  carousel.insertAdjacentHTML('afterend','<div class="carousel-controls" role="group" aria-label="3Dカルーセルの操作"><button type="button" data-carousel-action="previous" aria-label="前の猫種を正面に表示">←</button><button type="button" data-carousel-action="toggle">回転を一時停止</button><button type="button" data-carousel-action="next" aria-label="次の猫種を正面に表示">→</button><span class="carousel-counter" aria-live="off"></span><span class="carousel-announcement" role="status"></span></div>');
+  const cards=[...carousel.querySelectorAll('.carousel-card')];
+  const controls=carousel.nextElementSibling;
+  const toggle=controls.querySelector('[data-carousel-action="toggle"]');
+  const counter=controls.querySelector('.carousel-counter');
+  const announcement=controls.querySelector('.carousel-announcement');
+  const motion=matchMedia('(prefers-reduced-motion: reduce)');
+  const step=360/cards.length;
+  let rotation=0,paused=motion.matches,inView=false,focused=false,lastTime=0,frame=0;
+  let radius=0,minimumGap=0,stageRect=null,frontIndex=0;
+  const syncToggle=()=>{toggle.textContent=paused?'回転を再開':'回転を一時停止';carousel.dataset.paused=String(paused)};
+  const measure=()=>{
+    const style=getComputedStyle(carousel);
+    const size=parseFloat(style.getPropertyValue('--card-size'));
+    radius=carouselRadius(cards.length,size,parseFloat(style.getPropertyValue('--card-gap')));
+    minimumGap=parseFloat(style.getPropertyValue('--screen-gap'));
+    const tilt=parseFloat(style.getPropertyValue('--tilt-x'));
+    carousel.style.setProperty('--radius',`${radius}px`);
+    carousel.style.setProperty('--perspective',`${Math.max(1100,radius*2.8)}px`);
+    carousel.style.setProperty('--orbit-offset-y',`${radius*Math.sin(-tilt*Math.PI/180)}px`);
+    carousel.dataset.radius=String(radius);
+    carousel.dataset.count=String(cards.length);
+    stageRect=carousel.getBoundingClientRect();
+  };
+  const render=()=>{
+    stageRect=carousel.getBoundingClientRect();
+    const angles=cards.map((card,index)=>{
+      const angle=((index*step+rotation+180)%360+360)%360-180;
+      card.style.transform=`rotateY(${angle}deg) translateZ(${radius}px)`;
+      return angle;
+    });
+    // A larger ring prevents physical collisions, but perspective can still
+    // project distant cards onto one another. Keep only fully visible, separated
+    // cards, choosing the nearest first. Never shrink a portrait to fix overlap.
+    const candidates=cards.map((card,index)=>({card,index,angle:angles[index],rect:card.getBoundingClientRect()}))
+      .filter(item=>Math.abs(item.angle)<66).sort((a,b)=>Math.abs(a.angle)-Math.abs(b.angle));
+    const accepted=[];
+    for(const item of candidates){
+      const rect=item.rect;
+      const fits=rect.left>=stageRect.left+8&&rect.right<=stageRect.right-8&&rect.top>=stageRect.top+8&&rect.bottom<=stageRect.bottom-8;
+      if(fits&&!accepted.some(other=>carouselBoxesOverlap(rect,other.rect,minimumGap)))accepted.push(item);
+    }
+    const shown=new Set(accepted.map(item=>item.index));
+    cards.forEach((card,index)=>{
+      const visible=shown.has(index);
+      card.style.visibility=visible?'visible':'hidden';
+      const depth=Math.min(1,Math.abs(angles[index])/66);
+      card.style.opacity=String(1-depth*.3);
+      card.style.filter=`blur(${depth*.55}px) saturate(${1-depth*.16})`;
+      card.tabIndex=visible?0:-1;
+      card.setAttribute('aria-hidden',String(!visible));
+    });
+    frontIndex=candidates[0]?.index||0;
+    carousel.dataset.frontBreed=BREEDS[frontIndex].id;
+    counter.textContent=`${frontIndex+1} / ${cards.length}`;
+  };
+  const tick=time=>{
+    frame=0;
+    if(!inView||paused||focused||document.hidden){lastTime=0;return}
+    if(lastTime)rotation-=Math.min(time-lastTime,64)*360/60000;
+    lastTime=time;
+    render();
+    frame=requestAnimationFrame(tick);
+  };
+  const resume=()=>{if(!frame&&inView&&!paused&&!focused&&!document.hidden)frame=requestAnimationFrame(tick)};
+  const stop=()=>{cancelAnimationFrame(frame);frame=0;lastTime=0};
+  const showBreed=direction=>{
+    paused=true;stop();syncToggle();
+    const next=(frontIndex+direction+cards.length)%cards.length;
+    rotation=-next*step;
+    render();
+    announcement.textContent=`${BREEDS[next].name}、${next+1} / ${cards.length}`;
+  };
+  controls.querySelector('[data-carousel-action="previous"]').addEventListener('click',()=>showBreed(-1));
+  controls.querySelector('[data-carousel-action="next"]').addEventListener('click',()=>showBreed(1));
+  toggle.addEventListener('click',()=>{paused=!paused;stop();syncToggle();resume()});
+  carousel.addEventListener('focusin',()=>{focused=true;stop()});
+  carousel.addEventListener('focusout',event=>{if(!carousel.contains(event.relatedTarget)){focused=false;resume()}});
+  carousel.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();showBreed(event.key==='ArrowRight'?1:-1);cards[frontIndex].focus()}});
+  document.addEventListener('visibilitychange',()=>{stop();resume()});
+  motion.addEventListener('change',()=>{paused=motion.matches;stop();syncToggle();render();resume()});
+  new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;if(inView){measure();render();resume()}else stop()},{threshold:.05}).observe(carousel);
+  new ResizeObserver(()=>{measure();render()}).observe(carousel);
+  // Layout changes and browser zoom can alter the projected boxes even paused.
+  window.addEventListener('resize',()=>{measure();render()});
+  syncToggle();measure();render();
 }
