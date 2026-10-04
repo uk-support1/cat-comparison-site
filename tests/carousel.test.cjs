@@ -46,15 +46,16 @@ stopped.buttons.toggle.listeners.click();assert.equal(stopped.carousel.dataset.p
 const moving=buildGallery(false);
 assert.equal(moving.requested(),1,'normal mode schedules rotation');
 const fixedTransforms=moving.cards.map(card=>card.style.transform);
-// A full 36-second circuit: the ring moves as one object, every card retains its
+// A full 72-second circuit: the ring moves as one object, every card retains its
 // fixed seat, and no card ever becomes display/visibility/opacity zero.
 const seen=new Set();
-for(let frame=1;frame<=2251;frame++){
+for(let frame=1;frame<=4501;frame++){
   moving.tick(frame*16);
   seen.add(moving.carousel.dataset.frontBreed);
   assert.deepEqual(moving.cards.map(card=>card.style.transform),fixedTransforms);
   assert.ok(moving.cards.every(card=>card.style.visibility===undefined&&card.style.display===undefined&&card.attributes['aria-hidden']===undefined));
   assert.ok(moving.cards.every(card=>Number(card.style.properties['--depth-opacity'])>=.75));
+  if(frame===2251)assert.ok(Math.abs(parseFloat(moving.track.style.properties['--rotation'])+180)<.01, 'half the previous speed: only half a turn in 36 seconds');
 }
 assert.equal(seen.size,19);
 assert.ok(Math.abs(parseFloat(moving.track.style.properties['--rotation'])+360)<.01);
@@ -66,7 +67,11 @@ assert.ok(css.includes('blur(12px) brightness(1.08) saturate(.85)'));
 assert.ok(!css.includes('carousel-spin'));
 assert.ok(js.includes('if(!inView||paused||focused||document.hidden)'));
 assert.ok(js.includes('card.tabIndex=index===frontIndex?0:-1'));
-assert.ok(css.includes('.carousel-card-back{transform:rotateY(180deg) translateZ(.1px)}'));
+assert.ok(css.includes('.carousel-card-back{transform:rotateY(180deg) translateZ(.1px);'));
+const backFace=css.match(/\.carousel-card-back\{([^}]+)\}/)[1];
+assert.ok(backFace.includes('grayscale(1) contrast(.82) brightness(1.08)'), 'back faces alone are monochrome with subdued contrast');
+assert.ok(backFace.includes('opacity:calc(var(--depth-opacity,1) * .78)'), 'backs stay visible but less prominent');
+assert.ok(!css.match(/\.carousel-card-front\{[^}]*grayscale/), 'front face photographs retain their color');
 assert.ok(css.includes('.carousel-card-back .carousel-photo-main{transform:scaleX(-1)}'));
 assert.ok(!js.includes('Math.abs(item.angle)<66'),'no front-only orbit restriction');
 assert.ok(!js.includes('card.style.filter='),'do not flatten two-sided 3D cards');
@@ -78,4 +83,4 @@ assert.equal((css.match(/\{/g)||[]).length,(css.match(/\}/g)||[]).length);
 const splitRules=text=>{const out=[];let start=0,depth=0;for(let i=0;i<text.length;i++){if(text[i]==='{')depth++;if(text[i]==='}'&&!--depth){out.push(text.slice(start,i+1));start=i+1;}}return out;};
 const nonCarousel=text=>splitRules(text.replace(/\/\*[\s\S]*?\*\//g,'')).map(rule=>{const p=rule.indexOf('{'),header=rule.slice(0,p).trim(),body=rule.slice(p+1,-1);if(header.startsWith('@keyframes carousel-'))return '';if(header.startsWith('@media')){const inside=nonCarousel(body);return inside?header+'{'+inside+'}':'';}const selectors=header.split(',').filter(s=>!s.includes('.carousel-')&&!s.includes('.breed-carousel'));return selectors.length?selectors.join(',')+'{'+body+'}':'';}).filter(Boolean).join('\n');
 assert.equal(crypto.createHash('sha256').update(nonCarousel(css)).digest('hex'),'b59ac92d0eaee5450c891c404d104c46d7f2692d76ef7e6baea4acbefd67d87f');
-console.log('PASS: count-derived spacing, 19 stable two-sided cards, mirrored backs, full photos, complete 36-second shared-ring rotation without culling/layout reads, reduced motion, manual controls and unchanged hero CSS.');
+console.log('PASS: count-derived spacing, 19 stable two-sided cards, subdued monochrome mirrored backs, color fronts, full photos, complete 72-second shared-ring rotation without culling/layout reads, reduced motion, manual controls and unchanged hero CSS.');

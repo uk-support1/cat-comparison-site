@@ -57,7 +57,7 @@
 .carousel-card:focus-visible{outline:3px solid var(--coral)}
 .carousel-card-face{position:absolute;inset:0;display:grid;grid-template-rows:minmax(0,1fr) auto;padding:5px 5px 0;overflow:hidden;border:1px solid rgba(255,255,255,.95);border-radius:7px;background:#fffaf3;box-shadow:0 16px 30px rgba(65,49,32,.16);backface-visibility:hidden;-webkit-backface-visibility:hidden;opacity:var(--depth-opacity,1);filter:blur(var(--depth-blur,0px)) saturate(var(--depth-saturation,1))}
 .carousel-card-front{transform:translateZ(.1px)}
-.carousel-card-back{transform:rotateY(180deg) translateZ(.1px)}
+.carousel-card-back{transform:rotateY(180deg) translateZ(.1px);opacity:calc(var(--depth-opacity,1) * .78);filter:blur(var(--depth-blur,0px)) grayscale(1) contrast(.82) brightness(1.08)}
 .carousel-card-back .carousel-photo-main{transform:scaleX(-1)}
 .carousel-card img{position:absolute;display:block;width:100%;height:100%;pointer-events:none}
 .carousel-card .carousel-photo-bg{inset:0;object-fit:cover;object-position:center;filter:blur(12px) brightness(1.08) saturate(.85);transform:scale(1.14);opacity:.8}

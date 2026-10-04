@@ -87,7 +87,7 @@ if(carousel){
   const tick=time=>{
     frame=0;
     if(!inView||paused||focused||document.hidden){lastTime=0;return}
-    if(lastTime)rotation-=Math.min(time-lastTime,64)*360/36000;
+    if(lastTime)rotation-=Math.min(time-lastTime,64)*360/72000;
     lastTime=time;
     render();
     frame=requestAnimationFrame(tick);
