@@ -70,8 +70,10 @@ if(portraitProfile){
   basicProfile.append(details);
   if(portraitProfile.videoUrl){
     const player=basicProfile.querySelector('video');
+    // Fill the portrait screen, keeping the main cat in view when cropping wide clips.
+    const videoPosition={abyssinian:'36%',exotic:'40%',himalayan:'33%','american-shorthair':'40%','scottish-fold':'36%',munchkin:'64%',ragamuffin:'29%','maine-coon':'40%'}[breed.id]||'50%';
+    player.style.objectPosition=`${videoPosition} center`;
     basicProfile.querySelector('.ragdoll-profile-video').classList.add('has-video');
-    basicProfile.querySelector('.ragdoll-profile-video-screen').style.setProperty('--profile-video-poster',`url("${mediaUrl}")`);
     basicProfile.querySelector('.ragdoll-profile-video').insertAdjacentHTML('beforeend','<figcaption class="profile-video-caption"><span>無音ループ・生成映像</span><div class="profile-video-actions"><button class="profile-video-toggle" type="button" aria-label="動画を一時停止">一時停止</button><button class="profile-video-expand" type="button" aria-haspopup="dialog">動画を拡大</button></div></figcaption>');
     const toggle=basicProfile.querySelector('.profile-video-toggle');
     const syncPlayback=()=>{toggle.textContent=player.paused?'再生':'一時停止';toggle.setAttribute('aria-label',player.paused?'動画を再生':'動画を一時停止')};

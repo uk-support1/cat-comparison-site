@@ -135,8 +135,6 @@ html body main#profileRoot .portrait-profile-hero .ragdoll-hero-backdrop-main{ob
 }
 /* Give readers a playback control without covering the supplied phone/frame. */
 .ragdoll-basic-profile .ragdoll-profile-video.has-video{margin-bottom:104px}
-.ragdoll-basic-profile .ragdoll-profile-video-screen::before{content:"";position:absolute;inset:-16px;background-image:linear-gradient(#fffdfb70,#fffdfb70),var(--profile-video-poster);background-size:cover;background-position:center;filter:blur(10px);opacity:.8}
-.ragdoll-basic-profile .ragdoll-profile-video-screen video{position:relative;object-fit:contain;background:transparent}
 .profile-video-caption{position:absolute;top:calc(100% + 9px);left:0;width:100%;display:grid;justify-items:center;gap:5px;color:var(--muted);font-size:10px;line-height:1.5;text-align:center}
 .profile-video-actions{display:grid;gap:5px}
 .profile-video-toggle,.profile-video-expand,.profile-video-close{min-width:76px;min-height:36px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:#fffdf9;color:var(--ink);font:inherit;font-size:11px;cursor:pointer}
@@ -145,7 +143,7 @@ html body main#profileRoot .portrait-profile-hero .ragdoll-hero-backdrop-main{ob
 .profile-video-dialog::backdrop{background:#302d2990;backdrop-filter:blur(6px)}
 .profile-video-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px}
 .profile-video-dialog h2{font-size:18px;line-height:1.5;margin:0}
-.profile-video-dialog video{display:block;width:100%;max-height:65dvh;aspect-ratio:16/9;object-fit:contain;background:#f5eee6;border-radius:12px}
+.profile-video-dialog video{display:block;width:100%;max-height:65dvh;aspect-ratio:16/9;object-fit:cover;background:#f5eee6;border-radius:12px}
 .profile-video-dialog p{margin:12px 0 0;color:var(--muted);font-size:11px}
 @media(min-width:621px){.profile-video-actions{grid-template-columns:1fr 1fr}.ragdoll-basic-profile .ragdoll-profile-video.has-video{margin-bottom:60px}}
 /* On phones, preserve source aspect ratios and keep the photograph centered.

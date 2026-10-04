@@ -58,7 +58,7 @@ window.BREEDS.forEach(breed=>{
 // Editorial introduction order, not a sales/registration-based popularity survey.
 window.POPULAR_BREEDS=['munchkin','scottish-fold','ragdoll','british-shorthair','norwegian-forest','maine-coon','exotic','bengal','american-shorthair','ragamuffin'];
 window.ENTRY_PHOTO_POSITIONS={munchkin:'50% 35%','scottish-fold':'50% 25%',ragdoll:'50% 25%','british-shorthair':'50% 25%','norwegian-forest':'50% 25%','maine-coon':'50% 25%',exotic:'50% 12%',bengal:'50% 25%','american-shorthair':'50% 30%',ragamuffin:'50% 25%',somali:'50% 22%',abyssinian:'50% 24%','american-curl':'50% 25%',himalayan:'50% 15%'};
-window.ENTRY_MOBILE_CROPS={munchkin:[1.6,'100% 18%'],'scottish-fold':[1.45,'50% 8%'],ragdoll:[1.2,'70% 0%'],'british-shorthair':[1.35,'65% 0%'],'norwegian-forest':[1.3,'70% 0%'],'maine-coon':[1.55,'45% 0%'],exotic:[1.25,'65% 0%'],bengal:[1.5,'85% 0%'],'american-shorthair':[1.35,'65% 0%']};
+window.ENTRY_MOBILE_CROPS={munchkin:[1.6,'100% 18%'],'scottish-fold':[1.3,'0% 0%'],ragdoll:[1.2,'70% 0%'],'british-shorthair':[1.35,'65% 0%'],'norwegian-forest':[1.3,'70% 0%'],'maine-coon':[1.55,'45% 0%'],exotic:[1.25,'65% 0%'],bengal:[1.5,'85% 0%'],'american-shorthair':[1.35,'65% 0%']};
 
 window.KITTEN_MEDIA={
   'scottish-fold':{file:'3mo lilac Scottish Fold Fanel.jpg',label:'3mo lilac Scottish Fold Fanel',author:'Psihopat',license:'CC BY 3.0',licenseUrl:'https://creativecommons.org/licenses/by/3.0/',page:'https://commons.wikimedia.org/wiki/File:3mo_lilac_Scottish_Fold_Fanel.jpg'},
