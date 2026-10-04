@@ -1,4 +1,5 @@
 (() => {
+  if (location.hostname === 'cat.kurashi-partner-ku.com') { location.replace(`https://kurashi-partner-ku.com${location.pathname}${location.search}${location.hash}`); return; }
   const data = window.SecurityPortal;
   if (!data) return;
   const root = document.body.dataset.root || '/';
@@ -9,6 +10,12 @@
   document.querySelectorAll('[data-city-links]').forEach(el => el.innerHTML = cityLinks());
   const menu = document.querySelector('.s-menu'), nav = document.querySelector('.s-nav');
   if (menu && nav) menu.addEventListener('click', () => { const on = nav.classList.toggle('open'); menu.setAttribute('aria-expanded', String(on)); });
+  document.querySelector('.s-page-hero')?.classList.add('visual-head');
+  const reveal = document.querySelectorAll('.s-reveal');
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) { const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }), {threshold:.15}); reveal.forEach(el => observer.observe(el)); } else reveal.forEach(el => el.classList.add('is-visible'));
+  const animateNumber = el => { const target = Number(el.dataset.odometer || 0); if (!target || matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = target.toLocaleString('ja-JP'); return; } const start = performance.now(), duration = 1400; const tick = now => { const p = Math.min(1,(now-start)/duration), value = Math.round(target * (1-Math.pow(1-p,3))); el.textContent = value.toLocaleString('ja-JP'); if(p<1) requestAnimationFrame(tick); }; requestAnimationFrame(tick); };
+  const odometers = document.querySelectorAll('[data-odometer]');
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) { const observer = new IntersectionObserver(entries => entries.forEach(entry => { if(entry.isIntersecting){animateNumber(entry.target);observer.unobserve(entry.target);} }), {threshold:.65}); odometers.forEach(el=>observer.observe(el)); } else odometers.forEach(animateNumber);
 
   const table = document.querySelector('[data-city-table]');
   if (table) table.innerHTML = Object.values(data.municipalities).map(m => `<tr><td><a href="${cityPath(m.slug)}">${m.name}</a></td><td>${m.rateLabel}</td><td>${m.maxLabel}</td><td>${m.eligible.split('、').slice(0,4).join('・')} など</td><td>${m.onlineShort}</td><td>${status(m)}</td><td>${link(m.official,'公式詳細')}</td></tr>`).join('');
@@ -32,7 +39,9 @@
     const sim = document.querySelector('[data-muni-simulation]');
     if (sim) { const amount = 49800, grant = data.grant(amount,m); sim.innerHTML = `<div><span>防犯カメラの価格例</span><strong>${data.yen(amount)}</strong></div><div><span>${m.name}の補助額目安</span><strong>−${data.yen(grant)}</strong></div><div><span>自己負担の目安</span><strong>${data.yen(Math.max(0,amount-grant))}</strong></div>`; }
     const products = document.querySelector('[data-muni-products]');
-    if (products) products.innerHTML = data.products.slice(0,3).map(p => `<article><span class="s-product-badge">${p.badge}</span><h3>${p.name}</h3><p>${p.note}</p><p class="s-stars">補助制度との相性 ${'★'.repeat(p.fit)}${'☆'.repeat(5-p.fit)}</p><a class="s-button outline" href="${root}security/camera/">補助後の目安を見る</a></article>`).join('');
+    if (products) products.innerHTML = data.products.slice(0,3).map(p => `<article><div class="s-product-image"><img src="${root}assets/security/camera-forms.png" alt="屋外防犯カメラの設置イメージ" loading="lazy"><small>設置イメージ</small></div><span class="s-product-badge">${p.badge}</span><h3>${p.name}</h3><p>${p.note}</p><p class="s-stars">補助制度との相性 ${'★'.repeat(p.fit)}${'☆'.repeat(5-p.fit)}</p><a class="s-button outline" href="${root}security/camera/">補助後の目安を見る</a></article>`).join('');
+    if (auto) auto.querySelectorAll('.s-product-mini article').forEach(card => card.insertAdjacentHTML('afterbegin', `<div class="s-product-image"><img src="${root}assets/security/camera-forms.png" alt="屋外防犯カメラの設置イメージ" loading="lazy"><small>設置イメージ</small></div>`));
+    if (slug === 'setagaya' && !document.querySelector('[data-setagaya-chart]')) { const chart = document.createElement('section'); chart.className='s-section'; chart.dataset.setagayaChart=''; chart.innerHTML=`<div class="s-shell"><div class="s-donut-layout"><div class="s-donut"><strong>1,914<small>8月末受付件数</small></strong></div><div class="s-donut-copy"><p class="s-eyebrow">SETAGAYA / OFFICIAL UPDATE</p><h3>概算1万件に対し、<br>約2割を受付。</h3><p>世田谷区が公表する令和8年度の受付件数と受付可能件数（概算）を可視化しました。予算・審査状況で数値は変動します。</p><p class="s-source">出典：世田谷区「住まいの防犯対策サポート事業」（2026年8月31日現在の受付状況）</p></div></div></div></section>`; document.querySelector('main')?.append(chart); }
     const faq = [
       {q:`${m.name}でAmazon・通販購入した防犯カメラは補助対象ですか？`,a:`通販購入の可否や必要書類は${m.name}の制度条件によります。領収書、商品名・型番、支払い事実、設置後写真等が求められる場合があります。購入前に公式ページで確認してください。`},
       {q:`補助金は必ず受け取れますか？`,a:'いいえ。対象品目、設置場所、申請者、購入日、書類、予算等の要件を満たし、申請が認められた場合に交付されます。'},
@@ -44,6 +53,7 @@
 
   const productRoot = document.querySelector('[data-product-root]');
   if (productRoot) {
+    productRoot.classList.add('s-featured-products');
     const selector = document.querySelector('[data-city-select]');
     selector.innerHTML = Object.values(data.municipalities).map(m => `<option value="${m.slug}">${m.name}（${m.rateLabel}・上限${m.maxLabel}）</option>`).join('');
     const render = () => {
@@ -52,7 +62,7 @@
       document.querySelector('[data-selected-rule]').textContent = `${m.rateLabel}・上限${m.maxLabel}として試算`;
       productRoot.innerHTML = data.products.map(p => {
         const grant = data.grant(p.price,m), self = Math.max(0,p.price-grant);
-        return `<article class="s-product"><div class="s-product-top"><span class="s-product-badge">${p.badge}</span><h2>${p.name}</h2><p class="s-maker">${p.maker}</p><p class="s-fit">補助制度との相性　${'★'.repeat(p.fit)}${'☆'.repeat(5-p.fit)}</p></div><div class="s-product-body"><p>${p.note}</p><dl><div><dt>価格の扱い</dt><dd>${p.priceLabel}</dd></div><div><dt>画質</dt><dd>${p.resolution}</dd></div><div><dt>夜間撮影</dt><dd>${p.night}</dd></div><div><dt>パン/チルト</dt><dd>${p.ptz}</dd></div><div><dt>検知</dt><dd>${p.person}</dd></div><div><dt>防水・防塵</dt><dd>${p.weather}</dd></div><div><dt>電源 / 通信</dt><dd>${p.power}<br>${p.wifi}</dd></div><div><dt>録画</dt><dd>${p.local}<br>${p.cloud}</dd></div><div><dt>固定方法</dt><dd>${p.mount}</dd></div></dl><div class="s-product-actions">${link(p.official,'公式仕様を確認')}</div></div><div class="s-savings"><span>通常価格の目安（試算用）</span><strong>${data.yen(p.price)}</strong><span>${m.name}で要件を満たし、交付された場合の自己負担目安</span><strong>${data.yen(self)}</strong><small>補助額 ${data.yen(grant)}。対象経費・固定設置・申請書類などの要件を満たし、申請が認められた場合の試算です。</small></div></article>`;
+        return `<article class="s-product"><div class="s-product-image"><img src="${root}assets/security/camera-forms.png" alt="${p.name}を検討する際の屋外防犯カメラ設置イメージ" loading="lazy"><small>設置イメージ（商品そのものではありません）</small></div><div class="s-product-top"><span class="s-product-badge">${p.badge}</span><h2>${p.name}</h2><p class="s-maker">${p.maker}</p><p class="s-fit">補助制度との相性　${'★'.repeat(p.fit)}${'☆'.repeat(5-p.fit)}</p></div><div class="s-product-body"><p>${p.note}</p><dl><div><dt>価格の扱い</dt><dd>${p.priceLabel}</dd></div><div><dt>画質</dt><dd>${p.resolution}</dd></div><div><dt>夜間撮影</dt><dd>${p.night}</dd></div><div><dt>パン/チルト</dt><dd>${p.ptz}</dd></div><div><dt>検知</dt><dd>${p.person}</dd></div><div><dt>防水・防塵</dt><dd>${p.weather}</dd></div><div><dt>電源 / 通信</dt><dd>${p.power}<br>${p.wifi}</dd></div><div><dt>録画</dt><dd>${p.local}<br>${p.cloud}</dd></div><div><dt>固定方法</dt><dd>${p.mount}</dd></div></dl><div class="s-product-actions">${link(p.official,'公式仕様を確認')}</div></div><div class="s-savings"><span>通常価格の目安（試算用）</span><strong>${data.yen(p.price)}</strong><span>${m.name}で要件を満たし、交付された場合の自己負担目安</span><strong>${data.yen(self)}</strong><small>補助額 ${data.yen(grant)}。対象経費・固定設置・申請書類などの要件を満たし、申請が認められた場合の試算です。</small></div></article>`;
       }).join('');
       const comparison = document.querySelector('[data-comparison]');
       if (comparison) comparison.innerHTML = data.products.map(p => `<tr><td>${p.name}</td><td>${p.resolution}</td><td>${p.night}</td><td>${p.field}</td><td>${p.ptz}</td><td>${p.person}</td><td>${p.weather}</td><td>${p.power}</td><td>${p.local}</td><td>${'★'.repeat(p.fit)}${'☆'.repeat(5-p.fit)}</td></tr>`).join('');
