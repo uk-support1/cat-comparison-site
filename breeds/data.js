@@ -23,6 +23,18 @@ window.BREEDS.push(
 {id:'himalayan',name:'ヒマラヤン',en:'Himalayan',mark:'HM',color:'#aa947e',size:'中〜大型',coat:'長毛',origin:'アメリカ・イギリスなど',summary:'青い目と顔・耳・脚・尾のポイントカラーが印象的。豊かな長毛を持ち、穏やかに人のそばで過ごしやすい猫種。',traits:['穏やか','甘えん坊','のんびり'],stats:{affection:4,cuddle:4,independence:3,play:2,quiet:4,talk:2,care:1},character:'ペルシャ系の体つきと長い被毛に、シャム系のポイントカラーを合わせ持ちます。シール、ブルーなどさまざまなポイント色が見られます。優しい触れ合いや短い遊びを好む傾向がありますが、抱っこの好みはその子ごとに異なります。',living:'毎日の長毛ケアと、静かに休める場所を用意する暮らしに向きます。猫種団体によってペルシャの一部として扱われることもあり、名称だけでなく目の前の猫の体格や被毛に合わせて環境を整えます。',goodFor:['長毛のお手入れを毎日続けられる人','室内で穏やかに触れ合う時間を持てる家庭','余裕のある寝床やトイレを用意できる人'],carePoints:['胸、脇、後ろ脚などの長毛を毎日やさしくとかす','目元や顔周りを観察し、清潔に保つ','快適な室温を維持し、普段との違いは獣医師へ相談する'],litter:'長毛に付着しにくい粒と、広く入りやすいトイレを比較します。足裏の毛から持ち出す砂は、出口マットとこまめな床掃除で受け止めます。',source:'https://tica.org/breed/himalayan/',reviewed:'2026年10月4日'}
 );
 const localBreedMedia=(file,label)=>({url:`../assets/breeds/${file}`,file,label,author:'ねこパートナー提供',license:'サイト掲載許諾済み',licenseUrl:`../assets/breeds/${file}`,page:`../assets/breeds/${file}`});
+// Supplied generated footage. Keep breed IDs aligned with the shared profile template.
+window.PROFILE_VIDEOS={
+  abyssinian:'../assets/breeds/abyssinian-generated.mp4',
+  exotic:'../assets/breeds/exotic-generated.mp4',
+  himalayan:'../assets/breeds/himalayan-generated.mp4',
+  'american-shorthair':'../assets/breeds/american-shorthair-generated.mp4',
+  'scottish-fold':'../assets/breeds/scottish-fold-generated.mp4',
+  munchkin:'../assets/breeds/munchkin-generated.mp4',
+  ragamuffin:'../assets/breeds/ragamuffin-generated.mp4',
+  ragdoll:'../assets/breeds/ragdoll-generated.mp4',
+  'maine-coon':'../assets/breeds/maine-coon-generated.mp4'
+};
 window.PROFILE_MEDIA={
   'scottish-fold':localBreedMedia('scottish-fold-adult.png','スコティッシュフォールドの親猫'),munchkin:localBreedMedia('munchkin-adult.png','マンチカンの親猫'),ragamuffin:localBreedMedia('ragamuffin-adult.png','ラガマフィンの親猫'),ragdoll:localBreedMedia('ragdoll-adult.png','ラグドールの親猫'),'maine-coon':localBreedMedia('maine-coon-adult.png','メインクーンの親猫'),'british-shorthair':localBreedMedia('british-shorthair-adult.png','ブリティッシュショートヘアの親猫'),'american-shorthair':localBreedMedia('american-shorthair-adult.png','アメリカンショートヘアの親猫'),'russian-blue':localBreedMedia('russian-blue-adult.png','ロシアンブルーの親猫'),bengal:localBreedMedia('bengal-adult.png','ベンガルの親猫'),persian:localBreedMedia('persian-adult.png','ペルシャ系（ヒマラヤン）の親猫'),siamese:localBreedMedia('siamese-adult.png','シャムの親猫'),'norwegian-forest':localBreedMedia('norwegian-forest-adult.png','ノルウェージャンフォレストキャットの親猫')
 };

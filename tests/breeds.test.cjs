@@ -43,4 +43,18 @@ assert.ok(html.includes('17猫種＋ミックス'));
 assert.ok(html.includes('href="#encyclopedia"'));
 assert.ok(html.includes('販売・登録数に基づく人気順位ではありません'));
 assert.ok(read('breeds/profile.js').includes('動画準備中'));
-console.log('PASS: 17 breeds + mix, 5 new shared-template profiles, 23 supplied photo hashes, adult-only entries and 10/9 responsive ranking.');
+const clips=JSON.parse(read('breeds/video-sources.json')).videos;
+assert.equal(clips.length,9);
+assert.equal(Object.keys(data.PROFILE_VIDEOS).length,9);
+for(const clip of clips){
+  assert.ok(data.BREEDS.some(b=>b.id===clip.breed));
+  assert.equal(data.PROFILE_VIDEOS[clip.breed],'../assets/breeds/'+clip.file);
+  const bytes=fs.readFileSync(path.join(root,'assets/breeds',clip.file));
+  assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),clip.sha256,clip.file);
+}
+assert.ok(read('breeds/profile.js').includes('autoplay muted loop playsinline'));
+assert.ok(read('breeds/profile.js').includes('prefers-reduced-motion'));
+assert.ok(read('breeds/app.js').includes('index<3?podiumCrown'));
+assert.ok(css.includes('.popular-podium .popular-breed-photo'));
+assert.ok(read('breeds/style.css').includes('object-fit:contain!important;object-position:center!important'));
+console.log('PASS: 17 breeds + mix, 5 new shared-template profiles, 23 photo hashes, 9 supplied clip hashes, podium crowns and responsive ranking/photos.');

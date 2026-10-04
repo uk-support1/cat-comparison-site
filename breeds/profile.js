@@ -3,6 +3,7 @@ const labels={affection:'甘えん坊',cuddle:'抱っこ・密着',independence:
 const escapeHtml=value=>String(value).replace(/[&<>'"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
 if(!breed){document.title='プロフィールが見つかりません｜猫好きのための比較サイト';root.innerHTML='<div class="wrap error"><h1>猫種が見つかりませんでした。</h1><p><a class="read" href="index.html">猫種図鑑へ戻る →</a></p></div>'}else{
 document.title=`${breed.name}の性格・特徴｜猫種図鑑`;
+root.dataset.breed=breed.id;
 document.querySelector('meta[name="description"]').setAttribute('content',`${breed.name}の一般的な性格、体格、被毛、お手入れ、暮らしとの相性を紹介します。`);
 const distance=item=>Object.keys(labels).reduce((total,key)=>total+Math.abs(item.stats[key]-breed.stats[key]),0);
 const related=[...BREEDS].filter(item=>item.id!==breed.id).sort((a,b)=>distance(a)-distance(b)).slice(0,4);
@@ -12,9 +13,8 @@ const mediaUrl=assetUrl(featured);
 const kitten=KITTEN_MEDIA[breed.id];
 const kittenUrl=assetUrl(kitten);
 root.innerHTML=`<div class="wrap breadcrumb"><a href="index.html">猫種図鑑</a> ／ ${escapeHtml(breed.name)}</div><section class="profile-hero"><div class="wrap profile-head"><span class="breed-mark" style="--breed:${breed.color}">${breed.mark}</span><div><div class="eyebrow">BREED PROFILE</div><h1>${escapeHtml(breed.name)}</h1><div class="profile-en">${escapeHtml(breed.en)}</div></div><figure class="profile-photo"><img src="${mediaUrl}" alt="${escapeHtml(breed.name)}の写真" fetchpriority="high"><figcaption><a href="${featured.page}" target="_blank" rel="noopener">写真：${escapeHtml(featured.author)}／${escapeHtml(featured.license)} ↗</a></figcaption></figure><p class="profile-summary">${escapeHtml(breed.summary)}</p></div></section><div class="wrap profile-main"><div><section class="profile-card"><h2>基本プロフィール</h2><div class="facts"><div class="fact"><span>SIZE</span><b>${escapeHtml(breed.size)}</b></div><div class="fact"><span>COAT</span><b>${escapeHtml(breed.coat)}</b></div><div class="fact"><span>ORIGIN</span><b>${escapeHtml(breed.origin)}</b></div></div><h3>性格の距離感</h3><p>${escapeHtml(breed.character)}</p><h3>一緒に暮らすイメージ</h3><p>${escapeHtml(breed.living)}</p></section><section class="profile-card kitten-card"><div class="kitten-copy"><div class="eyebrow">KITTEN MOMENT</div><h2>${escapeHtml(breed.name)}の子猫</h2><p>子猫期の表情や被毛の見え方にも個体差があります。成長後の暮らしを想像するための、かわいらしい一枚です。</p></div><figure class="kitten-photo"><img src="${kittenUrl}" alt="${escapeHtml(breed.name)}の子猫" loading="lazy" decoding="async"><figcaption><a href="${kitten.page}" target="_blank" rel="noopener">写真：${escapeHtml(kitten.author)}／${escapeHtml(kitten.license)} ↗</a></figcaption></figure></section><section class="profile-card"><h2>向きやすい暮らし</h2><ul class="profile-list">${breed.goodFor.map(item=>`<li>${escapeHtml(item)}</li>`).join('')}</ul><h3>日々のお手入れと環境</h3><ul class="profile-list">${breed.carePoints.map(item=>`<li>${escapeHtml(item)}</li>`).join('')}</ul></section><section class="profile-card"><h2>猫砂選びのヒント</h2><p>${escapeHtml(breed.litter)}</p><a class="back-guide" href="../compare/okara-litter.html#cats">猫タイプ別の猫砂比較を見る<small>長毛・大型・子猫・多頭飼いなどから比較</small></a></section></div><aside><section class="profile-card"><h2>7つの傾向</h2><div class="trait-chart">${Object.entries(labels).map(([key,label])=>`<div class="trait-row"><span>${label}</span><span class="bar"><i style="--value:${breed.stats[key]*20}%"></i></span><b>${breed.stats[key]}</b></div>`).join('')}</div><p class="disclaimer">5段階の編集目安です。性格を保証するものではありません。</p></section><section class="profile-card"><h2>似た距離感の猫種</h2><div class="related-grid">${related.map(item=>`<a class="related-card" href="profile.html?breed=${item.id}"><b>${escapeHtml(item.name)}</b><br><span class="profile-en">${escapeHtml(item.en)}</span></a>`).join('')}</div></section><section class="profile-card"><h2>参照情報</h2><div class="source-list"><a href="${breed.source}" target="_blank" rel="noopener">猫種団体のプロフィール ↗</a><a href="media-credits.html">写真・動画素材のクレジット</a><a href="../editorial-policy.html">当サイトの編集方針</a></div><p class="disclaimer">最終確認日：${escapeHtml(breed.reviewed||'2026年10月1日')}。猫種の傾向には大きな個体差があります。</p></section></aside></div>`;
-// All profiles share the completed portrait/card layout. Add local video paths here later.
-// The existing Ragdoll video asset is retained, but every slot is currently "準備中".
-const profileVideos={};
+// Only the nine supplied/generated clips are enabled; other breeds keep their placeholder.
+const profileVideos=window.PROFILE_VIDEOS||{};
 const portraitProfile={
   kittenUrl:breed.id==='ragdoll'?'../assets/breeds/ragdoll-kitten-related-v2.png':kittenUrl,
   kittenAlt:breed.individualProfile?featured.label:`${breed.name}の子猫`,
@@ -48,7 +48,7 @@ if(portraitProfile){
   const lifestyleCopy=document.createElement('div');
   lifestyleCopy.className='ragdoll-lifestyle-copy';
   while(lifestyleCard.firstChild)lifestyleCopy.append(lifestyleCard.firstChild);
-  lifestyleCard.insertAdjacentHTML('afterbegin',`<figure class="ragdoll-lifestyle-photo"><div class="ragdoll-lifestyle-image"><img src="${portraitProfile.kittenUrl}" alt="${escapeHtml(portraitProfile.kittenAlt)}" loading="lazy" decoding="async"></div><figcaption>${escapeHtml(portraitProfile.caption)}</figcaption></figure>`);
+  lifestyleCard.insertAdjacentHTML('afterbegin',`<figure class="ragdoll-lifestyle-photo"><div class="ragdoll-lifestyle-image" style="--profile-kitten-image:url('${portraitProfile.kittenUrl}')"><img src="${portraitProfile.kittenUrl}" alt="${escapeHtml(portraitProfile.kittenAlt)}" loading="lazy" decoding="async"></div><figcaption>${escapeHtml(portraitProfile.caption)}</figcaption></figure>`);
   if(breed.id!=='ragdoll')lifestyleCard.classList.add('portrait-lifestyle-card');
   lifestyleCard.append(lifestyleCopy);
   const basicProfile=root.querySelector('.profile-main .profile-card');
@@ -64,14 +64,44 @@ if(portraitProfile){
   copy.append(description);
   details.append(copy);
   const videoContent=portraitProfile.videoUrl
-    ? `<video autoplay muted loop playsinline preload="metadata" aria-label="${escapeHtml(breed.name)}の動画"><source src="${portraitProfile.videoUrl}" type="video/mp4"></video>`
+    ? `<video autoplay muted loop playsinline preload="metadata" poster="${mediaUrl}" aria-label="${escapeHtml(breed.name)}の生成動画"><source src="${portraitProfile.videoUrl}" type="video/mp4"></video>`
     : '<div class="profile-video-placeholder"><span class="profile-video-placeholder-icon" aria-hidden="true">▷</span><span>動画準備中</span></div>';
   details.insertAdjacentHTML('beforeend',`<figure class="ragdoll-profile-video"${portraitProfile.videoUrl?'':` aria-label="${escapeHtml(breed.name)}の動画用スペース（準備中）"`}><div class="ragdoll-profile-video-screen">${videoContent}</div><img class="ragdoll-profile-video-frame" src="../assets/iphone-15-frame.png" alt="" aria-hidden="true"></figure>`);
   basicProfile.append(details);
+  if(portraitProfile.videoUrl){
+    const player=basicProfile.querySelector('video');
+    basicProfile.querySelector('.ragdoll-profile-video').classList.add('has-video');
+    basicProfile.querySelector('.ragdoll-profile-video-screen').style.setProperty('--profile-video-poster',`url("${mediaUrl}")`);
+    basicProfile.querySelector('.ragdoll-profile-video').insertAdjacentHTML('beforeend','<figcaption class="profile-video-caption"><span>無音ループ・生成映像</span><div class="profile-video-actions"><button class="profile-video-toggle" type="button" aria-label="動画を一時停止">一時停止</button><button class="profile-video-expand" type="button" aria-haspopup="dialog">動画を拡大</button></div></figcaption>');
+    const toggle=basicProfile.querySelector('.profile-video-toggle');
+    const syncPlayback=()=>{toggle.textContent=player.paused?'再生':'一時停止';toggle.setAttribute('aria-label',player.paused?'動画を再生':'動画を一時停止')};
+    player.addEventListener('play',syncPlayback);
+    player.addEventListener('pause',syncPlayback);
+    toggle.addEventListener('click',()=>{if(player.paused)player.play().catch(syncPlayback);else player.pause()});
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){player.autoplay=false;player.pause()}
+    syncPlayback();
+    root.insertAdjacentHTML('beforeend',`<dialog class="profile-video-dialog" aria-labelledby="profileVideoTitle"><div class="profile-video-dialog-head"><h2 id="profileVideoTitle">${escapeHtml(breed.name)}の動画</h2><button class="profile-video-close" type="button">閉じる</button></div><video controls muted loop playsinline preload="none" poster="${mediaUrl}" aria-label="${escapeHtml(breed.name)}の生成動画（拡大）"></video><p>ねこパートナー提供の生成映像です。</p></dialog>`);
+    const dialog=root.querySelector('.profile-video-dialog');
+    const expandedPlayer=dialog.querySelector('video');
+    let resumePreview=false;
+    basicProfile.querySelector('.profile-video-expand').addEventListener('click',()=>{
+      resumePreview=!player.paused;player.pause();
+      if(!expandedPlayer.src)expandedPlayer.src=portraitProfile.videoUrl;
+      dialog.showModal();expandedPlayer.play().catch(()=>{});
+    });
+    dialog.querySelector('.profile-video-close').addEventListener('click',()=>dialog.close());
+    dialog.addEventListener('close',()=>{expandedPlayer.pause();if(resumePreview)player.play().catch(syncPlayback)});
+  }
   // Keep narrow-screen photos below the actual copy, including long names/summaries.
-  if(breed.id!=='ragdoll'){
+  {
     const summary=hero.querySelector('.profile-summary');
-    const updatePortraitTop=()=>hero.style.setProperty('--profile-portrait-top',`${Math.ceil(summary.getBoundingClientRect().bottom-hero.getBoundingClientRect().top+24)}px`);
+    const adultPhoto=hero.querySelector('.ragdoll-hero-backdrop-main');
+    const updatePortraitTop=()=>{
+      hero.style.setProperty('--profile-portrait-top',`${Math.ceil(summary.getBoundingClientRect().bottom-hero.getBoundingClientRect().top+24)}px`);
+      const ratio=adultPhoto.naturalWidth/adultPhoto.naturalHeight||.75;
+      hero.style.setProperty('--profile-mobile-photo-height',`${Math.round(Math.min(hero.clientWidth<=620?430:600,Math.max(270,(hero.clientWidth-24)/ratio)))}px`);
+    };
+    adultPhoto.addEventListener('load',updatePortraitTop);
     updatePortraitTop();
     const portraitObserver=new ResizeObserver(updatePortraitTop);
     portraitObserver.observe(hero.querySelector('.profile-head'));

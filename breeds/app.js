@@ -8,11 +8,12 @@ const breedSearch=document.getElementById('breedSearch');
 const mediaUrl=media=>media.url||`https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(media.file)}?width=900`;
 const entryMedia=breed=>breed.entryMedia||breed.profileMedia||breed.media;
 const popularGrid=document.getElementById('popularBreedGrid');
+const podiumCrown='<svg class="popular-rank-crown" viewBox="0 0 32 24" aria-hidden="true" focusable="false"><path d="M3 6 9 11 16 3 23 11 29 6 26 20H6Z" fill="currentColor"/><path d="M7 22h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="3" cy="5" r="2" fill="currentColor"/><circle cx="16" cy="2" r="2" fill="currentColor"/><circle cx="29" cy="5" r="2" fill="currentColor"/></svg>';
 if(popularGrid){
   popularGrid.innerHTML=POPULAR_BREEDS.map((id,index)=>{
     const breed=BREEDS.find(item=>item.id===id);
     const [zoom,origin]=ENTRY_MOBILE_CROPS[id]||[1,'center'];
-    return `<li class="popular-breed-item"><a class="popular-breed-link" href="${profileHref(id)}"><span class="popular-breed-photo"><img src="${mediaUrl(entryMedia(breed))}" alt="${breed.name}の親猫" style="object-position:${ENTRY_PHOTO_POSITIONS[id]||'center 25%'};--mobile-photo-zoom:${zoom};--mobile-photo-origin:${origin}" loading="lazy" decoding="async"></span><span class="popular-breed-rank" aria-label="紹介順${index+1}">${index+1}</span><span class="popular-breed-name">${breed.name}</span></a></li>`;
+    return `<li class="popular-breed-item${index<3?' popular-podium':''}"><a class="popular-breed-link" href="${profileHref(id)}"><span class="popular-breed-photo"><img src="${mediaUrl(entryMedia(breed))}" alt="${breed.name}の親猫" style="object-position:${ENTRY_PHOTO_POSITIONS[id]||'center 25%'};--mobile-photo-zoom:${zoom};--mobile-photo-origin:${origin}" loading="lazy" decoding="async"></span><span class="popular-breed-rank" aria-label="紹介順${index+1}">${index<3?podiumCrown:''}<span>${index+1}</span></span><span class="popular-breed-name">${breed.name}</span></a></li>`;
   }).join('');
 }
 function renderRanking(id){

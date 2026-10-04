@@ -1,0 +1,15 @@
+{
+  "sourceDirectory": "C:/Users/kenta/Desktop/99_画像保管庫/ねこ/動画",
+  "description": "運営者提供の生成映像。元ファイルを変更せずコピーし、無音ループで掲載。",
+  "videos": [
+    {"breed":"abyssinian","source":"アビシニアン.mp4","file":"abyssinian-generated.mp4","sha256":"2c4e39e1ae15c6e21bf674c146e52b3c0d0a6a28e077d8120b703c920a7fc7a0"},
+    {"breed":"exotic","source":"エキゾチック.mp4","file":"exotic-generated.mp4","sha256":"ae95f72752a3a399a3350cf12774a2b06d18117b618d1e1ea94c4366951ee175"},
+    {"breed":"himalayan","source":"ヒマラヤン.mp4","file":"himalayan-generated.mp4","sha256":"ee28750cd5da3c8900cc41245774ba38e56fdfb46b4d13c010b0806a1d7b33e8"},
+    {"breed":"american-shorthair","source":"アメショー②.mp4","file":"american-shorthair-generated.mp4","sha256":"7e37bcf9cfbb144a2d4e32383145d7d7cbef86ef2cbb1ddb671ad523038eb930"},
+    {"breed":"scottish-fold","source":"スコティッシュフォールド.mp4","file":"scottish-fold-generated.mp4","sha256":"7995d63d8f6355d36775d143c27c2180d5014ec356d15eeefce6810c78f5f4f1"},
+    {"breed":"munchkin","source":"マンチカン.mp4","file":"munchkin-generated.mp4","sha256":"83e1fd4e1c1164c6fc18a6f0525cfd77e4893826606cded1a93fabf67737b852"},
+    {"breed":"ragamuffin","source":"ラガマフィン.mp4","file":"ragamuffin-generated.mp4","sha256":"4ed15831dce442b75c8e53dbf562d16615c21b82c2bb94c440a40ff4bef20e3f"},
+    {"breed":"ragdoll","source":"ラグドール.mp4","file":"ragdoll-generated.mp4","sha256":"71b5299fe01656dae5f93d4a037c06763e3204708d84f13362ae3cfb57bda19d"},
+    {"breed":"maine-coon","source":"メインクーン.mp4","file":"maine-coon-generated.mp4","sha256":"5b28e3eab8845105032e03fe4dcaca6c55ddc3af94df7320c27dbd0f1c6917a6"}
+  ]
+}

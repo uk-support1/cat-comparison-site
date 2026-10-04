@@ -133,6 +133,37 @@ html body main#profileRoot .portrait-profile-hero .ragdoll-hero-backdrop-main{ob
   .ragdoll-basic-profile .ragdoll-profile-description{grid-column:1/-1;grid-row:2}
   .ragdoll-basic-profile .ragdoll-profile-description h3:first-child{margin-top:0}
 }
+/* Give readers a playback control without covering the supplied phone/frame. */
+.ragdoll-basic-profile .ragdoll-profile-video.has-video{margin-bottom:104px}
+.ragdoll-basic-profile .ragdoll-profile-video-screen::before{content:"";position:absolute;inset:-16px;background-image:linear-gradient(#fffdfb70,#fffdfb70),var(--profile-video-poster);background-size:cover;background-position:center;filter:blur(10px);opacity:.8}
+.ragdoll-basic-profile .ragdoll-profile-video-screen video{position:relative;object-fit:contain;background:transparent}
+.profile-video-caption{position:absolute;top:calc(100% + 9px);left:0;width:100%;display:grid;justify-items:center;gap:5px;color:var(--muted);font-size:10px;line-height:1.5;text-align:center}
+.profile-video-actions{display:grid;gap:5px}
+.profile-video-toggle,.profile-video-expand,.profile-video-close{min-width:76px;min-height:36px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:#fffdf9;color:var(--ink);font:inherit;font-size:11px;cursor:pointer}
+.profile-video-toggle:focus-visible,.profile-video-expand:focus-visible,.profile-video-close:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+.profile-video-dialog{width:min(960px,92vw);max-height:90dvh;padding:20px;border:1px solid var(--line);border-radius:22px;background:var(--paper);color:var(--ink)}
+.profile-video-dialog::backdrop{background:#302d2990;backdrop-filter:blur(6px)}
+.profile-video-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px}
+.profile-video-dialog h2{font-size:18px;line-height:1.5;margin:0}
+.profile-video-dialog video{display:block;width:100%;max-height:65dvh;aspect-ratio:16/9;object-fit:contain;background:#f5eee6;border-radius:12px}
+.profile-video-dialog p{margin:12px 0 0;color:var(--muted);font-size:11px}
+@media(min-width:621px){.profile-video-actions{grid-template-columns:1fr 1fr}.ragdoll-basic-profile .ragdoll-profile-video.has-video{margin-bottom:60px}}
+/* On phones, preserve source aspect ratios and keep the photograph centered.
+   The height follows the real copy + photo ratio instead of a fixed, zoomed crop. */
+@media(max-width:900px){
+  html body main#profileRoot .ragdoll-profile-hero{height:calc(var(--profile-portrait-top,270px) + var(--profile-mobile-photo-height,400px) + 32px)!important;min-height:0;max-height:none;padding:18px 0 0!important}
+  html body main#profileRoot .ragdoll-profile-hero .profile-head{height:auto;align-content:start}
+  html body main#profileRoot .ragdoll-profile-hero .ragdoll-hero-backdrop-main{top:var(--profile-portrait-top,270px)!important;left:50%!important;width:calc(100% - 24px)!important;height:var(--profile-mobile-photo-height,400px)!important;object-fit:contain!important;object-position:center!important;box-shadow:none}
+}
+@media(max-width:620px){
+  .ragdoll-lifestyle-image{height:clamp(290px,82vw,340px);background:#fffdfb}
+  .ragdoll-lifestyle-image::before{content:"";position:absolute;inset:-16px;background-image:linear-gradient(#fffdfb85,#fffdfb85),var(--profile-kitten-image);background-size:cover;background-position:center;filter:blur(12px);opacity:.7}
+  .ragdoll-lifestyle-photo img{object-fit:contain!important;object-position:center!important}
+  /* These unusually narrow originals need a moderate portrait crop, not a full-width zoom. */
+  html body main#profileRoot:is([data-breed="somali"],[data-breed="abyssinian"]) .ragdoll-profile-hero .ragdoll-hero-backdrop-main{width:min(72%,260px)!important;object-fit:cover!important;object-position:center 10%!important}
+  #profileRoot:is([data-breed="somali"],[data-breed="abyssinian"]) .ragdoll-lifestyle-photo img{width:66%;left:17%;object-fit:cover!important;object-position:center 35%!important}
+  .profile-video-caption{font-size:9px}
+}
 /* Keep each cat fully visible: these frames present the photo instead of cropping its face. */
 .breed-card-photo{height:172px;padding:8px;background:linear-gradient(135deg,#f7f2ec,#ece6df)}.breed-card-photo img{object-fit:contain;object-position:center;background:#f6f1eb;border-radius:13px}.profile-photo{display:grid;grid-template-rows:minmax(236px,1fr) auto;padding:8px;min-height:286px;background:linear-gradient(145deg,#fffdf9,#eee6dd);border:1px solid var(--line);box-shadow:0 14px 34px rgba(45,42,39,.08)}.profile-photo img{min-height:0;border-radius:14px;object-fit:contain;object-position:center;background:#f6f1eb}.profile-photo figcaption{padding:10px 4px 2px;background:transparent}.kitten-photo{display:grid;grid-template-rows:minmax(208px,1fr) auto;padding:8px;background:linear-gradient(145deg,#fffdf9,#eee6dd);border:1px solid var(--line);box-shadow:0 10px 24px rgba(45,42,39,.06)}.kitten-photo img{height:100%;min-height:0;border-radius:13px;object-fit:contain;object-position:center;background:#f6f1eb}.kitten-photo figcaption{padding:10px 4px 2px;background:transparent}
 .ragdoll-profile-hero{position:relative;isolation:isolate;overflow:hidden;background:#f7f2ed}.ragdoll-hero-backdrop{position:absolute;z-index:0;inset:0;overflow:hidden;background:linear-gradient(90deg,#efe8e0 0%,#f7f2ed 38%,#fbfaf7 100%)}.ragdoll-hero-backdrop img{width:100%;height:100%;display:block;object-fit:contain;object-position:left center;filter:none;opacity:.96;transform:none}.ragdoll-profile-hero::after{content:"";position:absolute;z-index:1;inset:0;background:linear-gradient(90deg,rgba(255,252,248,.12) 0%,rgba(255,252,248,.42) 35%,rgba(255,252,248,.78) 58%,rgba(255,252,248,.28) 100%)}.ragdoll-profile-hero .profile-head{position:relative;z-index:2}.ragdoll-backdrop-credit{position:absolute;z-index:3;left:max(4%,calc((100% - 1120px)/2));bottom:9px;font-size:9px;color:#625c56;text-decoration:underline;text-underline-offset:2px}.profile-photo.ragdoll-hero-phone{position:relative;display:block;isolation:isolate;justify-self:end;align-self:center;width:min(100%,248px);min-height:0;height:auto;aspect-ratio:392/800;margin:4px 10px 34px 0;padding:0;overflow:visible;border:0;border-radius:0;background:transparent;box-shadow:none;transform:rotate(8deg)}.profile-photo.ragdoll-hero-phone{filter:drop-shadow(0 12px 14px rgba(45,42,39,.2))}.ragdoll-hero-screen{position:absolute;z-index:1;inset:2.1% 3.2% 2.2%;overflow:hidden;border:0;border-radius:12% / 6%;background:transparent;box-shadow:none}.ragdoll-hero-screen img{position:absolute;inset:0;display:block!important;width:100%!important;height:100%!important;min-height:0!important;border-radius:0!important;object-fit:cover!important;object-position:center!important;background:transparent}.profile-photo.ragdoll-hero-phone .ragdoll-hero-frame{position:absolute;z-index:2;inset:0;display:block;width:100%;height:100%;min-height:0;border-radius:0;object-fit:contain;background:transparent}.ragdoll-hero-phone figcaption{position:absolute;z-index:4;left:6px;right:6px;bottom:-31px;padding:4px 0 0;text-align:center;font-size:9px;line-height:1.2;color:#5d5751;background:transparent;transform:rotate(-8deg)}.ragdoll-hero-phone figcaption a{text-decoration:underline;text-underline-offset:2px}
