@@ -5,7 +5,6 @@ const carousel=document.getElementById('breedCarousel');
 // Adjacent centres are at least one card width plus the requested gap apart.
 // Derive the radius from the actual breed count, not a hard-coded 19-card ring.
 const carouselRadius=(count,size,gap)=>Math.ceil((size+gap)/(2*Math.sin(Math.PI/Math.max(3,count))));
-const carouselBoxesOverlap=(a,b,gap)=>a.left<b.right+gap&&a.right>b.left-gap&&a.top<b.bottom+gap&&a.bottom>b.top-gap;
 if(heroGallery){
   const scatteredTiles=[
     [4,7,15,1.34],[23,-2,20,1.38],[47,8,14,1.16],[67,2,18,1.42],[86,8,16,1.28],
@@ -40,6 +39,7 @@ if(carousel){
     const face=back=>`<span class="carousel-card-face carousel-card-${back?'back':'front'}"${back?' aria-hidden="true"':''}><img class="carousel-photo-bg" src="${url}" alt="" aria-hidden="true" decoding="async"><img class="carousel-photo-main" src="${url}" alt="${back?'':escapeGallery(breed.name)+'の写真'}" decoding="async"><span class="carousel-label">${escapeGallery(breed.name)}<small>${escapeGallery(breed.en)}</small></span></span>`;
     return `<a class="carousel-card" data-breed="${breed.id}" data-photo-layout="${['somali','abyssinian'].includes(breed.id)?'portrait':'standard'}" href="profile.html?breed=${encodeURIComponent(breed.id)}" aria-label="${escapeGallery(breed.name)}のプロフィール">${face(false)}${face(true)}</a>`;
   }).join('')}</div>`;
+  const track=carousel.querySelector('.carousel-track');
   carousel.insertAdjacentHTML('afterend','<div class="carousel-controls" role="group" aria-label="3Dカルーセルの操作"><button type="button" data-carousel-action="previous" aria-label="前の猫種を正面に表示">←</button><button type="button" data-carousel-action="toggle">回転を一時停止</button><button type="button" data-carousel-action="next" aria-label="次の猫種を正面に表示">→</button><span class="carousel-counter" aria-live="off"></span><span class="carousel-announcement" role="status"></span></div>');
   const cards=[...carousel.querySelectorAll('.carousel-card')];
   const controls=carousel.nextElementSibling;
@@ -49,53 +49,38 @@ if(carousel){
   const motion=matchMedia('(prefers-reduced-motion: reduce)');
   const step=360/cards.length;
   let rotation=0,paused=motion.matches,inView=false,focused=false,lastTime=0,frame=0;
-  let radius=0,minimumGap=0,stageRect=null,frontIndex=0;
+  let radius=0,frontIndex=0;
   const syncToggle=()=>{toggle.textContent=paused?'回転を再開':'回転を一時停止';carousel.dataset.paused=String(paused)};
   const measure=()=>{
     const style=getComputedStyle(carousel);
     const size=parseFloat(style.getPropertyValue('--card-size'));
     radius=carouselRadius(cards.length,size,parseFloat(style.getPropertyValue('--card-gap')));
-    minimumGap=parseFloat(style.getPropertyValue('--screen-gap'));
     const tilt=parseFloat(style.getPropertyValue('--tilt-x'));
     carousel.style.setProperty('--radius',`${radius}px`);
     carousel.style.setProperty('--perspective',`${Math.max(1100,radius*2.8)}px`);
     carousel.style.setProperty('--orbit-offset-y',`${radius*Math.sin(-tilt*Math.PI/180)}px`);
     carousel.dataset.radius=String(radius);
     carousel.dataset.count=String(cards.length);
-    stageRect=carousel.getBoundingClientRect();
+    cards.forEach((card,index)=>{card.style.transform=`rotateY(${index*step}deg) translateZ(${radius}px)`});
   };
   const render=()=>{
-    stageRect=carousel.getBoundingClientRect();
-    const angles=cards.map((card,index)=>{
-      const angle=((index*step+rotation+180)%360+360)%360-180;
-      card.style.transform=`rotateY(${angle}deg) translateZ(${radius}px)`;
-      return angle;
-    });
-    // Keep the complete orbit, including readable mirrored back faces. Cull only
-    // cards that actually collide on screen or extend beyond the stage; never
-    // discard the rear half of the ring merely because it faces away.
-    const candidates=cards.map((card,index)=>({card,index,angle:angles[index],rect:card.getBoundingClientRect()}))
-      .sort((a,b)=>Math.abs(a.angle)-Math.abs(b.angle));
-    const accepted=[];
-    for(const item of candidates){
-      const rect=item.rect;
-      const fits=rect.left>=stageRect.left+8&&rect.right<=stageRect.right-8&&rect.top>=stageRect.top+8&&rect.bottom<=stageRect.bottom-8;
-      if(fits&&!accepted.some(other=>carouselBoxesOverlap(rect,other.rect,minimumGap)))accepted.push(item);
-    }
-    const shown=new Set(accepted.map(item=>item.index));
+    // Rotate one rigid ring. Never hide individual cards to resolve projected
+    // overlaps: that made them pop in/out whenever the selection changed.
+    // Real 3D depth handles occlusion, while the stage clips edges continuously.
+    track.style.setProperty('--rotation',`${rotation}deg`);
+    const angles=cards.map((card,index)=>((index*step+rotation+180)%360+360)%360-180);
+    frontIndex=angles.reduce((nearest,angle,index)=>Math.abs(angle)<Math.abs(angles[nearest])?index:nearest,0);
     cards.forEach((card,index)=>{
-      const visible=shown.has(index);
-      card.style.visibility=visible?'visible':'hidden';
       const depth=(1-Math.cos(angles[index]*Math.PI/180))/2;
       // Apply depth treatment to each face, not the preserve-3d parent: opacity
       // and filter on the parent flatten its two faces and hide the reverse.
       card.style.setProperty('--depth-opacity',String(1-depth*.25));
       card.style.setProperty('--depth-blur',`${depth*.35}px`);
       card.style.setProperty('--depth-saturation',String(1-depth*.12));
-      card.tabIndex=visible?0:-1;
-      card.setAttribute('aria-hidden',String(!visible));
+      // Only the front card enters the Tab sequence. All 19 links remain
+      // available to assistive technology and pointer users throughout rotation.
+      card.tabIndex=index===frontIndex?0:-1;
     });
-    frontIndex=candidates[0]?.index||0;
     carousel.dataset.frontBreed=BREEDS[frontIndex].id;
     counter.textContent=`${frontIndex+1} / ${cards.length}`;
   };
@@ -126,7 +111,7 @@ if(carousel){
   motion.addEventListener('change',()=>{paused=motion.matches;stop();syncToggle();render();resume()});
   new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;if(inView){measure();render();resume()}else stop()},{threshold:.05}).observe(carousel);
   new ResizeObserver(()=>{measure();render()}).observe(carousel);
-  // Layout changes and browser zoom can alter the projected boxes even paused.
+  // Recompute ring geometry after layout changes or browser zoom, even paused.
   window.addEventListener('resize',()=>{measure();render()});
   syncToggle();measure();render();
 }

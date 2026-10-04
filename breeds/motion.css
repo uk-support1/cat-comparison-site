@@ -51,9 +51,9 @@
 .carousel-copy .eyebrow{color:var(--coral)}
 .carousel-copy h2{font-size:clamp(31px,4vw,52px);line-height:1.2;letter-spacing:-.04em;margin:8px 0 14px;scroll-margin-top:110px}
 .carousel-copy p{font-size:13px;line-height:1.8;color:var(--muted);margin:0}
-.breed-carousel{--card-size:240px;--card-gap:64px;--screen-gap:18px;--tilt-x:-15;--tilt-z:-8;--radius:924px;--perspective:2588px;--orbit-offset-y:239px;position:relative;height:650px;perspective:var(--perspective);perspective-origin:50% 70%;overflow:visible;isolation:isolate}
-.carousel-track{position:absolute;left:50%;top:calc(70% - var(--orbit-offset-y));width:var(--card-size);aspect-ratio:1 / 1;transform-style:preserve-3d;transform:translate(-50%,-50%) translateZ(calc(-1 * var(--radius))) rotateX(calc(var(--tilt-x) * 1deg)) rotateZ(calc(var(--tilt-z) * 1deg))}
-.carousel-card{position:absolute;inset:0;display:block;aspect-ratio:1 / 1;visibility:hidden;text-decoration:none;transform-style:preserve-3d;backface-visibility:visible;outline-offset:5px;will-change:transform}
+.breed-carousel{--card-size:240px;--card-gap:64px;--tilt-x:-15;--tilt-z:-8;--radius:924px;--perspective:2588px;--orbit-offset-y:239px;position:relative;height:650px;perspective:var(--perspective);perspective-origin:50% 70%;overflow:clip;isolation:isolate}
+.carousel-track{position:absolute;left:50%;top:calc(70% - var(--orbit-offset-y));width:var(--card-size);aspect-ratio:1 / 1;transform-style:preserve-3d;transform:translate(-50%,-50%) translateZ(calc(-1 * var(--radius))) rotateX(calc(var(--tilt-x) * 1deg)) rotateZ(calc(var(--tilt-z) * 1deg)) rotateY(var(--rotation,0deg));will-change:transform}
+.carousel-card{position:absolute;inset:0;display:block;aspect-ratio:1 / 1;visibility:visible;text-decoration:none;transform-style:preserve-3d;backface-visibility:visible;outline-offset:5px}
 .carousel-card:focus-visible{outline:3px solid var(--coral)}
 .carousel-card-face{position:absolute;inset:0;display:grid;grid-template-rows:minmax(0,1fr) auto;padding:5px 5px 0;overflow:hidden;border:1px solid rgba(255,255,255,.95);border-radius:7px;background:#fffaf3;box-shadow:0 16px 30px rgba(65,49,32,.16);backface-visibility:hidden;-webkit-backface-visibility:hidden;opacity:var(--depth-opacity,1);filter:blur(var(--depth-blur,0px)) saturate(var(--depth-saturation,1))}
 .carousel-card-front{transform:translateZ(.1px)}
@@ -78,4 +78,4 @@
 .carousel-announcement{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media(max-width:1100px){.breed-carousel{--card-size:200px;--card-gap:52px;--screen-gap:16px;--tilt-x:-15;--tilt-z:-8;height:600px}.carousel-section{padding:72px 0 60px}}
 @media(max-width:620px){.breed-carousel{--card-size:132px;--card-gap:32px;--screen-gap:12px;--tilt-x:-16;--tilt-z:-4;height:400px}.carousel-section{padding:58px 0 48px}.carousel-copy{max-width:340px;margin-bottom:12px;padding:0 8px}.carousel-copy h2{font-size:31px}.carousel-copy p{font-size:12px}.carousel-card-face{padding:3px 3px 0;border-radius:5px;box-shadow:0 10px 18px rgba(65,49,32,.14)}.carousel-card .carousel-label{min-height:38px;margin:0 -3px;padding:8px 4px 4px;font-size:10px;line-height:1.2}.carousel-label small{margin-top:2px;font-size:8px}.carousel-controls{gap:8px;margin-top:4px}.carousel-controls button{padding:9px 13px;font-size:11px}}
-@media(prefers-reduced-motion:reduce){.carousel-card{will-change:auto}}
+@media(prefers-reduced-motion:reduce){.carousel-track{will-change:auto}}
