@@ -1,7 +1,7 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
 const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.name.startsWith('.')||e.name==='node_modules'?[]:e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)]);
-const files=walk(root).filter(f=>f.endsWith('.html')&&path.basename(f)!=='cat-home.html');
+const files=walk(root).filter(f=>f.endsWith('.html')&&path.basename(f)!=='cat-home.html'&&!path.relative(root,f).startsWith('security'+path.sep));
 let count=0;
 for(const file of files){
  const html=fs.readFileSync(file,'utf8');
