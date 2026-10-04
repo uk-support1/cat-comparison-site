@@ -1,0 +1,113 @@
+/* Allergy guides only: preserve the existing article and shared brand styles. */
+.allergy-page{--allergy-coral:#b74833;--allergy-sage:#53735a}
+.allergy-page .wrap{width:min(980px,92%)}
+.allergy-page .allergy-hero{padding:28px 0 38px;background:linear-gradient(125deg,#fffaf3,#f3eee7)}
+.allergy-page .allergy-breadcrumb{display:flex;flex-wrap:wrap;gap:6px 10px;margin:0 0 28px;color:#756f69;font-size:12px}
+.allergy-page .allergy-breadcrumb a{text-decoration:underline;text-underline-offset:3px}
+.allergy-page .eyebrow,.allergy-entry>span{color:var(--allergy-coral,#b74833)}
+.allergy-page h1{max-width:920px;font-size:clamp(28px,3.5vw,43px);line-height:1.5;letter-spacing:-.025em;margin:10px 0 14px;text-wrap:balance}
+.allergy-page h1 span{display:block;font-size:.7em;margin-top:10px;line-height:1.65;font-weight:600}
+.allergy-page .lead{font-size:16px;line-height:1.9;max-width:780px}
+.allergy-page .allergy-meta{display:flex;flex-wrap:wrap;gap:5px 18px;margin-top:18px;color:#756f69;font-size:12px}
+.allergy-page .allergy-article{max-width:920px;padding:30px 0 64px}
+.allergy-page .allergy-article p,.allergy-page .allergy-article li{font-size:16px;line-height:1.95}
+.allergy-page .allergy-article p{margin:12px 0}
+.allergy-page .allergy-article section{margin-top:44px}
+.allergy-page .allergy-article h2{font-size:clamp(23px,2.5vw,29px);line-height:1.55;margin:0 0 18px;letter-spacing:-.02em}
+.allergy-page .allergy-article h3{font-size:18px;line-height:1.6;margin:0 0 9px}
+.allergy-page .allergy-article a:not(.np-button){text-decoration:underline;text-underline-offset:4px;text-decoration-color:#c8b8a7;overflow-wrap:anywhere}
+.allergy-page a:focus-visible,.allergy-page summary:focus-visible{outline:3px solid var(--np-sage);outline-offset:4px;border-radius:5px}
+.allergy-page .allergy-answer{margin:24px 0;padding:24px 28px;border:1px solid #dfd7c6;border-radius:22px;background:#f5f0e3}
+.allergy-page .allergy-answer h2{font-size:21px;margin:0 0 10px}
+.allergy-page .allergy-answer ul{margin:0;padding-left:1.25em}
+.allergy-page .allergy-answer li+li{margin-top:3px}
+.allergy-page .allergy-article .allergy-small{font-size:13px;line-height:1.85;color:#655e56}
+.allergy-page .allergy-toc{padding:18px 22px;margin:26px 0;border:1px solid var(--line);border-radius:18px;background:#fff}
+.allergy-page .allergy-toc summary{cursor:pointer;font-weight:700;font-size:15px;min-height:32px}
+.allergy-page .allergy-toc ol{display:grid;grid-template-columns:1fr 1fr;gap:7px 24px;padding-left:1.3em;margin:12px 0 0}
+.allergy-page .allergy-toc li{font-size:14px}
+.allergy-page .allergy-section-label{display:block;color:var(--allergy-coral);font-weight:800;font-size:11px;letter-spacing:.13em;margin-bottom:8px}
+.allergy-page .allergy-rank-notice{padding:18px 22px;border-left:3px solid #a98b59;border-radius:0 15px 15px 0;background:#f1ece2;margin-bottom:20px}
+.allergy-page .allergy-rank-notice p{font-size:14px;margin:0;line-height:1.9}
+.allergy-page .allergy-rank-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:14px;counter-reset:breed-intro}
+.allergy-page .allergy-rank{display:grid;grid-template-columns:42px 1fr;align-items:start;gap:14px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;counter-increment:breed-intro}
+.allergy-page .allergy-rank:first-child{grid-column:1/-1;background:linear-gradient(120deg,#fff,#faf5e9);border-color:#d7c59e}
+.allergy-page .allergy-rank-list>li+li,.allergy-page .allergy-flow>li+li{margin-top:0}
+.allergy-page .allergy-rank::before{content:counter(breed-intro);display:grid;place-items:center;aspect-ratio:1;border-radius:50%;background:#f1e7d8;color:#735c3c;font-size:18px;font-weight:800}
+.allergy-page .allergy-rank h3{font-size:20px;margin-bottom:8px}
+.allergy-page .allergy-rank p{font-size:15px;line-height:1.85;margin:0}
+.allergy-page .allergy-rank .allergy-rank-caution{font-size:13px;line-height:1.8;color:#746851;margin-top:10px;padding-top:9px;border-top:1px solid #eee5d9}
+.allergy-page .allergy-tip-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.allergy-page .allergy-tip{padding:22px;background:#fff;border:1px solid var(--line);border-radius:20px}
+.allergy-page .allergy-tip:last-child:nth-child(odd){grid-column:1/-1}
+.allergy-page .allergy-icon{display:grid;place-items:center;width:42px;height:42px;margin-bottom:13px;background:#f4eee4;border-radius:14px;font-size:23px}
+.allergy-page .allergy-tip p{font-size:15px;line-height:1.9;margin:0}
+.allergy-page .allergy-before-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.allergy-page .allergy-before{padding:23px;background:#f1f4ed;border:1px solid #dfe5d7;border-radius:20px}
+.allergy-page .allergy-before .allergy-step{color:var(--allergy-sage);font-weight:800;font-size:12px;letter-spacing:.08em;display:block;margin-bottom:12px}
+.allergy-page .allergy-before p{font-size:15px;line-height:1.9;margin:0}
+.allergy-page .allergy-faq{border:1px solid var(--line);border-radius:18px;background:#fff;margin:10px 0;overflow:hidden}
+.allergy-page .allergy-faq summary{padding:18px 22px;min-height:52px;font-size:16px;font-weight:700;line-height:1.8;cursor:pointer}
+.allergy-page .allergy-faq[open] summary{border-bottom:1px solid var(--line);background:#faf6f0}
+.allergy-page .allergy-faq p{padding:0 22px 10px;font-size:15px}
+.allergy-page .allergy-deep-cta{padding:28px;background:linear-gradient(135deg,#f4eee1,#fffaf2);border:1px solid #dfd0b6;border-radius:24px}
+.allergy-page .allergy-deep-cta h2{margin-bottom:8px}
+.allergy-page .allergy-deep-cta .np-button{margin-top:12px;gap:12px;white-space:normal;text-align:center;line-height:1.6}
+.allergy-page .allergy-summary{padding:24px 28px;background:#f2f4ee;border-radius:22px}
+.allergy-page .allergy-summary ul{margin:0;padding-left:1.3em}
+.allergy-page .allergy-medical{padding:20px 24px;margin-top:30px;border:1px solid var(--line);border-radius:18px;background:#f4f0eb}
+.allergy-page .allergy-medical h2{font-size:16px;margin-bottom:8px}
+.allergy-page .allergy-medical p{font-size:13px;line-height:1.85;margin:0}
+.allergy-page .allergy-references{padding-top:28px;border-top:1px solid var(--line)}
+.allergy-page .allergy-references h2{font-size:21px}
+.allergy-page .allergy-references ol{padding-left:1.4em;margin:0}
+.allergy-page .allergy-references li{font-size:13px;line-height:1.8;margin-top:12px;overflow-wrap:anywhere}
+.allergy-page .allergy-ref-link{display:inline-block;font-size:12px;margin:0 3px;vertical-align:super;line-height:1.3}
+.allergy-page .allergy-return{padding:18px 22px;margin:24px 0;background:#fff9f0;border:1px solid var(--line);border-radius:18px}
+.allergy-page .allergy-return p{font-size:15px;margin:0}
+.allergy-page .allergy-flow{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:0;margin:20px 0}
+.allergy-page .allergy-flow li{background:#f5f0e7;padding:20px;border-radius:18px;font-size:15px;position:relative}
+.allergy-page .allergy-flow b{display:block;color:#7d6947;margin-bottom:8px}
+.allergy-page .allergy-flow li+li::before{content:'→';position:absolute;left:-12px;top:40%;color:#8e7753;font-weight:700}
+.allergy-page .allergy-evidence{padding:20px 24px;margin:20px 0;border-left:3px solid var(--allergy-sage);border-radius:0 18px 18px 0;background:#f0f3ec}
+.allergy-page .allergy-evidence h3{color:#45664c;font-size:16px}
+.allergy-page .allergy-evidence p{font-size:15px}
+.allergy-page .allergy-table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:18px;background:#fff;margin:18px 0}
+.allergy-page .allergy-table{border-collapse:collapse;width:100%;min-width:490px;font-size:14px;line-height:1.8;text-align:left}
+.allergy-page .allergy-table caption{text-align:left;padding:16px 18px;font-size:14px;font-weight:700;background:#f4eee5;caption-side:top}
+.allergy-page .allergy-table th,.allergy-page .allergy-table td{padding:13px 17px;border-bottom:1px solid var(--line);vertical-align:top}
+.allergy-page .allergy-table th{font-weight:700;background:#fcfaf7}
+.allergy-page .allergy-table tbody tr:last-child td,.allergy-page .allergy-table tbody tr:last-child th{border-bottom:0}
+.allergy-page .allergy-knowledge-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+.allergy-page .allergy-knowledge-grid>div{padding:22px;background:#fff;border:1px solid var(--line);border-radius:20px}
+.allergy-page .allergy-knowledge-grid ul{padding-left:1.2em;margin:0}
+.allergy-page .allergy-knowledge-grid li{font-size:15px}
+.allergy-entry{border-color:#dfcbb6;background:#fffaf3}
+.allergy-entry h2{font-size:22px}
+.allergy-entry .allergy-entry-label{font-size:12px;color:#675641;letter-spacing:0;margin-top:auto;padding-top:14px}
+@media(max-width:620px){
+ .allergy-page .wrap{width:calc(100% - 36px)}
+ .allergy-page .allergy-hero{padding:20px 0 26px}
+ .allergy-page .allergy-breadcrumb{font-size:11px;margin-bottom:20px;gap:4px 8px}
+ .allergy-page h1{font-size:28px;line-height:1.55;text-wrap:wrap}
+ .allergy-page h1 span{font-size:19px}
+ .allergy-page .lead{font-size:15px}
+ .allergy-page .allergy-article{padding-top:22px}
+ .allergy-page .allergy-article section{margin-top:34px}
+ .allergy-page .allergy-answer,.allergy-page .allergy-summary{padding:20px}
+ .allergy-page .allergy-toc ol,.allergy-page .allergy-rank-list,.allergy-page .allergy-tip-grid,.allergy-page .allergy-before-grid,.allergy-page .allergy-knowledge-grid{grid-template-columns:1fr}
+ .allergy-page .allergy-rank{padding:20px;grid-template-columns:34px 1fr;gap:12px}
+ .allergy-page .allergy-rank:first-child,.allergy-page .allergy-tip:last-child:nth-child(odd){grid-column:auto}
+ .allergy-page .allergy-rank h3{font-size:19px}
+ .allergy-page .allergy-rank-notice{padding:16px 18px}
+ .allergy-page .allergy-tip,.allergy-page .allergy-before{padding:20px}
+ .allergy-page .allergy-tip{position:relative;padding-left:72px}
+ .allergy-page .allergy-icon{position:absolute;left:18px;top:20px;width:38px;height:38px;font-size:21px}
+ .allergy-page .allergy-deep-cta{padding:24px 20px}
+ .allergy-page .allergy-deep-cta .np-button{width:100%;padding:13px 16px}
+ .allergy-page .allergy-faq summary{padding:16px 18px}
+ .allergy-page .allergy-faq p{padding-inline:18px}
+ .allergy-page .allergy-flow{grid-template-columns:1fr;gap:20px}
+ .allergy-page .allergy-flow li+li::before{content:'↓';left:50%;top:-24px}
+ .allergy-page .allergy-table-scroll{margin-inline:0}
+}
