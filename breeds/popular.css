@@ -1,0 +1,37 @@
+/* Scope the new entrance so existing profile/navigation styles stay intact. */
+.popular-breeds{background:#f7f5ea;scroll-margin-top:110px}
+.popular-breeds h2{font-size:clamp(23px,3vw,34px);line-height:1.5;margin:0 0 12px;color:var(--ink)}
+.popular-breeds .popular-intro{font-size:13px;color:var(--muted);margin:0 0 28px}
+.popular-breed-grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:26px 20px}
+.popular-breed-item{min-width:0}
+.popular-breed-link{position:relative;display:block;text-align:center;height:100%;border-radius:12px}
+.popular-breed-photo{display:block;aspect-ratio:1/1;overflow:hidden;background:#ece7dd;border:1px solid #e1d8c7;border-radius:8px}
+.popular-breed-photo img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .2s ease}
+.popular-breed-link:hover img{transform:scale(1.04)}
+.popular-breed-link:focus-visible,.popular-more:focus-visible{outline:3px solid var(--coral);outline-offset:5px}
+.popular-breed-rank{position:absolute;top:-7px;left:-6px;display:grid;place-items:center;width:34px;aspect-ratio:1;border:3px solid #fff;border-radius:50%;background:#ae9b60;color:#fff;font-weight:800;font-size:17px;line-height:1;box-shadow:0 2px 5px #463c2220}
+.popular-breed-item:nth-child(1) .popular-breed-rank{background:#b58c27}
+.popular-breed-item:nth-child(2) .popular-breed-rank{background:#b8bcc1;color:#343a40}
+.popular-breed-item:nth-child(3) .popular-breed-rank{background:#bb7959}
+.popular-breed-name{display:block;margin-top:10px;font-size:14px;font-weight:700;line-height:1.55;overflow-wrap:anywhere;text-wrap:balance}
+.popular-actions{text-align:center;margin:30px 0 0}
+.popular-more{display:inline-flex;align-items:center;justify-content:center;max-width:100%;min-height:48px;padding:13px 26px;border:1px solid #c7bfa7;border-radius:999px;background:#fff;color:#65543c;font-size:14px;font-weight:700;line-height:1.6}
+.popular-note{font-size:11px;color:var(--muted);margin:16px auto 0;text-align:center}
+@media(min-width:621px) and (max-width:1000px){
+  .popular-breed-grid{gap:24px 14px}
+  .popular-breed-name{font-size:12px}
+}
+@media(max-width:620px){
+  .popular-breeds .wrap{width:calc(100% - 40px)}
+  .popular-breeds h2{font-size:21px;line-height:1.55}
+  .popular-breeds .popular-intro{font-size:12px;margin-bottom:26px}
+  .popular-breed-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:25px 16px}
+  .popular-breed-item:nth-child(n+10){display:none}
+  .popular-breed-photo{aspect-ratio:1/1;border-radius:50%;border:0;box-shadow:3px 4px 0 #e9e4d0}
+  .popular-breed-photo img,.popular-breed-link:hover img{transform:scale(var(--mobile-photo-zoom,1));transform-origin:var(--mobile-photo-origin,center)}
+  .popular-breed-rank{top:-5px;left:-5px;width:29px;border-width:2px;font-size:15px}
+  .popular-breed-name{font-size:12px;margin-top:12px;line-height:1.6}
+  .popular-more{width:100%;font-size:13px;padding:13px 16px}
+  .popular-actions{margin-top:28px}
+}
+@media(prefers-reduced-motion:reduce){.popular-breed-photo img{transition:none}.popular-breed-link:hover img{transform:none}}

@@ -1,0 +1,166 @@
+{
+  "sourceFolder": "99_画像保管庫/ねこ",
+  "photos": [
+    {
+      "breed": "mix",
+      "role": "adult",
+      "sourceFile": "みー/IMG_6863 (1).JPG",
+      "file": "../mii-mix-cat.jpg",
+      "sha256": "f05e7cfdd31eedec2377c810e85230c897e1865c94d7f7b0ce4c00aec559b086"
+    },
+    {
+      "breed": "scottish-fold",
+      "role": "adult",
+      "sourceFile": "スコティッシュフォールド親.png",
+      "file": "scottish-fold-adult.png",
+      "sha256": "9de1d2947022778c0a01a0bd40d8cbf84570dc9bdb4e6079e5e81370475c5575"
+    },
+    {
+      "breed": "munchkin",
+      "role": "adult",
+      "sourceFile": "マンチカン親.png",
+      "file": "munchkin-adult.png",
+      "sha256": "d1e59f0d633f09cc81dc658556642fb466f5b518d9c50d3a6695614841979410"
+    },
+    {
+      "breed": "ragamuffin",
+      "role": "adult",
+      "sourceFile": "ラガマフィン親.png",
+      "file": "ragamuffin-adult.png",
+      "sha256": "0bf1b36a81388f57e8b8537767385b18f3b4895965dd90860ed5c104d9ab52e5"
+    },
+    {
+      "breed": "ragdoll",
+      "role": "adult",
+      "sourceFile": "ragdoll_adult_longhair.png",
+      "file": "ragdoll-adult.png",
+      "sha256": "55e4fdd9fbf5b3b10a2d72637a1a105c85954d5f2997a2098ae760d823a3d666"
+    },
+    {
+      "breed": "maine-coon",
+      "role": "adult",
+      "sourceFile": "メインクーン　親.png",
+      "file": "maine-coon-adult.png",
+      "sha256": "cfe6f85ea76ef36b856a8af43fe438754a3f8461efc739d17a2a6f5aec13d150"
+    },
+    {
+      "breed": "british-shorthair",
+      "role": "adult",
+      "sourceFile": "british_shorthair_adult_separate.png",
+      "file": "british-shorthair-adult.png",
+      "sha256": "acbc5e93e98ecfc17b04773bc74c16bd76b16cac3f8f1f6508b1db4dd60d3adf"
+    },
+    {
+      "breed": "american-shorthair",
+      "role": "adult",
+      "sourceFile": "アメリカンショートヘア親.png",
+      "file": "american-shorthair-adult.png",
+      "sha256": "0a837ff5fe38c07ceab839e811d11d732ecd8cd901168a718523799925a250a2"
+    },
+    {
+      "breed": "russian-blue",
+      "role": "adult",
+      "sourceFile": "ロシアンブルー親.png",
+      "file": "russian-blue-adult.png",
+      "sha256": "cc2c3d0bb2bd1783581b7a0821fb1978e5cf0917413b2aba4f21b33b55088222"
+    },
+    {
+      "breed": "bengal",
+      "role": "adult",
+      "sourceFile": "ベンガル親.png",
+      "file": "bengal-adult.png",
+      "sha256": "bbc89bee9457fa8b587c0995f7cdf6d6b6ec33f131ca9a0670cebacf998a331a"
+    },
+    {
+      "breed": "persian",
+      "role": "adult",
+      "sourceFile": "ペルシャ親 .png",
+      "file": "persian-entry-adult.png",
+      "sha256": "277107f194ed0a0ca38b2fb49053577f158425c221cee36efd88bda9f94c2c1d"
+    },
+    {
+      "breed": "siamese",
+      "role": "adult",
+      "sourceFile": "しゃむ猫親.png",
+      "file": "siamese-adult.png",
+      "sha256": "8a6c27ce1b291836b8bfe4bd4a4b63c829f198b668fb6f16afae75352873432c"
+    },
+    {
+      "breed": "norwegian-forest",
+      "role": "adult",
+      "sourceFile": "norwegian_forest_cat_adult.png",
+      "file": "norwegian-forest-adult.png",
+      "sha256": "931b47825409bc194c24dac0acfd19495ba2c5c3f0fb777fa21de36fa73aca93"
+    },
+    {
+      "breed": "american-curl",
+      "role": "adult",
+      "sourceFile": "アメリカンカール親.png",
+      "file": "american-curl-adult.png",
+      "sha256": "b246b9bf23e09550d6679329f666d656e434cae52ea9e7726194b766755385fa"
+    },
+    {
+      "breed": "somali",
+      "role": "adult",
+      "sourceFile": "somali_adult.png",
+      "file": "somali-adult.png",
+      "sha256": "66ff65df96b437cde20be4ca6f69b8ff18b796cc306e4d9333049ba408c4c66c"
+    },
+    {
+      "breed": "abyssinian",
+      "role": "adult",
+      "sourceFile": "abyssinian_adult.png",
+      "file": "abyssinian-adult.png",
+      "sha256": "279234ab27b37e44401502df82aba09b67053be94da1b91f6b726cef4b36613b"
+    },
+    {
+      "breed": "exotic",
+      "role": "adult",
+      "sourceFile": "exotic_shorthair_adult.png",
+      "file": "exotic-adult.png",
+      "sha256": "6639c0d1e265a5bb151eb7d71b40fe28f4010be129d89b9bfd592308c1664261"
+    },
+    {
+      "breed": "himalayan",
+      "role": "adult",
+      "sourceFile": "himalayan_adult.png",
+      "file": "himalayan-adult.png",
+      "sha256": "cd75601a2da936a165b8b10b8bf7630cf14f545d522fe1d2838dd5db63c71c44"
+    },
+    {
+      "breed": "american-curl",
+      "role": "kitten",
+      "sourceFile": "アメリカンカール子.png",
+      "file": "american-curl-kitten.png",
+      "sha256": "5e6bd227fa5622d74248e15eb65be2527aaf7e27652a17cc7327eb9f66eac6b2"
+    },
+    {
+      "breed": "somali",
+      "role": "kitten",
+      "sourceFile": "somali_kitten.png",
+      "file": "somali-kitten.png",
+      "sha256": "f95ea46f4eb6e5ea847675dfdb6c94a48f615bba7e1bb87a8c33efb78a8dba5d"
+    },
+    {
+      "breed": "abyssinian",
+      "role": "kitten",
+      "sourceFile": "abyssinian_kitten.png",
+      "file": "abyssinian-kitten.png",
+      "sha256": "b7b96903aad0c17809403914d98671bf214e61e7f306eafc117d01c9683396d3"
+    },
+    {
+      "breed": "exotic",
+      "role": "kitten",
+      "sourceFile": "exotic_shorthair_kitten.png",
+      "file": "exotic-kitten.png",
+      "sha256": "69818257d7500b0a2ff628a62d4c8bd97c1b062e06c3d5e2637a26c55ddb33be"
+    },
+    {
+      "breed": "himalayan",
+      "role": "kitten",
+      "sourceFile": "himalayan_kitten.png",
+      "file": "himalayan-kitten.png",
+      "sha256": "2f5f5d3305ba494ba4697c2f94ab38b033371ee7ee7b2d6d39d47504ccea4ce9"
+    }
+  ]
+}

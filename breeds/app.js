@@ -6,6 +6,15 @@ const rankList=document.getElementById('rankList');
 const breedGrid=document.getElementById('breedGrid');
 const breedSearch=document.getElementById('breedSearch');
 const mediaUrl=media=>media.url||`https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(media.file)}?width=900`;
+const entryMedia=breed=>breed.entryMedia||breed.profileMedia||breed.media;
+const popularGrid=document.getElementById('popularBreedGrid');
+if(popularGrid){
+  popularGrid.innerHTML=POPULAR_BREEDS.map((id,index)=>{
+    const breed=BREEDS.find(item=>item.id===id);
+    const [zoom,origin]=ENTRY_MOBILE_CROPS[id]||[1,'center'];
+    return `<li class="popular-breed-item"><a class="popular-breed-link" href="${profileHref(id)}"><span class="popular-breed-photo"><img src="${mediaUrl(entryMedia(breed))}" alt="${breed.name}の親猫" style="object-position:${ENTRY_PHOTO_POSITIONS[id]||'center 25%'};--mobile-photo-zoom:${zoom};--mobile-photo-origin:${origin}" loading="lazy" decoding="async"></span><span class="popular-breed-rank" aria-label="紹介順${index+1}">${index+1}</span><span class="popular-breed-name">${breed.name}</span></a></li>`;
+  }).join('');
+}
 function renderRanking(id){
   const category=RANKINGS.find(item=>item.id===id)||RANKINGS[0];
   document.querySelectorAll('.rank-tab').forEach(button=>button.setAttribute('aria-selected',String(button.dataset.id===category.id)));
@@ -18,7 +27,7 @@ rankTabs.addEventListener('click',event=>{const button=event.target.closest('.ra
 function renderBreeds(query=''){
   const normalized=query.trim().toLowerCase();
   const list=BREEDS.filter(breed=>!normalized||`${breed.name} ${breed.en}`.toLowerCase().includes(normalized));
-  breedGrid.innerHTML=list.map(breed=>`<a class="breed-card" href="${profileHref(breed.id)}"><span class="breed-card-photo"><img src="${mediaUrl(breed.media)}" alt="${breed.name}の写真" loading="lazy" decoding="async"></span><div class="breed-card-top"><span class="breed-mark" style="--breed:${breed.color}">${breed.mark}</span><span class="coat">${breed.coat}</span></div><h3>${breed.name}</h3><span class="en">${breed.en}</span><p>${breed.summary}</p><span class="chips">${breed.traits.map(trait=>`<span class="chip">${trait}</span>`).join('')}</span><span class="read">プロフィールを見る →</span></a>`).join('')||'<p>該当する猫種が見つかりませんでした。</p>';
+  breedGrid.innerHTML=list.map(breed=>`<a class="breed-card" href="${profileHref(breed.id)}"><span class="breed-card-photo"><img src="${mediaUrl(entryMedia(breed))}" alt="${breed.individualProfile?breed.name+'の写真':breed.name+'の親猫'}" loading="lazy" decoding="async"></span><div class="breed-card-top"><span class="breed-mark" style="--breed:${breed.color}">${breed.mark}</span><span class="coat">${breed.coat}</span></div><h3>${breed.name}</h3><span class="en">${breed.en}</span><p>${breed.summary}</p><span class="chips">${breed.traits.map(trait=>`<span class="chip">${trait}</span>`).join('')}</span><span class="read">プロフィールを見る →</span></a>`).join('')||'<p>該当する猫種が見つかりませんでした。</p>';
 }
 breedSearch.addEventListener('input',event=>renderBreeds(event.target.value));
 renderRanking(RANKINGS[0].id);renderBreeds();
