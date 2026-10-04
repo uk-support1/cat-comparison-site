@@ -58,15 +58,17 @@ for(const hash of ['', '#top4', '#howto', '#cats', '#products']){
  const doc={
   currentScript:{src:'https://example.test/cat-comparison-site/assets/site.js'},
   querySelector(selector){return selector==='.np-navigation'?nav:null;},
-  querySelectorAll(){return nav.children.filter(e=>e.href);},
+  querySelectorAll(selector){return selector==='.np-navigation a'?nav.children.filter(e=>e.href):[];},
   createElement(){return {dataset:{},setAttribute(){},append(){}};}
  };
  const context={URL,window:{},document:doc,location:{pathname:'/cat-comparison-site/index.html',search:'?v=test',hash,replace(value){redirect=value;}}};
  vm.runInNewContext(code,context);
- assert.equal(nav.children.length,7);
+ assert.equal(nav.children.length,8);
+ assert.equal(nav.children[6].textContent,'猫との暮らし');
+ assert.equal(nav.children[6].href,'https://example.test/cat-comparison-site/articles/');
  assert.equal(nav.children[1].href,'https://example.test/cat-comparison-site/compare/okara-litter.html');
  assert.equal(context.window.NekoSite.categories.length,3);
  assert.equal(context.window.NekoSite.categories[1].href,'compare/cat-toilets.html');
  assert.equal(redirect,hash?'https://example.test/cat-comparison-site/compare/okara-litter.html?v=test'+hash:null);
 }
-console.log('PASS: centralized seven-item navigation, pending categories, GitHub Pages base path and four legacy anchors.');
+console.log('PASS: centralized eight-item navigation including life guides, pending categories, GitHub Pages base path and four legacy anchors.');

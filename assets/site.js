@@ -14,7 +14,8 @@
     {name:pawGameName,href:'breeds/paw-pop.html',action:'paw'},
     {name:'猫種図鑑',href:'breeds/',action:'breeds'}
   ];
-  const navigation = [{name:'TOP',href:'index.html'}, ...categories, {name:'運営情報',href:'about.html'}];
+  const lifeGuide = {name:'猫との暮らし',href:'articles/'};
+  const navigation = [{name:'TOP',href:'index.html'}, ...categories, lifeGuide, {name:'運営情報',href:'about.html'}];
   const makeNavigation = (items, extraClass='') => items.map(item=>{
     const element=document.createElement(item.href?'a':'span');
     element.textContent=item.name;
@@ -44,7 +45,7 @@
   if(navigationRoot){
     const items=navActionsRoot
       ? [...navActions.map(item=>({...item,className:'np-nav-action-copy'})),...navigation]
-      : [{name:'TOP',href:'index.html'},...categories,{name:'猫種図鑑',href:'breeds/'},{name:pawGameName,href:'breeds/paw-pop.html'},{name:'運営情報',href:'about.html'}];
+      : [{name:'TOP',href:'index.html'},...categories,{name:'猫種図鑑',href:'breeds/'},{name:pawGameName,href:'breeds/paw-pop.html'},lifeGuide,{name:'運営情報',href:'about.html'}];
     navigationRoot.replaceChildren(...makeNavigation(items));
   }
   document.querySelectorAll('footer.np-footer a[href*="breeds/paw-pop.html"]').forEach(link=>{link.textContent=pawGameName;});
