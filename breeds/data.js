@@ -127,7 +127,9 @@ window.PROFILE_VIDEOS={
   munchkin:'../assets/breeds/munchkin-generated.mp4',
   ragamuffin:'../assets/breeds/ragamuffin-generated.mp4',
   ragdoll:'../assets/breeds/ragdoll-generated.mp4',
-  'maine-coon':'../assets/breeds/maine-coon-generated.mp4'
+  'maine-coon':'../assets/breeds/maine-coon-generated.mp4',
+  'british-shorthair':'../assets/breeds/british-shorthair-generated.mp4',
+  siamese:'../assets/breeds/siamese-generated.mp4'
 };
 window.PROFILE_MEDIA={
   'scottish-fold':localBreedMedia('scottish-fold-adult.png','スコティッシュフォールドの親猫'),munchkin:localBreedMedia('munchkin-adult.png','マンチカンの親猫'),ragamuffin:localBreedMedia('ragamuffin-adult.png','ラガマフィンの親猫'),ragdoll:localBreedMedia('ragdoll-adult.png','ラグドールの親猫'),'maine-coon':localBreedMedia('maine-coon-adult.png','メインクーンの親猫'),'british-shorthair':localBreedMedia('british-shorthair-adult.png','ブリティッシュショートヘアの親猫'),'american-shorthair':localBreedMedia('american-shorthair-adult.png','アメリカンショートヘアの親猫'),'russian-blue':localBreedMedia('russian-blue-adult.png','ロシアンブルーの親猫'),bengal:localBreedMedia('bengal-adult.png','ベンガルの親猫'),persian:localBreedMedia('persian-adult.png','ペルシャ系（ヒマラヤン）の親猫'),siamese:localBreedMedia('siamese-adult.png','シャムの親猫'),'norwegian-forest':localBreedMedia('norwegian-forest-adult.png','ノルウェージャンフォレストキャットの親猫')
@@ -140,6 +142,9 @@ Object.entries(newBreedPhotos).forEach(([id,name])=>{
   window.PROFILE_MEDIA[id]=localBreedMedia(`${id}-adult.png`,`${name}の親猫`);
   window.PROFILE_KITTEN_MEDIA[id]=localBreedMedia(`${id}-kitten.png`,`${name}の子猫`);
 });
+// Latest owner-supplied replacements; keep the previous assets for history.
+window.PROFILE_MEDIA.munchkin=localBreedMedia('munchkin-adult-v2.jpg','マンチカンの親猫');
+window.PROFILE_KITTEN_MEDIA['maine-coon']=localBreedMedia('maine-coon-kitten-v2.jpg','メインクーンの子猫');
 window.BREEDS.forEach(breed=>{
   if(window.PROFILE_MEDIA[breed.id]){
     breed.profileMedia=window.PROFILE_MEDIA[breed.id];
@@ -152,7 +157,7 @@ window.BREEDS.forEach(breed=>{
 // Editorial introduction order, not a sales/registration-based popularity survey.
 window.POPULAR_BREEDS=['american-shorthair','ragamuffin','british-shorthair','siberian','ragdoll','scottish-fold','munchkin','maine-coon','norwegian-forest','persian'];
 window.ENTRY_PHOTO_POSITIONS={munchkin:'50% 35%','scottish-fold':'50% 25%',ragdoll:'50% 25%','british-shorthair':'50% 25%','norwegian-forest':'50% 25%','maine-coon':'50% 25%',exotic:'50% 12%',bengal:'50% 25%','american-shorthair':'50% 30%',ragamuffin:'50% 25%',somali:'50% 22%',abyssinian:'50% 24%','american-curl':'50% 25%',himalayan:'50% 15%'};
-window.ENTRY_MOBILE_CROPS={munchkin:[1.6,'100% 18%'],'scottish-fold':[1.3,'0% 0%'],ragdoll:[1.2,'70% 0%'],'british-shorthair':[1.35,'65% 0%'],'norwegian-forest':[1.3,'70% 0%'],'maine-coon':[1.55,'45% 0%'],exotic:[1.25,'65% 0%'],bengal:[1.5,'85% 0%'],'american-shorthair':[1.35,'65% 0%']};
+window.ENTRY_MOBILE_CROPS={munchkin:[1.15,'65% 25%'],'scottish-fold':[1.3,'0% 0%'],ragdoll:[1.2,'70% 0%'],'british-shorthair':[1.35,'65% 0%'],'norwegian-forest':[1.3,'70% 0%'],'maine-coon':[1.55,'45% 0%'],exotic:[1.25,'65% 0%'],bengal:[1.5,'85% 0%'],'american-shorthair':[1.35,'65% 0%']};
 
 window.KITTEN_MEDIA={
   'scottish-fold':{file:'3mo lilac Scottish Fold Fanel.jpg',label:'3mo lilac Scottish Fold Fanel',author:'Psihopat',license:'CC BY 3.0',licenseUrl:'https://creativecommons.org/licenses/by/3.0/',page:'https://commons.wikimedia.org/wiki/File:3mo_lilac_Scottish_Fold_Fanel.jpg'},

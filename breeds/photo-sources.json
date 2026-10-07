@@ -2,6 +2,13 @@
   "sourceFolder": "99_画像保管庫/ねこ",
   "photos": [
     {
+      "breed": "maine-coon",
+      "role": "kitten",
+      "sourceFile": "メインクーン子.jpg",
+      "file": "maine-coon-kitten-v2.jpg",
+      "sha256": "b2ecc1172cc47d21a24fa1d67b6da409c15ba0ee9881b5a8f49626c36f593bfd"
+    },
+    {
       "breed": "mix",
       "role": "adult",
       "sourceFile": "みー/IMG_6863 (1).JPG",
@@ -18,9 +25,9 @@
     {
       "breed": "munchkin",
       "role": "adult",
-      "sourceFile": "マンチカン親.png",
-      "file": "munchkin-adult.png",
-      "sha256": "d1e59f0d633f09cc81dc658556642fb466f5b518d9c50d3a6695614841979410"
+      "sourceFile": "マンチカン親.jpg",
+      "file": "munchkin-adult-v2.jpg",
+      "sha256": "2b96d3182536d19b89a0a4ab98f2007650c03d5972988a36a1694f00b0622db9"
     },
     {
       "breed": "ragamuffin",

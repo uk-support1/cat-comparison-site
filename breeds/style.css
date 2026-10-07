@@ -146,6 +146,26 @@ html body main#profileRoot .portrait-profile-hero .ragdoll-hero-backdrop-main{ob
 .profile-video-dialog video{display:block;width:100%;max-height:65dvh;aspect-ratio:16/9;object-fit:cover;background:#f5eee6;border-radius:12px}
 .profile-video-dialog p{margin:12px 0 0;color:var(--muted);font-size:11px}
 @media(min-width:621px){.profile-video-actions{grid-template-columns:1fr 1fr}.ragdoll-basic-profile .ragdoll-profile-video.has-video{margin-bottom:60px}}
+/* British-only viewing trial: one unchanged video, three frames, no crop/blur fill. */
+.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-details{grid-template-columns:minmax(0,1fr) minmax(0,320px);gap:24px}
+.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-video.has-video{aspect-ratio:auto;margin:0;filter:none;min-width:0;padding:12px 8px 0}
+.profile-video-device{position:relative;padding:10px 18px;border:2px solid #797974;border-radius:26px;background:#292c2c;box-shadow:0 16px 26px rgba(45,42,39,.14);transform:rotate(-3deg)}
+.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-video-screen{position:relative;inset:auto;aspect-ratio:var(--trial-video-ratio,16/9);border-radius:15px;background:#f7f3ed}
+.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-video-screen video{object-fit:contain;object-position:center!important}
+.profile-video-trial .profile-video-caption{position:relative;top:auto;margin-top:22px;gap:10px}
+.profile-video-trial-note{margin:0!important;font-size:11px!important;line-height:1.6!important;color:var(--muted)}
+.profile-video-views{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.profile-video-views button{min-height:44px;padding:8px 10px;border:1px solid var(--line);border-radius:12px;background:#fffdf9;color:var(--ink);font:inherit;font-size:11px;cursor:pointer}
+.profile-video-views button[aria-pressed="true"]{background:#eaf0eb;border-color:#799084;color:#39534a}
+.profile-video-views button:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+.profile-video-trial [data-video-view="monitor"] .profile-video-device{padding:9px 9px 20px;border-radius:14px;background:#e4e4df;transform:none;margin-bottom:35px}
+.profile-video-trial [data-video-view="monitor"] .profile-video-device::after{content:'';position:absolute;left:28%;right:28%;top:100%;height:28px;border-bottom:6px solid #c2c4be;background:linear-gradient(90deg,transparent 35%,#d1d3cd 35%,#d1d3cd 65%,transparent 65%);border-radius:0 0 8px 8px}
+.profile-video-trial [data-video-view="monitor"] .ragdoll-profile-video-screen{border-radius:6px}
+.profile-video-trial [data-video-view="portrait"] .profile-video-device{width:166px;max-width:80%;margin:0 auto;padding:18px 8px;transform:rotate(-5deg)}
+.profile-video-trial [data-video-view="portrait"] .ragdoll-profile-video-screen{aspect-ratio:392/800;border-radius:17px}
+.profile-video-trial-dialog video{object-fit:contain;aspect-ratio:auto;height:auto}
+@media(max-width:1100px){.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-details{grid-template-columns:minmax(0,1fr)}.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-copy{display:block}.profile-video-trial.ragdoll-basic-profile .facts{grid-column:auto;grid-row:auto;grid-template-columns:repeat(3,minmax(0,1fr))}.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-description{grid-column:auto;grid-row:auto}.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-video{grid-column:auto;grid-row:auto;width:100%;max-width:440px;justify-self:center}}
+@media(max-width:620px){.profile-video-trial.ragdoll-basic-profile .facts{grid-template-columns:1fr}.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-details{gap:20px}.profile-video-trial .profile-video-actions{grid-template-columns:1fr 1fr}.profile-video-trial [data-video-view="portrait"] .profile-video-device{width:156px}}
 /* On phones, preserve source aspect ratios and keep the photograph centered.
    The height follows the real copy + photo ratio instead of a fixed, zoomed crop. */
 @media(max-width:900px){

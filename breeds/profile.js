@@ -13,7 +13,7 @@ const mediaUrl=assetUrl(featured);
 const kitten=KITTEN_MEDIA[breed.id];
 const kittenUrl=assetUrl(kitten);
 root.innerHTML=`<div class="wrap breadcrumb"><a href="index.html">猫種図鑑</a> ／ ${escapeHtml(breed.name)}</div><section class="profile-hero"><div class="wrap profile-head"><span class="breed-mark" style="--breed:${breed.color}">${breed.mark}</span><div><div class="eyebrow">BREED PROFILE</div><h1>${escapeHtml(breed.name)}</h1><div class="profile-en">${escapeHtml(breed.en)}</div></div><figure class="profile-photo"><img src="${mediaUrl}" alt="${escapeHtml(breed.name)}の写真" fetchpriority="high"><figcaption><a href="${featured.page}" target="_blank" rel="noopener">写真：${escapeHtml(featured.author)}／${escapeHtml(featured.license)} ↗</a></figcaption></figure><p class="profile-summary">${escapeHtml(breed.summary)}</p></div></section><div class="wrap profile-main"><div><section class="profile-card"><h2>基本プロフィール</h2><div class="facts"><div class="fact"><span>SIZE</span><b>${escapeHtml(breed.size)}</b></div><div class="fact"><span>COAT</span><b>${escapeHtml(breed.coat)}</b></div><div class="fact"><span>ORIGIN</span><b>${escapeHtml(breed.origin)}</b></div></div><h3>性格の距離感</h3><p>${escapeHtml(breed.character)}</p><h3>一緒に暮らすイメージ</h3><p>${escapeHtml(breed.living)}</p></section><section class="profile-card kitten-card"><div class="kitten-copy"><div class="eyebrow">KITTEN MOMENT</div><h2>${escapeHtml(breed.name)}の子猫</h2><p>子猫期の表情や被毛の見え方にも個体差があります。成長後の暮らしを想像するための、かわいらしい一枚です。</p></div><figure class="kitten-photo"><img src="${kittenUrl}" alt="${escapeHtml(breed.name)}の子猫" loading="lazy" decoding="async"><figcaption><a href="${kitten.page}" target="_blank" rel="noopener">写真：${escapeHtml(kitten.author)}／${escapeHtml(kitten.license)} ↗</a></figcaption></figure></section><section class="profile-card"><h2>向きやすい暮らし</h2><ul class="profile-list">${breed.goodFor.map(item=>`<li>${escapeHtml(item)}</li>`).join('')}</ul><h3>日々のお手入れと環境</h3><ul class="profile-list">${breed.carePoints.map(item=>`<li>${escapeHtml(item)}</li>`).join('')}</ul></section><section class="profile-card"><h2>猫砂選びのヒント</h2><p>${escapeHtml(breed.litter)}</p><a class="back-guide" href="../compare/okara-litter.html#cats">猫タイプ別の猫砂比較を見る<small>長毛・大型・子猫・多頭飼いなどから比較</small></a></section></div><aside><section class="profile-card"><h2>似た距離感の猫種</h2><div class="related-grid">${related.map(item=>`<a class="related-card" href="profile.html?breed=${item.id}"><b>${escapeHtml(item.name)}</b><br><span class="profile-en">${escapeHtml(item.en)}</span></a>`).join('')}</div></section><section class="profile-card"><h2>参照情報</h2><div class="source-list"><a href="${breed.source}" target="_blank" rel="noopener">猫種団体のプロフィール ↗</a><a href="media-credits.html">写真・動画素材のクレジット</a><a href="../editorial-policy.html">当サイトの編集方針</a></div><p class="disclaimer">最終確認日：${escapeHtml(breed.reviewed||'2026年10月1日')}。猫種の傾向には大きな個体差があります。</p></section></aside></div>`;
-// Only the nine supplied/generated clips are enabled; other breeds keep their placeholder.
+// Only the supplied/generated clips are enabled; other breeds keep their placeholder.
 const profileVideos=window.PROFILE_VIDEOS||{};
 const portraitProfile={
   kittenUrl:breed.id==='ragdoll'?'../assets/breeds/ragdoll-kitten-related-v2.png':kittenUrl,
@@ -32,7 +32,7 @@ if(portraitProfile){
   const hero=root.querySelector('.profile-hero');
   const heroPhoto=root.querySelector('.profile-photo');
   hero.classList.add('ragdoll-profile-hero');
-  const photoPositions={persian:{adult:'68% top',kitten:'45% 20%'},munchkin:{kitten:'85% 20%'},siamese:{kitten:'60% 20%'},somali:{kitten:'center 40%'},abyssinian:{kitten:'center 36%'}}[breed.id];
+  const photoPositions={persian:{adult:'68% top',kitten:'45% 20%'},munchkin:{adult:'right top',kitten:'85% 20%'},siamese:{kitten:'60% 20%'},somali:{kitten:'center 40%'},abyssinian:{kitten:'center 36%'}}[breed.id];
   if(photoPositions?.adult)hero.style.setProperty('--profile-adult-position',photoPositions.adult);
   if(breed.id!=='ragdoll'){
     hero.classList.add('portrait-profile-hero');
@@ -53,6 +53,9 @@ if(portraitProfile){
   lifestyleCard.append(lifestyleCopy);
   const basicProfile=root.querySelector('.profile-main .profile-card');
   basicProfile.classList.add('ragdoll-basic-profile');
+  basicProfile.id='basic-profile';
+  const videoTrial=breed.id==='british-shorthair'&&!!portraitProfile.videoUrl;
+  if(videoTrial)basicProfile.classList.add('profile-video-trial');
   const details=document.createElement('div');
   details.className='ragdoll-profile-details';
   const copy=document.createElement('div');
@@ -66,7 +69,11 @@ if(portraitProfile){
   const videoContent=portraitProfile.videoUrl
     ? `<video autoplay muted loop playsinline preload="metadata" poster="${mediaUrl}" aria-label="${escapeHtml(breed.name)}の生成動画"><source src="${portraitProfile.videoUrl}" type="video/mp4"></video>`
     : '<div class="profile-video-placeholder"><span class="profile-video-placeholder-icon" aria-hidden="true">▷</span><span>動画準備中</span></div>';
-  details.insertAdjacentHTML('beforeend',`<figure class="ragdoll-profile-video"${portraitProfile.videoUrl?'':` aria-label="${escapeHtml(breed.name)}の動画用スペース（準備中）"`}><div class="ragdoll-profile-video-screen">${videoContent}</div><img class="ragdoll-profile-video-frame" src="../assets/iphone-15-frame.png" alt="" aria-hidden="true"></figure>`);
+  const videoScreen=`<div class="ragdoll-profile-video-screen">${videoContent}</div>`;
+  const deviceContent=videoTrial
+    ? `<div class="profile-video-device">${videoScreen}</div>`
+    : `${videoScreen}<img class="ragdoll-profile-video-frame" src="../assets/iphone-15-frame.png" alt="" aria-hidden="true">`;
+  details.insertAdjacentHTML('beforeend',`<figure class="ragdoll-profile-video"${videoTrial?' data-video-view="landscape"':''}${portraitProfile.videoUrl?'':` aria-label="${escapeHtml(breed.name)}の動画用スペース（準備中）"`}>${deviceContent}</figure>`);
   basicProfile.append(details);
   if(portraitProfile.videoUrl){
     const player=basicProfile.querySelector('video');
@@ -75,6 +82,18 @@ if(portraitProfile){
     player.style.objectPosition=`${videoPosition} center`;
     basicProfile.querySelector('.ragdoll-profile-video').classList.add('has-video');
     basicProfile.querySelector('.ragdoll-profile-video').insertAdjacentHTML('beforeend','<figcaption class="profile-video-caption"><span>無音ループ・生成映像</span><div class="profile-video-actions"><button class="profile-video-toggle" type="button" aria-label="動画を一時停止">一時停止</button><button class="profile-video-expand" type="button" aria-haspopup="dialog">動画を拡大</button></div></figcaption>');
+    if(videoTrial){
+      const figure=basicProfile.querySelector('.ragdoll-profile-video');
+      figure.querySelector('.profile-video-caption').insertAdjacentHTML('afterbegin',`<p class="profile-video-trial-note">画面の形を選んで、映像全体を見比べる</p><div class="profile-video-views" role="group" aria-label="動画フレームの表示方式">${[['landscape','横向きスマホ'],['monitor','PCモニター'],['portrait','縦向きスマホ']].map(([view,label])=>`<button type="button" data-video-view-button="${view}" aria-pressed="${view==='landscape'}">${label}</button>`).join('')}</div>`);
+      figure.querySelectorAll('[data-video-view-button]').forEach(button=>button.addEventListener('click',()=>{
+        figure.dataset.videoView=button.dataset.videoViewButton;
+        figure.querySelectorAll('[data-video-view-button]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+      }));
+      // Match the frame to the actual source; never crop or rescale the footage itself.
+      const setVideoRatio=()=>{if(player.videoWidth&&player.videoHeight)figure.style.setProperty('--trial-video-ratio',player.videoWidth/player.videoHeight)};
+      player.addEventListener('loadedmetadata',setVideoRatio);
+      setVideoRatio();
+    }
     const toggle=basicProfile.querySelector('.profile-video-toggle');
     const syncPlayback=()=>{toggle.textContent=player.paused?'再生':'一時停止';toggle.setAttribute('aria-label',player.paused?'動画を再生':'動画を一時停止')};
     player.addEventListener('play',syncPlayback);
@@ -84,6 +103,7 @@ if(portraitProfile){
     syncPlayback();
     root.insertAdjacentHTML('beforeend',`<dialog class="profile-video-dialog" aria-labelledby="profileVideoTitle"><div class="profile-video-dialog-head"><h2 id="profileVideoTitle">${escapeHtml(breed.name)}の動画</h2><button class="profile-video-close" type="button">閉じる</button></div><video controls muted loop playsinline preload="none" poster="${mediaUrl}" aria-label="${escapeHtml(breed.name)}の生成動画（拡大）"></video><p>ねこパートナー提供の生成映像です。</p></dialog>`);
     const dialog=root.querySelector('.profile-video-dialog');
+    if(videoTrial)dialog.classList.add('profile-video-trial-dialog');
     const expandedPlayer=dialog.querySelector('video');
     let resumePreview=false;
     basicProfile.querySelector('.profile-video-expand').addEventListener('click',()=>{

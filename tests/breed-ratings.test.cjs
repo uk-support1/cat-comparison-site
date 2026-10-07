@@ -23,9 +23,10 @@ const mix=data.BREEDS.find(b=>b.id==='mix');
 assert.ok(traits.every(key=>mix.stats[key]===3));
 assert.ok(living.filter(k=>k!=='allergy').every(key=>mix.livingStats[key]===3));
 // Locked projection of all pre-existing prose, photos and profile fields at 9dcdb17.
+// Normalize only the explicitly requested Munchkin adult photo replacement.
 const fields=['id','name','en','summary','size','coat','origin','character','living','litter','goodFor','carePoints','profileMedia','entryMedia','carouselMedia','media'];
 const projection=data.BREEDS.map(b=>Object.fromEntries(fields.map(k=>[k,b[k]])));
-assert.equal(crypto.createHash('sha256').update(JSON.stringify(projection)).digest('hex'),'1de61fe339ba32ae5a909fade194326afc48d330d52cb00180280d9d6a533b8d');
+assert.equal(crypto.createHash('sha256').update(JSON.stringify(projection).replaceAll('munchkin-adult-v2.jpg','munchkin-adult.png')).digest('hex'),'1de61fe339ba32ae5a909fade194326afc48d330d52cb00180280d9d6a533b8d');
 const js=read('breeds/profile.js');
 for(const heading of ['性格・傾向','暮らしやすさ','健康'])assert.ok(js.includes('>'+heading+'</h2>'));
 for(const note of ['猫種だけでは猫アレルギーの有無を判断できません','★が多いほど健康面で知っておきたい事項が多い','個々の猫が病気になる確率を示すものではありません','ミックスは両親の猫種や個体によって特徴の幅が大きくなります'])assert.ok(js.includes(note));
@@ -37,5 +38,5 @@ assert.ok(read('breeds/style.css').includes('@media(max-width:900px){.profile-ra
 const css=read('breeds/style.css');
 assert.equal((css.match(/\{/g)||[]).length,(css.match(/\}/g)||[]).length,'CSS media blocks close before the shared ratings');
 assert.ok(read('breeds/breed-rating-sources.md').includes('全19プロフィール'));
-for(const file of ['breeds/index.html','breeds/profile.html','breeds/media-credits.html'])assert.ok(read(file).includes('data.js?v=20261004-5'));
+for(const file of ['breeds/index.html','breeds/profile.html','breeds/media-credits.html'])assert.ok(read(file).includes('data.js?v=20261007-1'));
 console.log('PASS: all 19 profiles, 7+7 ratings, exact requested scores, health points/direction, allergy links, mixed-cat neutrality, unchanged existing prose/media.');

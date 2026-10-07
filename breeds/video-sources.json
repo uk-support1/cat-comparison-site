@@ -10,6 +10,8 @@
     {"breed":"munchkin","source":"マンチカン.mp4","file":"munchkin-generated.mp4","sha256":"83e1fd4e1c1164c6fc18a6f0525cfd77e4893826606cded1a93fabf67737b852"},
     {"breed":"ragamuffin","source":"ラガマフィン.mp4","file":"ragamuffin-generated.mp4","sha256":"4ed15831dce442b75c8e53dbf562d16615c21b82c2bb94c440a40ff4bef20e3f"},
     {"breed":"ragdoll","source":"ラグドール.mp4","file":"ragdoll-generated.mp4","sha256":"71b5299fe01656dae5f93d4a037c06763e3204708d84f13362ae3cfb57bda19d"},
-    {"breed":"maine-coon","source":"メインクーン.mp4","file":"maine-coon-generated.mp4","sha256":"5b28e3eab8845105032e03fe4dcaca6c55ddc3af94df7320c27dbd0f1c6917a6"}
+    {"breed":"maine-coon","source":"メインクーン.mp4","file":"maine-coon-generated.mp4","sha256":"5b28e3eab8845105032e03fe4dcaca6c55ddc3af94df7320c27dbd0f1c6917a6"},
+    {"breed":"british-shorthair","source":"ブリティッシュショートヘア.mp4","file":"british-shorthair-generated.mp4","sha256":"7bdbe7b68fc0301062813a940455047fead3a9bad3cb414a9278766a110235e3"},
+    {"breed":"siamese","source":"シャムネコ.mp4","file":"siamese-generated.mp4","sha256":"fe530ba186a23744e060b5825f6d9baa3c6ad3b08b97006d14dedd1d7b8855ab"}
   ]
 }
