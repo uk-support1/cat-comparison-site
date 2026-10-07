@@ -146,12 +146,11 @@ html body main#profileRoot .portrait-profile-hero .ragdoll-hero-backdrop-main{ob
 .profile-video-dialog video{display:block;width:100%;max-height:65dvh;aspect-ratio:16/9;object-fit:cover;background:#f5eee6;border-radius:12px}
 .profile-video-dialog p{margin:12px 0 0;color:var(--muted);font-size:11px}
 @media(min-width:621px){.profile-video-actions{grid-template-columns:1fr 1fr}.ragdoll-basic-profile .ragdoll-profile-video.has-video{margin-bottom:60px}}
-/* British-only laptop frame: genuine transparent device asset; show the full clip. */
+/* British-only angled laptop: owner-supplied cutout, perspective-matched full clip. */
 .profile-video-trial.ragdoll-basic-profile .ragdoll-profile-details{grid-template-columns:minmax(0,1fr) minmax(0,320px);gap:24px}
 .profile-video-trial.ragdoll-basic-profile .ragdoll-profile-video.has-video{aspect-ratio:auto;margin:0;filter:none;min-width:0;padding:12px 8px 0}
-.profile-video-device{position:relative;aspect-ratio:800/489}
-/* The 800x489 PNG's display aperture runs from x=74 to 726, y=19 to 439. */
-.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-video-screen{position:absolute;inset:3.88% 9.25% 10.22%;border-radius:2px;background:#101010}
+.profile-video-device{position:relative;aspect-ratio:1492/1054}
+.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-video-screen{position:absolute;inset:auto;top:0;left:0;width:100%;height:auto;aspect-ratio:3/2;transform-origin:0 0;border-radius:0;background:#101010}
 .profile-video-laptop-frame{position:absolute;z-index:2;inset:0;display:block;width:100%;height:100%;pointer-events:none;filter:drop-shadow(0 12px 12px rgba(45,42,39,.16))}
 .profile-video-trial.ragdoll-basic-profile .ragdoll-profile-video-screen video{object-fit:contain;object-position:center!important}
 .profile-video-trial .profile-video-caption{position:relative;top:auto;margin-top:22px;gap:10px}
