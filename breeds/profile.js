@@ -71,9 +71,9 @@ if(portraitProfile){
     : '<div class="profile-video-placeholder"><span class="profile-video-placeholder-icon" aria-hidden="true">▷</span><span>動画準備中</span></div>';
   const videoScreen=`<div class="ragdoll-profile-video-screen">${videoContent}</div>`;
   const deviceContent=videoTrial
-    ? `<div class="profile-video-device">${videoScreen}</div>`
+    ? `<div class="profile-video-device">${videoScreen}<img class="profile-video-laptop-frame" src="../assets/macbook-pro-16-frame.png" alt="" aria-hidden="true"></div>`
     : `${videoScreen}<img class="ragdoll-profile-video-frame" src="../assets/iphone-15-frame.png" alt="" aria-hidden="true">`;
-  details.insertAdjacentHTML('beforeend',`<figure class="ragdoll-profile-video"${videoTrial?' data-video-view="landscape"':''}${portraitProfile.videoUrl?'':` aria-label="${escapeHtml(breed.name)}の動画用スペース（準備中）"`}>${deviceContent}</figure>`);
+  details.insertAdjacentHTML('beforeend',`<figure class="ragdoll-profile-video"${videoTrial?' data-video-view="laptop"':''}${portraitProfile.videoUrl?'':` aria-label="${escapeHtml(breed.name)}の動画用スペース（準備中）"`}>${deviceContent}</figure>`);
   basicProfile.append(details);
   if(portraitProfile.videoUrl){
     const player=basicProfile.querySelector('video');
@@ -82,18 +82,6 @@ if(portraitProfile){
     player.style.objectPosition=`${videoPosition} center`;
     basicProfile.querySelector('.ragdoll-profile-video').classList.add('has-video');
     basicProfile.querySelector('.ragdoll-profile-video').insertAdjacentHTML('beforeend','<figcaption class="profile-video-caption"><span>無音ループ・生成映像</span><div class="profile-video-actions"><button class="profile-video-toggle" type="button" aria-label="動画を一時停止">一時停止</button><button class="profile-video-expand" type="button" aria-haspopup="dialog">動画を拡大</button></div></figcaption>');
-    if(videoTrial){
-      const figure=basicProfile.querySelector('.ragdoll-profile-video');
-      figure.querySelector('.profile-video-caption').insertAdjacentHTML('afterbegin',`<p class="profile-video-trial-note">画面の形を選んで、映像全体を見比べる</p><div class="profile-video-views" role="group" aria-label="動画フレームの表示方式">${[['landscape','横向きスマホ'],['monitor','PCモニター'],['portrait','縦向きスマホ']].map(([view,label])=>`<button type="button" data-video-view-button="${view}" aria-pressed="${view==='landscape'}">${label}</button>`).join('')}</div>`);
-      figure.querySelectorAll('[data-video-view-button]').forEach(button=>button.addEventListener('click',()=>{
-        figure.dataset.videoView=button.dataset.videoViewButton;
-        figure.querySelectorAll('[data-video-view-button]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
-      }));
-      // Match the frame to the actual source; never crop or rescale the footage itself.
-      const setVideoRatio=()=>{if(player.videoWidth&&player.videoHeight)figure.style.setProperty('--trial-video-ratio',player.videoWidth/player.videoHeight)};
-      player.addEventListener('loadedmetadata',setVideoRatio);
-      setVideoRatio();
-    }
     const toggle=basicProfile.querySelector('.profile-video-toggle');
     const syncPlayback=()=>{toggle.textContent=player.paused?'再生':'一時停止';toggle.setAttribute('aria-label',player.paused?'動画を再生':'動画を一時停止')};
     player.addEventListener('play',syncPlayback);
