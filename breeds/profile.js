@@ -71,28 +71,10 @@ if(portraitProfile){
     : '<div class="profile-video-placeholder"><span class="profile-video-placeholder-icon" aria-hidden="true">▷</span><span>動画準備中</span></div>';
   const videoScreen=`<div class="ragdoll-profile-video-screen">${videoContent}</div>`;
   const deviceContent=videoTrial
-    ? `<div class="profile-video-device">${videoScreen}<img class="profile-video-laptop-frame" src="../assets/angled-laptop-frame-v1.png" alt="" aria-hidden="true"></div>`
+    ? `<div class="profile-video-device">${videoScreen}<img class="profile-video-landscape-frame" src="../assets/iphone-15-frame.png" alt="" aria-hidden="true"></div>`
     : `${videoScreen}<img class="ragdoll-profile-video-frame" src="../assets/iphone-15-frame.png" alt="" aria-hidden="true">`;
-  details.insertAdjacentHTML('beforeend',`<figure class="ragdoll-profile-video"${videoTrial?' data-video-view="laptop"':''}${portraitProfile.videoUrl?'':` aria-label="${escapeHtml(breed.name)}の動画用スペース（準備中）"`}>${deviceContent}</figure>`);
+  details.insertAdjacentHTML('beforeend',`<figure class="ragdoll-profile-video"${videoTrial?' data-video-view="landscape"':''}${portraitProfile.videoUrl?'':` aria-label="${escapeHtml(breed.name)}の動画用スペース（準備中）"`}>${deviceContent}</figure>`);
   basicProfile.append(details);
-  if(videoTrial){
-    const device=basicProfile.querySelector('.profile-video-device');
-    const screen=device.querySelector('.ragdoll-profile-video-screen');
-    // Map a 3:2 display onto the cutout's four screen corners, without cropping the clip.
-    const projectLaptopScreen=()=>{
-      const width=device.clientWidth;
-      if(!width)return;
-      const height=width*2/3,scale=width/1492;
-      const [[x0,y0],[x1,y1],[x2,y2],[x3,y3]]=[[424,155],[1385,99],[1307,825],[321,760]].map(([x,y])=>[x*scale,y*scale]);
-      const dx1=x1-x2,dx2=x3-x2,dy1=y1-y2,dy2=y3-y2;
-      const sx=x0-x1+x2-x3,sy=y0-y1+y2-y3,denominator=dx1*dy2-dx2*dy1;
-      const g=(sx*dy2-dx2*sy)/denominator,h=(dx1*sy-sx*dy1)/denominator;
-      const a=x1-x0+g*x1,b=x3-x0+h*x3,d=y1-y0+g*y1,e=y3-y0+h*y3;
-      screen.style.transform=`matrix3d(${[a/width,d/width,0,g/width,b/height,e/height,0,h/height,0,0,1,0,x0,y0,0,1].join(',')})`;
-    };
-    new ResizeObserver(projectLaptopScreen).observe(device);
-    projectLaptopScreen();
-  }
   if(portraitProfile.videoUrl){
     const player=basicProfile.querySelector('video');
     // Fill the portrait screen, keeping the main cat in view when cropping wide clips.

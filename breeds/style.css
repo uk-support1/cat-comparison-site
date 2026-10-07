@@ -146,12 +146,13 @@ html body main#profileRoot .portrait-profile-hero .ragdoll-hero-backdrop-main{ob
 .profile-video-dialog video{display:block;width:100%;max-height:65dvh;aspect-ratio:16/9;object-fit:cover;background:#f5eee6;border-radius:12px}
 .profile-video-dialog p{margin:12px 0 0;color:var(--muted);font-size:11px}
 @media(min-width:621px){.profile-video-actions{grid-template-columns:1fr 1fr}.ragdoll-basic-profile .ragdoll-profile-video.has-video{margin-bottom:60px}}
-/* British-only angled laptop: owner-supplied cutout, perspective-matched full clip. */
+/* British-only landscape iPhone: reuse the transparent frame and keep the full clip. */
 .profile-video-trial.ragdoll-basic-profile .ragdoll-profile-details{grid-template-columns:minmax(0,1fr) minmax(0,320px);gap:24px}
-.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-video.has-video{aspect-ratio:auto;margin:0;filter:none;min-width:0;padding:12px 8px 0}
-.profile-video-device{position:relative;aspect-ratio:1492/1054}
-.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-video-screen{position:absolute;inset:auto;top:0;left:0;width:100%;height:auto;aspect-ratio:3/2;transform-origin:0 0;border-radius:0;background:#101010}
-.profile-video-laptop-frame{position:absolute;z-index:2;inset:0;display:block;width:100%;height:100%;pointer-events:none;filter:drop-shadow(0 12px 12px rgba(45,42,39,.16))}
+.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-video.has-video{aspect-ratio:auto;margin:0;filter:none;min-width:0;padding:22px 12px 0}
+.profile-video-device{position:relative;aspect-ratio:800/392;transform:rotate(-5deg);filter:drop-shadow(0 12px 12px rgba(45,42,39,.16))}
+/* Rotate the unmodified 392x800 cutout and its portrait aperture together. */
+.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-video-screen{position:absolute;inset:3.2% 2.2% 3.2% 2.1%;width:auto;height:auto;border-radius:6% / 12%;background:#101010}
+.profile-video-landscape-frame{position:absolute;z-index:2;left:50%;top:50%;display:block;width:49%;height:204.081633%;max-width:none;transform:translate(-50%,-50%) rotate(-90deg);pointer-events:none}
 .profile-video-trial.ragdoll-basic-profile .ragdoll-profile-video-screen video{object-fit:contain;object-position:center!important}
 .profile-video-trial .profile-video-caption{position:relative;top:auto;margin-top:22px;gap:10px}
 .profile-video-trial-dialog video{object-fit:contain;aspect-ratio:auto;height:auto}
