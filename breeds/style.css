@@ -146,18 +146,25 @@ html body main#profileRoot .portrait-profile-hero .ragdoll-hero-backdrop-main{ob
 .profile-video-dialog video{display:block;width:100%;max-height:65dvh;aspect-ratio:16/9;object-fit:cover;background:#f5eee6;border-radius:12px}
 .profile-video-dialog p{margin:12px 0 0;color:var(--muted);font-size:11px}
 @media(min-width:621px){.profile-video-actions{grid-template-columns:1fr 1fr}.ragdoll-basic-profile .ragdoll-profile-video.has-video{margin-bottom:60px}}
-/* British-only landscape iPhone: reuse the transparent frame and keep the full clip. */
-.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-details{grid-template-columns:minmax(0,1fr) minmax(0,320px);gap:24px}
-.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-video.has-video{aspect-ratio:auto;margin:0;filter:none;min-width:0;padding:22px 12px 0}
-.profile-video-device{position:relative;aspect-ratio:800/392;transform:rotate(-5deg);filter:drop-shadow(0 12px 12px rgba(45,42,39,.16))}
-/* Rotate the unmodified 392x800 cutout and its portrait aperture together. */
-.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-video-screen{position:absolute;inset:3.2% 2.2% 3.2% 2.1%;width:auto;height:auto;border-radius:6% / 12%;background:#101010}
-.profile-video-landscape-frame{position:absolute;z-index:2;left:50%;top:50%;display:block;width:49%;height:204.081633%;max-width:none;transform:translate(-50%,-50%) rotate(-90deg);pointer-events:none}
-.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-video-screen video{object-fit:contain;object-position:center!important}
-.profile-video-trial .profile-video-caption{position:relative;top:auto;margin-top:22px;gap:10px}
-.profile-video-trial-dialog video{object-fit:contain;aspect-ratio:auto;height:auto}
-@media(max-width:1100px){.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-details{grid-template-columns:minmax(0,1fr)}.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-copy{display:block}.profile-video-trial.ragdoll-basic-profile .facts{grid-column:auto;grid-row:auto;grid-template-columns:repeat(3,minmax(0,1fr))}.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-description{grid-column:auto;grid-row:auto}.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-video{grid-column:auto;grid-row:auto;width:100%;max-width:440px;justify-self:center}}
-@media(max-width:620px){.profile-video-trial.ragdoll-basic-profile .facts{grid-template-columns:1fr}.profile-video-trial.ragdoll-basic-profile .ragdoll-profile-details{gap:20px}.profile-video-trial .profile-video-actions{grid-template-columns:1fr 1fr}}
+/* British-only trial: an ivory-softened video fills the existing profile card. */
+.profile-video-background.ragdoll-basic-profile{position:relative;isolation:isolate;overflow:hidden;background:#fffdf9}
+.profile-background-media{position:absolute;z-index:0;inset:-8px;pointer-events:none}
+.profile-background-media video{display:block;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.8;filter:blur(3px) saturate(.7)}
+.profile-video-background::before{content:"";position:absolute;z-index:1;inset:0;pointer-events:none;background:linear-gradient(110deg,rgba(255,253,249,.88),rgba(255,253,249,.72) 65%,rgba(255,253,249,.64))}
+.profile-video-background>h2,.profile-video-background .ragdoll-profile-details{position:relative;z-index:2}
+.profile-video-background.ragdoll-basic-profile .ragdoll-profile-details{display:block}
+.profile-video-background.ragdoll-basic-profile .ragdoll-profile-copy{display:block}
+.profile-video-background.ragdoll-basic-profile .facts{grid-template-columns:repeat(3,minmax(0,1fr))}
+.profile-video-background .fact{background:rgba(255,253,249,.65)}
+.profile-video-background .fact span{color:#655b52}
+.profile-video-background .ragdoll-profile-description{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px;align-items:start;color:#423a33}
+.profile-video-background .ragdoll-profile-description p{color:#423a33}
+.profile-video-background .ragdoll-profile-description h3:nth-child(1){grid-column:1;grid-row:1}
+.profile-video-background .ragdoll-profile-description p:nth-child(2){grid-column:1;grid-row:2}
+.profile-video-background .ragdoll-profile-description h3:nth-child(3){grid-column:2;grid-row:1}
+.profile-video-background .ragdoll-profile-description p:nth-child(4){grid-column:2;grid-row:2}
+@media(max-width:620px){.profile-video-background.ragdoll-basic-profile .ragdoll-profile-description{display:block}.profile-video-background.ragdoll-basic-profile .ragdoll-profile-description h3:first-child{margin-top:20px}.profile-video-background::before{background:rgba(255,253,249,.82)}}
+@media(prefers-reduced-motion:reduce){.profile-background-media video{visibility:hidden}}
 /* On phones, preserve source aspect ratios and keep the photograph centered.
    The height follows the real copy + photo ratio instead of a fixed, zoomed crop. */
 @media(max-width:900px){

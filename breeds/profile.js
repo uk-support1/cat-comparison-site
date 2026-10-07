@@ -54,8 +54,8 @@ if(portraitProfile){
   const basicProfile=root.querySelector('.profile-main .profile-card');
   basicProfile.classList.add('ragdoll-basic-profile');
   basicProfile.id='basic-profile';
-  const videoTrial=breed.id==='british-shorthair'&&!!portraitProfile.videoUrl;
-  if(videoTrial)basicProfile.classList.add('profile-video-trial');
+  const videoBackground=breed.id==='british-shorthair'&&!!portraitProfile.videoUrl;
+  if(videoBackground)basicProfile.classList.add('profile-video-background');
   const details=document.createElement('div');
   details.className='ragdoll-profile-details';
   const copy=document.createElement('div');
@@ -70,12 +70,25 @@ if(portraitProfile){
     ? `<video autoplay muted loop playsinline preload="metadata" poster="${mediaUrl}" aria-label="${escapeHtml(breed.name)}の生成動画"><source src="${portraitProfile.videoUrl}" type="video/mp4"></video>`
     : '<div class="profile-video-placeholder"><span class="profile-video-placeholder-icon" aria-hidden="true">▷</span><span>動画準備中</span></div>';
   const videoScreen=`<div class="ragdoll-profile-video-screen">${videoContent}</div>`;
-  const deviceContent=videoTrial
-    ? `<div class="profile-video-device">${videoScreen}<img class="profile-video-landscape-frame" src="../assets/iphone-15-frame.png" alt="" aria-hidden="true"></div>`
-    : `${videoScreen}<img class="ragdoll-profile-video-frame" src="../assets/iphone-15-frame.png" alt="" aria-hidden="true">`;
-  details.insertAdjacentHTML('beforeend',`<figure class="ragdoll-profile-video"${videoTrial?' data-video-view="landscape"':''}${portraitProfile.videoUrl?'':` aria-label="${escapeHtml(breed.name)}の動画用スペース（準備中）"`}>${deviceContent}</figure>`);
+  if(videoBackground){
+    // Decorative card background: keep all profile text above the softened clip.
+    basicProfile.insertAdjacentHTML('afterbegin',`<div class="profile-background-media" aria-hidden="true"><video autoplay muted loop playsinline preload="metadata" poster="${mediaUrl}" tabindex="-1"><source src="${portraitProfile.videoUrl}" type="video/mp4"></video></div>`);
+    const backgroundPlayer=basicProfile.querySelector('.profile-background-media video');
+    const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+    const syncBackgroundPlayback=()=>{
+      backgroundPlayer.autoplay=!reducedMotion.matches;
+      if(reducedMotion.matches||document.hidden)backgroundPlayer.pause();
+      else backgroundPlayer.play().catch(()=>{});
+    };
+    reducedMotion.addEventListener('change',syncBackgroundPlayback);
+    document.addEventListener('visibilitychange',syncBackgroundPlayback);
+    syncBackgroundPlayback();
+  }else{
+    const deviceContent=`${videoScreen}<img class="ragdoll-profile-video-frame" src="../assets/iphone-15-frame.png" alt="" aria-hidden="true">`;
+    details.insertAdjacentHTML('beforeend',`<figure class="ragdoll-profile-video"${portraitProfile.videoUrl?'':` aria-label="${escapeHtml(breed.name)}の動画用スペース（準備中）"`}>${deviceContent}</figure>`);
+  }
   basicProfile.append(details);
-  if(portraitProfile.videoUrl){
+  if(portraitProfile.videoUrl&&!videoBackground){
     const player=basicProfile.querySelector('video');
     // Fill the portrait screen, keeping the main cat in view when cropping wide clips.
     const videoPosition={abyssinian:'36%',exotic:'40%',himalayan:'33%','american-shorthair':'40%','scottish-fold':'36%',munchkin:'64%',ragamuffin:'29%','maine-coon':'40%'}[breed.id]||'50%';
@@ -91,7 +104,6 @@ if(portraitProfile){
     syncPlayback();
     root.insertAdjacentHTML('beforeend',`<dialog class="profile-video-dialog" aria-labelledby="profileVideoTitle"><div class="profile-video-dialog-head"><h2 id="profileVideoTitle">${escapeHtml(breed.name)}の動画</h2><button class="profile-video-close" type="button">閉じる</button></div><video controls muted loop playsinline preload="none" poster="${mediaUrl}" aria-label="${escapeHtml(breed.name)}の生成動画（拡大）"></video><p>ねこパートナー提供の生成映像です。</p></dialog>`);
     const dialog=root.querySelector('.profile-video-dialog');
-    if(videoTrial)dialog.classList.add('profile-video-trial-dialog');
     const expandedPlayer=dialog.querySelector('video');
     let resumePreview=false;
     basicProfile.querySelector('.profile-video-expand').addEventListener('click',()=>{
