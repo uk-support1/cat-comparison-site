@@ -26,8 +26,9 @@ for(const id of added){
   assert.equal(breed.carePoints.length,3);
   assert.equal(Object.keys(breed.stats).length,7);
   for(const score of Object.values(breed.stats))assert.ok(score>=1&&score<=5);
-  assert.ok(breed.profileMedia.url.endsWith(id+'-adult.png'));
-  assert.ok(data.KITTEN_MEDIA[id].url.endsWith(id+'-kitten.png'));
+  const extension=id==='somali'?'jpg':'png';
+  assert.ok(breed.profileMedia.url.endsWith(id+'-adult.'+extension));
+  assert.ok(data.KITTEN_MEDIA[id].url.endsWith(id+'-kitten.'+extension));
   assert.ok(read('sitemap.xml').includes('profile.html?breed='+id));
 }
 assert.equal(data.POPULAR_BREEDS.length,10);

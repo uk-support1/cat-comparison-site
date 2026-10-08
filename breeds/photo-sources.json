@@ -32,9 +32,16 @@
     {
       "breed": "ragamuffin",
       "role": "adult",
-      "sourceFile": "ラガマフィン親.png",
-      "file": "ragamuffin-adult.png",
-      "sha256": "0bf1b36a81388f57e8b8537767385b18f3b4895965dd90860ed5c104d9ab52e5"
+      "sourceFile": "ラガマフィン親 .jpg",
+      "file": "ragamuffin-adult.jpg",
+      "sha256": "e973f3268cda34fbfad09f0b25756d8f396d4ac0935af8017ccfdbf1d6ee7790"
+    },
+    {
+      "breed": "ragamuffin",
+      "role": "kitten",
+      "sourceFile": "ラガマフィン子.jpg",
+      "file": "ragamuffin-kitten.jpg",
+      "sha256": "e318e7ff09ed6f30befd3162cd56ea0a189e8cf3c74d2f2ca1fddf379ea971d5"
     },
     {
       "breed": "ragdoll",
@@ -109,16 +116,16 @@
     {
       "breed": "somali",
       "role": "adult",
-      "sourceFile": "somali_adult.png",
-      "file": "somali-adult.png",
-      "sha256": "66ff65df96b437cde20be4ca6f69b8ff18b796cc306e4d9333049ba408c4c66c"
+      "sourceFile": "ソマリ親 .jpg",
+      "file": "somali-adult.jpg",
+      "sha256": "c5e7174fff9cc30c564894f21222390cdbf9a986ea5d576a1e3fff1f63c0a5c3"
     },
     {
       "breed": "abyssinian",
       "role": "adult",
-      "sourceFile": "abyssinian_adult.png",
+      "sourceFile": "アビシニアン親.png",
       "file": "abyssinian-adult.png",
-      "sha256": "279234ab27b37e44401502df82aba09b67053be94da1b91f6b726cef4b36613b"
+      "sha256": "f1387f957e6ffcb99864411d2d020241c9d2c9c20965aaf075e346784fe58ff4"
     },
     {
       "breed": "exotic",
@@ -144,16 +151,16 @@
     {
       "breed": "somali",
       "role": "kitten",
-      "sourceFile": "somali_kitten.png",
-      "file": "somali-kitten.png",
-      "sha256": "f95ea46f4eb6e5ea847675dfdb6c94a48f615bba7e1bb87a8c33efb78a8dba5d"
+      "sourceFile": "ソマリ子.jpg",
+      "file": "somali-kitten.jpg",
+      "sha256": "778c34e0d7f4dd97440d571f9f07489b8313b237c6052433cfcba04f09c7fa35"
     },
     {
       "breed": "abyssinian",
       "role": "kitten",
-      "sourceFile": "abyssinian_kitten.png",
+      "sourceFile": "アビシニアン子.png",
       "file": "abyssinian-kitten.png",
-      "sha256": "b7b96903aad0c17809403914d98671bf214e61e7f306eafc117d01c9683396d3"
+      "sha256": "53ead7988ed2d1932974f40ad195feeeb8f2772160b69e0abebd9abfd74cc61c"
     },
     {
       "breed": "exotic",
