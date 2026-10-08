@@ -16,8 +16,9 @@ const podiumCrown='<svg class="popular-rank-crown" viewBox="0 0 32 24" aria-hidd
 if(popularGrid){
   popularGrid.innerHTML=POPULAR_BREEDS.map((id,index)=>{
     const breed=BREEDS.find(item=>item.id===id);
-    const [zoom,origin]=ENTRY_MOBILE_CROPS[id]||[1,'center'];
-    return `<li class="popular-breed-item${index<3?' popular-podium':''}"><a class="popular-breed-link" href="${profileHref(id)}"><span class="popular-breed-photo"><img src="${mediaUrl(entryMedia(breed))}" alt="${breed.name}の親猫" style="object-position:${ENTRY_PHOTO_POSITIONS[id]||'center 25%'};--mobile-photo-zoom:${zoom};--mobile-photo-origin:${origin}" loading="lazy" decoding="async"></span><span class="popular-breed-rank" aria-label="紹介順${index+1}">${index<3?podiumCrown:''}<span>${index+1}</span></span><span class="popular-breed-name">${breed.name}</span></a></li>`;
+    const mobileImage=window.POPULAR_MOBILE_IMAGE_SETTINGS&&window.POPULAR_MOBILE_IMAGE_SETTINGS[id]||{};
+    const imageStyle=`object-position:${ENTRY_PHOTO_POSITIONS[id]||'center 25%'};--popular-mobile-scale:${mobileImage.scale||1};--popular-mobile-position:${mobileImage.position||'50% 50%'};--popular-mobile-shift-x:${mobileImage.shiftX||'0%'};--popular-mobile-shift-y:${mobileImage.shiftY||'0%'}`;
+    return `<li class="popular-breed-item${index<3?' popular-podium':''}"><a class="popular-breed-link" href="${profileHref(id)}"><span class="popular-breed-photo"><img src="${mediaUrl(entryMedia(breed))}" alt="${breed.name}の親猫" style="${imageStyle}" loading="lazy" decoding="async"></span><span class="popular-breed-rank" aria-label="紹介順${index+1}">${index<3?podiumCrown:''}<span>${index+1}</span></span><span class="popular-breed-name">${breed.name}</span></a></li>`;
   }).join('');
 }
 function renderRanking(id){

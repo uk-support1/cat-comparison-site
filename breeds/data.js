@@ -182,7 +182,21 @@ window.RANKING_PORTRAIT_FOCUS={
   siberian:[55,25,2.3],
   mix:[50,30,2.3]
 };
-window.ENTRY_MOBILE_CROPS={munchkin:[1.15,'65% 25%'],'scottish-fold':[1.3,'0% 0%'],ragdoll:[1.2,'70% 0%'],'british-shorthair':[1.35,'65% 0%'],'norwegian-forest':[1.3,'70% 0%'],'maine-coon':[1.55,'45% 0%'],exotic:[1.25,'65% 0%'],bengal:[1.5,'85% 0%'],'american-shorthair':[1.35,'65% 0%']};
+// Mobile-only settings for the circular photos in the popular-breed ranking.
+// `position` selects the source crop for portrait images; shift values stay within
+// the covered area so the circle remains filled while the whole face stays visible.
+window.POPULAR_MOBILE_IMAGE_SETTINGS={
+  'american-shorthair':{scale:1.25,position:'50% 50%',shiftX:'-12.5%',shiftY:'12.5%'},
+  ragamuffin:{scale:1.15,position:'50% 50%',shiftX:'0%',shiftY:'7.5%'},
+  'british-shorthair':{scale:1.25,position:'50% 20%',shiftX:'-12.5%',shiftY:'12.5%'},
+  siberian:{scale:1.05,position:'50% 0%',shiftX:'-2.5%',shiftY:'2.5%'},
+  ragdoll:{scale:1.15,position:'50% 0%',shiftX:'-7.5%',shiftY:'7.5%'},
+  'scottish-fold':{scale:1.3,position:'50% 50%',shiftX:'6%',shiftY:'15%'},
+  munchkin:{scale:1.2,position:'50% 50%',shiftX:'-10%',shiftY:'10%'},
+  'maine-coon':{scale:1.25,position:'50% 50%',shiftX:'8.75%',shiftY:'12.5%'},
+  'norwegian-forest':{scale:1.15,position:'50% 15%',shiftX:'-7.5%',shiftY:'7.5%'},
+  persian:{scale:1.15,position:'50% 50%',shiftX:'-7.5%',shiftY:'7.5%'}
+};
 
 window.KITTEN_MEDIA={
   'scottish-fold':{file:'3mo lilac Scottish Fold Fanel.jpg',label:'3mo lilac Scottish Fold Fanel',author:'Psihopat',license:'CC BY 3.0',licenseUrl:'https://creativecommons.org/licenses/by/3.0/',page:'https://commons.wikimedia.org/wiki/File:3mo_lilac_Scottish_Fold_Fanel.jpg'},

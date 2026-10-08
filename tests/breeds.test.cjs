@@ -62,8 +62,15 @@ assert.ok(read('breeds/profile.js').includes('prefers-reduced-motion'));
 assert.ok(read('breeds/app.js').includes('index<3?podiumCrown'));
 assert.ok(css.includes('.popular-podium .popular-breed-photo'));
 assert.ok(read('breeds/style.css').includes('object-fit:contain!important;object-position:center!important'));
-assert.equal(data.ENTRY_MOBILE_CROPS['scottish-fold'][0],1.3);
-assert.equal(data.ENTRY_MOBILE_CROPS['scottish-fold'][1],'0% 0%');
+assert.deepEqual(Object.keys(data.POPULAR_MOBILE_IMAGE_SETTINGS),Array.from(data.POPULAR_BREEDS));
+for(const [id,setting] of Object.entries(data.POPULAR_MOBILE_IMAGE_SETTINGS)){
+  assert.ok(setting.scale>=1&&setting.scale<=1.3,id+' uses a face-safe mobile scale');
+  assert.match(setting.position,/^\d+% \d+%$/,id+' has an individual mobile crop position');
+  assert.match(setting.shiftX,/^-?[\d.]+%$/,id+' has a horizontal mobile correction');
+  assert.match(setting.shiftY,/^-?[\d.]+%$/,id+' has a vertical mobile correction');
+}
+assert.ok(css.includes('--popular-mobile-position'));
+assert.ok(css.includes('--popular-mobile-shift-x'));
 assert.ok(read('breeds/style.css').includes('.ragdoll-basic-profile .ragdoll-profile-video-screen video{display:block;width:100%;height:100%;object-fit:cover}'));
 assert.ok(!read('breeds/style.css').includes('.ragdoll-profile-video-screen::before'));
 assert.ok(!read('breeds/profile.js').includes('--profile-video-poster'));

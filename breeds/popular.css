@@ -35,7 +35,7 @@
   .popular-breed-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:25px 16px}
   .popular-breed-item:nth-child(n+10){display:none}
   .popular-breed-photo{aspect-ratio:1/1;border-radius:50%;border:0;box-shadow:3px 4px 0 #e9e4d0}
-  .popular-breed-photo img,.popular-breed-link:hover img{transform:scale(var(--mobile-photo-zoom,1));transform-origin:var(--mobile-photo-origin,center)}
+  .popular-breed-photo img,.popular-breed-link:hover img{object-position:var(--popular-mobile-position,50% 50%)!important;transform:translate(var(--popular-mobile-shift-x,0%),var(--popular-mobile-shift-y,0%)) scale(var(--popular-mobile-scale,1));transform-origin:center}
   .popular-breed-rank{top:-5px;left:-5px;width:29px;border-width:2px;font-size:15px}
   .popular-podium .popular-breed-photo{border:2px solid var(--podium);box-shadow:0 0 0 2px var(--podium-light),3px 4px 0 #e9e4d0}
   .popular-podium .popular-breed-rank{top:-10px;left:-4px;width:34px;min-height:43px;gap:2px;padding:3px 2px;border-radius:10px}
