@@ -8,8 +8,8 @@ const breedSearch=document.getElementById('breedSearch');
 const mediaUrl=media=>media.url||`https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(media.file)}?width=900`;
 const entryMedia=breed=>breed.entryMedia||breed.profileMedia||breed.media;
 const rankingPortraitStyle=breed=>{
-  const [x,y]=(window.RANKING_PORTRAIT_FOCUS&&RANKING_PORTRAIT_FOCUS[breed.id])||[50,30];
-  return `--rank-portrait-left:${50-2.3*x}%;--rank-portrait-top:${50-2.3*y}%`;
+  const [x,y,scale]=(window.RANKING_PORTRAIT_FOCUS&&RANKING_PORTRAIT_FOCUS[breed.id])||[50,30,2.3];
+  return `--rank-portrait-size:${scale*100}%;--rank-portrait-left:${50-scale*x}%;--rank-portrait-top:${50-scale*y}%`;
 };
 const popularGrid=document.getElementById('popularBreedGrid');
 const podiumCrown='<svg class="popular-rank-crown" viewBox="0 0 32 24" aria-hidden="true" focusable="false"><path d="M3 6 9 11 16 3 23 11 29 6 26 20H6Z" fill="currentColor"/><path d="M7 22h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="3" cy="5" r="2" fill="currentColor"/><circle cx="16" cy="2" r="2" fill="currentColor"/><circle cx="29" cy="5" r="2" fill="currentColor"/></svg>';
