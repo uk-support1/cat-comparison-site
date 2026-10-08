@@ -1,0 +1,21 @@
+{
+  "scottish-fold":{"center":[42,23],"side":46},
+  "munchkin":{"center":[71,36],"side":56},
+  "ragamuffin":{"center":[41,25],"side":40},
+  "ragdoll":{"center":[70,20],"side":65},
+  "maine-coon":{"center":[40,22],"side":52},
+  "british-shorthair":{"center":[69,22],"side":70},
+  "american-shorthair":{"center":[61,25],"side":65},
+  "russian-blue":{"center":[57,23],"side":53},
+  "bengal":{"center":[70,22],"side":52},
+  "persian":{"center":[75,31],"side":46},
+  "siamese":{"center":[57,24],"side":48},
+  "norwegian-forest":{"center":[71,23],"side":74},
+  "mix":{"center":[51,42],"side":100},
+  "american-curl":{"center":[34,24],"side":38},
+  "somali":{"center":[78,32],"side":46},
+  "abyssinian":{"center":[52,25],"side":40},
+  "exotic":{"center":[67,31],"side":49},
+  "himalayan":{"center":[62,30],"side":52},
+  "siberian":{"center":[61,31],"side":64}
+}

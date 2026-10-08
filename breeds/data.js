@@ -159,29 +159,9 @@ window.BREEDS.forEach(breed=>{
 // Editorial introduction order, not a sales/registration-based popularity survey.
 window.POPULAR_BREEDS=['american-shorthair','ragamuffin','british-shorthair','siberian','ragdoll','scottish-fold','munchkin','maine-coon','norwegian-forest','persian'];
 window.ENTRY_PHOTO_POSITIONS={munchkin:'50% 35%','scottish-fold':'50% 25%',ragdoll:'50% 25%','british-shorthair':'50% 25%','norwegian-forest':'50% 25%','maine-coon':'50% 25%',exotic:'50% 12%',bengal:'50% 25%','american-shorthair':'50% 30%',ragamuffin:'50% 25%',somali:'50% 22%',abyssinian:'50% 24%','american-curl':'50% 25%',himalayan:'50% 15%'};
-window.RANKING_PORTRAIT_FOCUS={
-  // [顔の中心 X(%), 顔の中心 Y(%), 丸型サムネイルでの拡大率]
-  // 親猫写真は構図が異なるため、ランキング用に一頭ずつ顔が円の中心へ来るよう調整する。
-  'american-curl':[31,19,2.3],
-  exotic:[55,27,2.3],
-  siamese:[50,26,2.5],
-  ragamuffin:[44,20,2.5],
-  ragdoll:[64,15,2.2],
-  abyssinian:[57,22,2.4],
-  himalayan:[50,22,2.2],
-  munchkin:[61,31,2.5],
-  'scottish-fold':[48,29,2.4],
-  'maine-coon':[43,28,2.5],
-  somali:[69,28,2.4],
-  'american-shorthair':[60,28,2.4],
-  'british-shorthair':[58,28,2.4],
-  'norwegian-forest':[65,23,2.2],
-  'russian-blue':[50,25,2.4],
-  bengal:[62,21,2.5],
-  persian:[67,28,2.3],
-  siberian:[55,25,2.3],
-  mix:[50,30,2.3]
-};
+window.BREEDS.forEach(breed=>{
+  breed.rankingThumbnail=`../assets/breeds/ranking-thumbs/${breed.id}.webp`;
+});
 // Mobile-only settings for the circular photos in the popular-breed ranking.
 // `position` selects the source crop for portrait images; shift values stay within
 // the covered area so the circle remains filled while the whole face stays visible.
