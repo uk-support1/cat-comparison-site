@@ -21,7 +21,7 @@ function renderRanking(id){
   document.querySelectorAll('.rank-tab').forEach(button=>button.setAttribute('aria-selected',String(button.dataset.id===category.id)));
   rankCopy.innerHTML=`<div class="eyebrow">${category.label.toUpperCase()}</div><h3>${category.title}</h3><p>${category.description}</p><div class="rank-scale">5段階の編集評価。順位差より、暮らし方との相性をご覧ください。</div>`;
   const ordered=BREEDS.filter(breed=>!breed.individualProfile).sort((a,b)=>b.stats[category.id]-a.stats[category.id]||a.name.localeCompare(b.name,'ja')).slice(0,6);
-  rankList.innerHTML=ordered.map((breed,index)=>`<a class="rank-row" href="${profileHref(breed.id)}"><span class="rank-number">${index+1}</span><span class="mini-mark" style="--breed:${breed.color}">${breed.mark}</span><span class="rank-name"><b>${breed.name}</b><span>${breed.en}</span></span>${dots(breed.stats[category.id])}</a>`).join('');
+  rankList.innerHTML=ordered.map((breed,index)=>`<a class="rank-row" href="${profileHref(breed.id)}"><span class="rank-number">${index+1}</span><span class="mini-mark"><img src="${mediaUrl(entryMedia(breed))}" alt="" style="object-position:${ENTRY_PHOTO_POSITIONS[breed.id]||'center 30%'}" loading="lazy" decoding="async"></span><span class="rank-name"><b>${breed.name}</b><span>${breed.en}</span></span>${dots(breed.stats[category.id])}</a>`).join('');
 }
 rankTabs.innerHTML=RANKINGS.map((category,index)=>`<button class="rank-tab" type="button" role="tab" data-id="${category.id}" aria-selected="${index===0}">${category.label}</button>`).join('');
 rankTabs.addEventListener('click',event=>{const button=event.target.closest('.rank-tab');if(button)renderRanking(button.dataset.id)});
