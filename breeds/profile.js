@@ -16,7 +16,7 @@ root.innerHTML=`<div class="wrap breadcrumb"><a href="index.html">猫種図鑑</
 // Only the supplied/generated clips are enabled; other breeds keep their placeholder.
 const profileVideos=window.PROFILE_VIDEOS||{};
 const portraitProfile={
-  kittenUrl:breed.id==='ragdoll'?'../assets/breeds/ragdoll-kitten-related-v2.png':kittenUrl,
+  kittenUrl:breed.id==='ragdoll'?'../assets/breeds/ragdoll-kitten-related-v2.webp':kittenUrl,
   kittenAlt:breed.individualProfile?featured.label:`${breed.name}の子猫`,
   caption:breed.individualProfile?`${breed.name}猫`:`${breed.name}の子猫ちゃん`,
   videoUrl:profileVideos[breed.id]||null

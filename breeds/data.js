@@ -132,26 +132,26 @@ window.PROFILE_VIDEOS={
   siamese:'../assets/breeds/siamese-generated.mp4'
 };
 window.PROFILE_MEDIA={
-  'scottish-fold':localBreedMedia('scottish-fold-adult.png','スコティッシュフォールドの親猫'),munchkin:localBreedMedia('munchkin-adult.png','マンチカンの親猫'),ragamuffin:localBreedMedia('ragamuffin-adult.jpg','ラガマフィンの親猫'),ragdoll:localBreedMedia('ragdoll-adult.png','ラグドールの親猫'),'maine-coon':localBreedMedia('maine-coon-adult.png','メインクーンの親猫'),'british-shorthair':localBreedMedia('british-shorthair-adult.png','ブリティッシュショートヘアの親猫'),'american-shorthair':localBreedMedia('american-shorthair-adult.png','アメリカンショートヘアの親猫'),'russian-blue':localBreedMedia('russian-blue-adult.png','ロシアンブルーの親猫'),bengal:localBreedMedia('bengal-adult.png','ベンガルの親猫'),persian:localBreedMedia('persian-adult.png','ペルシャ系（ヒマラヤン）の親猫'),siamese:localBreedMedia('siamese-adult.png','シャムの親猫'),'norwegian-forest':localBreedMedia('norwegian-forest-adult.png','ノルウェージャンフォレストキャットの親猫')
+  'scottish-fold':localBreedMedia('scottish-fold-adult.webp','スコティッシュフォールドの親猫'),munchkin:localBreedMedia('munchkin-adult.webp','マンチカンの親猫'),ragamuffin:localBreedMedia('ragamuffin-adult.webp','ラガマフィンの親猫'),ragdoll:localBreedMedia('ragdoll-adult.webp','ラグドールの親猫'),'maine-coon':localBreedMedia('maine-coon-adult.webp','メインクーンの親猫'),'british-shorthair':localBreedMedia('british-shorthair-adult.webp','ブリティッシュショートヘアの親猫'),'american-shorthair':localBreedMedia('american-shorthair-adult.webp','アメリカンショートヘアの親猫'),'russian-blue':localBreedMedia('russian-blue-adult.webp','ロシアンブルーの親猫'),bengal:localBreedMedia('bengal-adult.webp','ベンガルの親猫'),persian:localBreedMedia('persian-adult.webp','ペルシャ系（ヒマラヤン）の親猫'),siamese:localBreedMedia('siamese-adult.webp','シャムの親猫'),'norwegian-forest':localBreedMedia('norwegian-forest-adult.webp','ノルウェージャンフォレストキャットの親猫')
 };
 window.PROFILE_KITTEN_MEDIA={
-  'scottish-fold':localBreedMedia('scottish-fold-kitten.png','スコティッシュフォールドの子猫'),munchkin:localBreedMedia('munchkin-kitten.png','マンチカンの子猫'),ragamuffin:localBreedMedia('ragamuffin-kitten.jpg','ラガマフィンの子猫'),ragdoll:localBreedMedia('ragdoll-kitten.png','ラグドールの子猫'),'maine-coon':localBreedMedia('maine-coon-kitten.png','メインクーンの子猫'),'british-shorthair':localBreedMedia('british-shorthair-kitten.png','ブリティッシュショートヘアの子猫'),'american-shorthair':localBreedMedia('american-shorthair-kitten.png','アメリカンショートヘアの子猫'),'russian-blue':localBreedMedia('russian-blue-kitten.png','ロシアンブルーの子猫'),bengal:localBreedMedia('bengal-kitten.png','ベンガルの子猫'),persian:localBreedMedia('persian-kitten.png','ペルシャ系（ヒマラヤン）の子猫'),siamese:localBreedMedia('siamese-kitten.png','シャムの子猫'),'norwegian-forest':localBreedMedia('norwegian-forest-kitten.png','ノルウェージャンフォレストキャットの子猫')
+  'scottish-fold':localBreedMedia('scottish-fold-kitten.webp','スコティッシュフォールドの子猫'),munchkin:localBreedMedia('munchkin-kitten.webp','マンチカンの子猫'),ragamuffin:localBreedMedia('ragamuffin-kitten.webp','ラガマフィンの子猫'),ragdoll:localBreedMedia('ragdoll-kitten.webp','ラグドールの子猫'),'maine-coon':localBreedMedia('maine-coon-kitten.webp','メインクーンの子猫'),'british-shorthair':localBreedMedia('british-shorthair-kitten.webp','ブリティッシュショートヘアの子猫'),'american-shorthair':localBreedMedia('american-shorthair-kitten.webp','アメリカンショートヘアの子猫'),'russian-blue':localBreedMedia('russian-blue-kitten.webp','ロシアンブルーの子猫'),bengal:localBreedMedia('bengal-kitten.webp','ベンガルの子猫'),persian:localBreedMedia('persian-kitten.webp','ペルシャ系（ヒマラヤン）の子猫'),siamese:localBreedMedia('siamese-kitten.webp','シャムの子猫'),'norwegian-forest':localBreedMedia('norwegian-forest-kitten.webp','ノルウェージャンフォレストキャットの子猫')
 };
 const newBreedPhotos={'american-curl':'アメリカンカール',somali:'ソマリ',abyssinian:'アビシニアン',exotic:'エキゾチック',himalayan:'ヒマラヤン',siberian:'サイベリアン'};
 Object.entries(newBreedPhotos).forEach(([id,name])=>{
-  window.PROFILE_MEDIA[id]=localBreedMedia(`${id}-adult.png`,`${name}の親猫`);
-  window.PROFILE_KITTEN_MEDIA[id]=localBreedMedia(`${id}-kitten.png`,`${name}の子猫`);
+  window.PROFILE_MEDIA[id]=localBreedMedia(`${id}-adult.webp`,`${name}の親猫`);
+  window.PROFILE_KITTEN_MEDIA[id]=localBreedMedia(`${id}-kitten.webp`,`${name}の子猫`);
 });
-window.PROFILE_MEDIA.somali=localBreedMedia('somali-adult.jpg','ソマリの親猫');
-window.PROFILE_KITTEN_MEDIA.somali=localBreedMedia('somali-kitten.jpg','ソマリの子猫');
+window.PROFILE_MEDIA.somali=localBreedMedia('somali-adult.webp','ソマリの親猫');
+window.PROFILE_KITTEN_MEDIA.somali=localBreedMedia('somali-kitten.webp','ソマリの子猫');
 // Latest owner-supplied replacements; keep the previous assets for history.
-window.PROFILE_MEDIA.munchkin=localBreedMedia('munchkin-adult-v2.jpg','マンチカンの親猫');
-window.PROFILE_KITTEN_MEDIA['maine-coon']=localBreedMedia('maine-coon-kitten-v2.jpg','メインクーンの子猫');
+window.PROFILE_MEDIA.munchkin=localBreedMedia('munchkin-adult-v2.webp','マンチカンの親猫');
+window.PROFILE_KITTEN_MEDIA['maine-coon']=localBreedMedia('maine-coon-kitten-v2.webp','メインクーンの子猫');
 window.BREEDS.forEach(breed=>{
   if(window.PROFILE_MEDIA[breed.id]){
     breed.profileMedia=window.PROFILE_MEDIA[breed.id];
     // Keep existing detail-page photography; entries always show the supplied adult.
-    breed.entryMedia=breed.id==='persian'?localBreedMedia('persian-entry-adult.png','ペルシャの親猫'):breed.profileMedia;
+    breed.entryMedia=breed.id==='persian'?localBreedMedia('persian-entry-adult.webp','ペルシャの親猫'):breed.profileMedia;
     breed.carouselMedia=breed.entryMedia;
     if(!breed.media)breed.media=breed.profileMedia;
   }
@@ -159,6 +159,9 @@ window.BREEDS.forEach(breed=>{
 // Editorial introduction order, not a sales/registration-based popularity survey.
 window.POPULAR_BREEDS=['american-shorthair','ragamuffin','british-shorthair','siberian','ragdoll','scottish-fold','munchkin','maine-coon','norwegian-forest','persian'];
 window.ENTRY_PHOTO_POSITIONS={munchkin:'50% 35%','scottish-fold':'50% 25%',ragdoll:'50% 25%','british-shorthair':'50% 25%','norwegian-forest':'50% 25%','maine-coon':'50% 25%',exotic:'50% 12%',bengal:'50% 25%','american-shorthair':'50% 30%',ragamuffin:'50% 25%',somali:'50% 22%',abyssinian:'50% 24%','american-curl':'50% 25%',himalayan:'50% 15%'};
+window.RANKING_PORTRAIT_FOCUS={
+  'american-curl':[52,29],exotic:[48,27],siamese:[50,27],ragamuffin:[49,29],ragdoll:[60,27],abyssinian:[52,29],himalayan:[50,28],munchkin:[60,26],'scottish-fold':[48,35],'maine-coon':[42,31],somali:[46,32],'american-shorthair':[55,30],'british-shorthair':[50,31],'norwegian-forest':[48,30],'russian-blue':[50,29],bengal:[52,29],persian:[50,29],siberian:[50,29],mix:[50,30]
+};
 window.ENTRY_MOBILE_CROPS={munchkin:[1.15,'65% 25%'],'scottish-fold':[1.3,'0% 0%'],ragdoll:[1.2,'70% 0%'],'british-shorthair':[1.35,'65% 0%'],'norwegian-forest':[1.3,'70% 0%'],'maine-coon':[1.55,'45% 0%'],exotic:[1.25,'65% 0%'],bengal:[1.5,'85% 0%'],'american-shorthair':[1.35,'65% 0%']};
 
 window.KITTEN_MEDIA={
@@ -174,9 +177,10 @@ window.KITTEN_MEDIA={
   persian:{file:"6 month persian kitten 'Matata'.JPG",label:"6 month persian kitten 'Matata'",author:'Rudolph.A.furtado',license:'パブリックドメイン',licenseUrl:'https://creativecommons.org/publicdomain/mark/1.0/',page:'https://commons.wikimedia.org/wiki/File:6_month_persian_kitten_%27Matata%27.JPG'},
   siamese:{file:'Siamese Kitten Beautiful.jpg',label:'Siamese Kitten Beautiful',author:'Syed Zillay Ali',license:'CC BY-SA 3.0',licenseUrl:'https://creativecommons.org/licenses/by-sa/3.0/',page:'https://commons.wikimedia.org/wiki/File:Siamese_Kitten_Beautiful.jpg'},
   'norwegian-forest':{file:'Black Norwegian Forest cat kitten.jpg',label:'Black Norwegian Forest cat kitten',author:'NeoMeesje',license:'CC BY-SA 4.0',licenseUrl:'https://creativecommons.org/licenses/by-sa/4.0/',page:'https://commons.wikimedia.org/wiki/File:Black_Norwegian_Forest_cat_kitten.jpg'},
-  mix:{url:'../assets/mii-mix-cat.jpg',file:'mii-mix-cat.jpg',label:'ダンボールでくつろぐミックス猫',author:'掲載許諾済みのご提供写真',license:'サイト掲載許諾済み',licenseUrl:'../assets/mii-mix-cat.jpg',page:'../assets/mii-mix-cat.jpg'}
+  mix:{url:'../assets/mii-mix-cat.webp',file:'mii-mix-cat.webp',label:'ダンボールでくつろぐミックス猫',author:'掲載許諾済みのご提供写真',license:'サイト掲載許諾済み',licenseUrl:'../assets/mii-mix-cat.webp',page:'../assets/mii-mix-cat.webp'}
 };
 Object.assign(window.KITTEN_MEDIA,window.PROFILE_KITTEN_MEDIA);
+window.BREEDS.find(breed=>breed.id==='mix').media=window.KITTEN_MEDIA.mix;
 window.FEATURED_MEDIA={
   ragdoll:{url:'https://images.pexels.com/photos/7474647/pexels-photo-7474647.jpeg?auto=compress&cs=tinysrgb&w=1600',label:'Fluffy cat lying in room',author:'Amber Janssens',license:'Pexels License',licenseUrl:'https://www.pexels.com/license/',page:'https://www.pexels.com/photo/fluffy-cat-lying-in-room-7474647/'},
   persian:{url:'https://images.pexels.com/photos/31705069/pexels-photo-31705069.jpeg?auto=compress&cs=tinysrgb&w=1600',label:'Fluffy White Persian Cat Relaxing Indoors',author:'Reymundo Tadena',license:'Pexels License',licenseUrl:'https://www.pexels.com/license/',page:'https://www.pexels.com/photo/fluffy-white-persian-cat-relaxing-indoors-31705069/'}

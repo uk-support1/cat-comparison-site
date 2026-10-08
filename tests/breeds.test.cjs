@@ -16,8 +16,10 @@ for(const photo of manifest.photos){
 for(const breed of data.BREEDS.filter(b=>!b.individualProfile)){
   const adult=manifest.photos.find(p=>p.breed===breed.id&&p.role==='adult');
   assert.ok(adult,breed.id+' adult provenance');
-  assert.equal(breed.entryMedia.file,adult.file);
-  assert.equal(breed.carouselMedia.file,adult.file);
+  const optimized=adult.file.replace(/\.(png|jpe?g)$/i,'.webp');
+  assert.equal(breed.entryMedia.file,optimized);
+  assert.equal(breed.carouselMedia.file,optimized);
+  assert.ok(fs.existsSync(path.join(root,'assets/breeds',optimized)),optimized);
 }
 for(const id of added){
   const breed=data.BREEDS.find(b=>b.id===id);
@@ -26,9 +28,8 @@ for(const id of added){
   assert.equal(breed.carePoints.length,3);
   assert.equal(Object.keys(breed.stats).length,7);
   for(const score of Object.values(breed.stats))assert.ok(score>=1&&score<=5);
-  const extension=id==='somali'?'jpg':'png';
-  assert.ok(breed.profileMedia.url.endsWith(id+'-adult.'+extension));
-  assert.ok(data.KITTEN_MEDIA[id].url.endsWith(id+'-kitten.'+extension));
+  assert.ok(breed.profileMedia.url.endsWith(id+'-adult.webp'));
+  assert.ok(data.KITTEN_MEDIA[id].url.endsWith(id+'-kitten.webp'));
   assert.ok(read('sitemap.xml').includes('profile.html?breed='+id));
 }
 assert.equal(data.POPULAR_BREEDS.length,10);
@@ -66,8 +67,8 @@ assert.equal(data.ENTRY_MOBILE_CROPS['scottish-fold'][1],'0% 0%');
 assert.ok(read('breeds/style.css').includes('.ragdoll-basic-profile .ragdoll-profile-video-screen video{display:block;width:100%;height:100%;object-fit:cover}'));
 assert.ok(!read('breeds/style.css').includes('.ragdoll-profile-video-screen::before'));
 assert.ok(!read('breeds/profile.js').includes('--profile-video-poster'));
-assert.ok(data.PROFILE_MEDIA.munchkin.url.endsWith('munchkin-adult-v2.jpg'));
-assert.ok(data.KITTEN_MEDIA['maine-coon'].url.endsWith('maine-coon-kitten-v2.jpg'));
+assert.ok(data.PROFILE_MEDIA.munchkin.url.endsWith('munchkin-adult-v2.webp'));
+assert.ok(data.KITTEN_MEDIA['maine-coon'].url.endsWith('maine-coon-kitten-v2.webp'));
 assert.ok(read('breeds/profile.js').includes("breed.id==='british-shorthair'&&!!portraitProfile.videoUrl"),'frame trial is British-only');
 assert.ok(read('breeds/profile.js').includes("if(videoBackground)basicProfile.classList.add('profile-video-background')"));
 assert.ok(read('breeds/profile.js').includes('class="profile-background-media" aria-hidden="true"'));

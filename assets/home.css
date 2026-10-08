@@ -12,7 +12,7 @@ html{scroll-behavior:smooth;scroll-padding-top:100px}
 .np-hero-note{font-size:11px;color:var(--np-muted);margin:12px 0 0}
 .np-home-paw-scene{position:absolute;z-index:3;right:max(4vw,30px);bottom:clamp(34px,7vh,76px);width:clamp(230px,27vw,390px);height:clamp(290px,36vw,470px);pointer-events:none;filter:drop-shadow(0 22px 22px rgba(45,42,39,.16))}
 .np-home-phone{position:absolute;z-index:2;right:0;bottom:0;width:auto;height:90%;aspect-ratio:392/800;transform:rotate(8deg);animation:np-phone-float 5.8s ease-in-out infinite}
-.np-home-screen{position:absolute;z-index:1;inset:2.1% 3.2% 2.2%;overflow:hidden;border-radius:30px;background:#d8d1ca url('mii-mix-cat.jpg') center/cover}
+.np-home-screen{position:absolute;z-index:1;inset:2.1% 3.2% 2.2%;overflow:hidden;border-radius:30px;background:#d8d1ca url('mii-mix-cat.webp') center/cover}
 .np-home-screen video{width:100%;height:100%;object-fit:cover;object-position:60% center;filter:saturate(.9) contrast(.96);opacity:0;transition:opacity .3s ease}
 .np-home-screen.is-playing video{opacity:1}
 .np-home-screen::after{content:"PLAYING  •  00:05";position:absolute;left:13px;bottom:12px;padding:4px 7px;border-radius:999px;background:rgba(25,23,21,.58);color:#fff;font-size:8px;line-height:1;font-weight:800;letter-spacing:.08em}

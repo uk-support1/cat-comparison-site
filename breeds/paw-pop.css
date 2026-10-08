@@ -3,3 +3,5 @@
 .site-footer .footer-inner{width:min(1060px,92%);margin:auto}
 .site-footer .footer-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
 .site-footer .footer-links a{text-decoration:underline;text-underline-offset:3px}
+/* WebP fallback image keeps the game backdrop light without changing the scene. */
+.stage-photo{background-image:url('../assets/mii-mix-cat.webp')}
