@@ -23,7 +23,7 @@ html{scroll-behavior:smooth;scroll-padding-top:100px}
 .np-section-heading h2{font-size:27px;line-height:1.5;margin-bottom:0;letter-spacing:.02em}
 .np-section-heading>p{font-size:12px;color:var(--np-muted);margin-bottom:4px}
 .np-comparisons{padding-bottom:58px}
-.np-category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.np-category-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
 .np-category-card{display:flex;flex-direction:column;border:1px solid var(--np-line);border-radius:var(--np-radius);padding:22px 25px 19px;background:white;box-shadow:var(--np-shadow);transition:transform .2s,border-color .2s}
 a.np-category-card:hover{transform:translateY(-4px);border-color:#c79577}
 .np-category-top{display:flex;align-items:center;justify-content:space-between}

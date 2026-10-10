@@ -3,19 +3,18 @@
   const siteRoot = new URL('../', document.currentScript.src);
   const categories = [
     {id:'litter', name:'猫砂', href:'compare/okara-litter.html', cta:'おから猫砂・全12商品を比較'},
-    {id:'toilets', name:'猫トイレ', href:'compare/cat-toilets.html', cta:'おすすめ4タイプを比較'},
-    {id:'carriers', name:'キャリーバッグ', href:null, cta:'キャリーバッグを比較'}
+    {id:'toilets', name:'猫トイレ', href:'compare/cat-toilets.html', cta:'おすすめ4タイプを比較'}
   ];
   window.NekoSite = {categories};
   const url = path => new URL(path, siteRoot).href;
   // Central navigation registry; static HTML remains a no-script fallback.
   const pawGameName='肉球バブルであそぶ';
   const navActions = [
-    {name:pawGameName,href:'breeds/paw-pop.html',action:'paw'},
     {name:'猫種図鑑',href:'breeds/',action:'breeds'}
   ];
+  const pawGame = {name:pawGameName,href:'breeds/paw-pop.html',action:'paw'};
   const lifeGuide = {name:'猫との暮らし',href:'articles/'};
-  const navigation = [{name:'TOP',href:'index.html'}, ...categories, lifeGuide, {name:'運営情報',href:'about.html'}];
+  const navigation = [{name:'TOP',href:'index.html'}, ...categories, lifeGuide, {name:'運営情報',href:'about.html'}, pawGame];
   const makeNavigation = (items, extraClass='') => items.map(item=>{
     const element=document.createElement(item.href?'a':'span');
     element.textContent=item.name;
@@ -45,7 +44,7 @@
   if(navigationRoot){
     const items=navActionsRoot
       ? [...navActions.map(item=>({...item,className:'np-nav-action-copy'})),...navigation]
-      : [{name:'TOP',href:'index.html'},...categories,{name:'猫種図鑑',href:'breeds/'},{name:pawGameName,href:'breeds/paw-pop.html'},lifeGuide,{name:'運営情報',href:'about.html'}];
+      : [{name:'TOP',href:'index.html'},...categories,...navActions,lifeGuide,{name:'運営情報',href:'about.html'},pawGame];
     navigationRoot.replaceChildren(...makeNavigation(items));
   }
   document.querySelectorAll('footer.np-footer a[href*="breeds/paw-pop.html"]').forEach(link=>{link.textContent=pawGameName;});

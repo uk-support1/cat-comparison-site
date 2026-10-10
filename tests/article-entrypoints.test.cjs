@@ -23,13 +23,13 @@ for(const file of walk(root).filter(f=>f.endsWith('.html')&&path.basename(f)!=='
  const html=fs.readFileSync(file,'utf8');
  const header=html.match(/<header class="np-header">[\s\S]*?<\/header>/)[0];
  assert.ok(header.includes('>猫との暮らし</a>'));
- assert.ok(header.indexOf('>肉球')<header.indexOf('>猫との暮らし</a>'));
+ assert.ok(header.indexOf('>肉球')>header.indexOf('>運営情報</a>'));
  assert.ok(header.indexOf('>猫との暮らし</a>')<header.indexOf('>運営情報</a>'));
  const footer=html.match(/<footer class="np-footer">[\s\S]*?<\/footer>/)[0];
  assert.ok(footer.includes('>猫との暮らし・お役立ちガイド</a>'));
  assert.ok(!footer.includes('猫砂の選び方ガイド'));
 }
-// The existing icon/action group remains untouched; guides is a new ordinary link.
+// Breed encyclopedia stays on the left; the paw game is the final navigation item.
 const code=read('assets/site.js');
 for(const base of ['https://cat.kurashi-partner-ku.com/','https://example.test/cat-comparison-site/']){
  const group={children:[],replaceChildren(...c){this.children=c;}};
@@ -39,14 +39,15 @@ for(const base of ['https://cat.kurashi-partner-ku.com/','https://example.test/c
   querySelectorAll(s){return s==='.np-navigation a'?nav.children.filter(e=>e.href):[];},
   createElement(){return {dataset:{},setAttribute(){},append(){}};}};
  vm.runInNewContext(code,{URL,window:{},document:doc,location:{pathname:new URL(base+'articles/').pathname,hash:'',search:''}});
- assert.deepEqual(group.children.map(e=>e.dataset.navAction),['paw','breeds']);
- assert.equal(nav.children.length,8);
- assert.equal(nav.children[6].textContent,'猫との暮らし');
- assert.equal(nav.children[6].href,base+'articles/');
- assert.equal(nav.children[7].textContent,'運営情報');
+ assert.deepEqual(group.children.map(e=>e.dataset.navAction),['breeds']);
+ assert.equal(nav.children.length,7);
+ assert.equal(nav.children[4].textContent,'猫との暮らし');
+ assert.equal(nav.children[4].href,base+'articles/');
+ assert.equal(nav.children[5].textContent,'運営情報');
+ assert.equal(nav.children[6].dataset.navAction,'paw');
 }
 const css=read('assets/home.css');
 assert.ok(css.includes('.np-life-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))'));
 assert.ok(css.includes('.np-life-grid{grid-template-columns:1fr;gap:16px}'));
 assert.ok(css.includes('@media(prefers-reduced-motion:reduce){.np-life-card{transition:none}}'));
-console.log('PASS: preserved explore cards and article content; four independent home cards, responsive grids, all-page fallback navigation/footer and unchanged icon group.');
+console.log('PASS: preserved explore cards and article content; four independent home cards, responsive grids, all-page fallback navigation/footer and paw game last.');
