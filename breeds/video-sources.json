@@ -1,6 +1,6 @@
 {
   "sourceDirectory": "C:/Users/kenta/Desktop/99_画像保管庫/ねこ/動画",
-  "description": "運営者提供の生成映像。元ファイルを変更せずコピーし、無音ループで掲載。",
+  "description": "運営者提供映像。MP4は元ファイルを変更せずコピーし、ミックスのMOVのみWeb用H.264 MP4に変換。無音ループで掲載。",
   "videos": [
     {"breed":"abyssinian","source":"アビシニアン.mp4","file":"abyssinian-generated.mp4","sha256":"2c4e39e1ae15c6e21bf674c146e52b3c0d0a6a28e077d8120b703c920a7fc7a0"},
     {"breed":"exotic","source":"エキゾチック.mp4","file":"exotic-generated.mp4","sha256":"ae95f72752a3a399a3350cf12774a2b06d18117b618d1e1ea94c4366951ee175"},
@@ -12,6 +12,14 @@
     {"breed":"ragdoll","source":"ラグドール.mp4","file":"ragdoll-generated.mp4","sha256":"71b5299fe01656dae5f93d4a037c06763e3204708d84f13362ae3cfb57bda19d"},
     {"breed":"maine-coon","source":"メインクーン.mp4","file":"maine-coon-generated.mp4","sha256":"5b28e3eab8845105032e03fe4dcaca6c55ddc3af94df7320c27dbd0f1c6917a6"},
     {"breed":"british-shorthair","source":"ブリティッシュショートヘア.mp4","file":"british-shorthair-generated.mp4","sha256":"7bdbe7b68fc0301062813a940455047fead3a9bad3cb414a9278766a110235e3"},
-    {"breed":"siamese","source":"シャムネコ.mp4","file":"siamese-generated.mp4","sha256":"fe530ba186a23744e060b5825f6d9baa3c6ad3b08b97006d14dedd1d7b8855ab"}
+    {"breed":"siamese","source":"シャムネコ1.5倍.mp4","file":"siamese-generated.mp4","sha256":"fe530ba186a23744e060b5825f6d9baa3c6ad3b08b97006d14dedd1d7b8855ab"},
+    {"breed":"somali","source":"ソマリ.mp4","file":"somali-generated.mp4","sha256":"6fe82d3d0ed9eff16e36d7ee1e6379005d19328b79ba080937eae3e5442a9f7f"},
+    {"breed":"norwegian-forest","source":"ノルウェージャンフォレストキャット.mp4","file":"norwegian-forest-generated.mp4","sha256":"f5d1dde51a95d5b4259f2d934817c662cbcafd9aae082e90ddba6bf75d14cfee"},
+    {"breed":"persian","source":"ペルシャ.mp4","file":"persian-generated.mp4","sha256":"57b59950b0b72d0a6335cc387e164b683b321cb8dd9b28aa8c2b7d4d89b9e2f3"},
+    {"breed":"bengal","source":"ベンガル.mp4","file":"bengal-generated.mp4","sha256":"5c122ada2de8070cd9da2aacee63d966df4f3862c1223f1fdbfc9a73cad939b5"},
+    {"breed":"russian-blue","source":"ロシアンブルー.mp4","file":"russian-blue-generated.mp4","sha256":"c295d42448c137ecacd6f16863d9397447c51beb598fff271065a3c013c47d1e"},
+    {"breed":"mix","source":"ミックス.MOV","file":"mix-supplied.mp4","sourceSha256":"b4da36457cd4d7a401d08896510a76006a02c93ffd72aa2315723c3a6a07dc14","sha256":"e6a9afe32929143667e10f7ed4c4a1dd8f13cf214adff19c380a40454641f110","conversion":"H.264/yuv420p, width 720px, CRF 21, muted, faststart; source unchanged"},
+    {"breed":"american-curl","source":"アメリカンカール1.5倍.mp4","file":"american-curl-generated.mp4","sha256":"7568caba9fe5c8d2e101a67dd28b28bcf36197c095132000cb9cec7ddb1bab24"},
+    {"breed":"siberian","source":"サイベリアン.mp4","file":"siberian-generated.mp4","sha256":"1f0f99890cd8cfdfb3ecf4d7d032b12f3b078695b2976bbbf9c1a788bb057042"}
   ]
 }

@@ -66,8 +66,9 @@ if(portraitProfile){
   while(basicProfile.children.length>1)description.append(basicProfile.children[1]);
   copy.append(description);
   details.append(copy);
+  const videoLabel=breed.individualProfile?'動画':'生成動画';
   const videoContent=portraitProfile.videoUrl
-    ? `<video autoplay muted loop playsinline preload="metadata" poster="${mediaUrl}" aria-label="${escapeHtml(breed.name)}の生成動画"><source src="${portraitProfile.videoUrl}" type="video/mp4"></video>`
+    ? `<video autoplay muted loop playsinline preload="metadata" poster="${mediaUrl}" aria-label="${escapeHtml(breed.name)}の${videoLabel}"><source src="${portraitProfile.videoUrl}" type="video/mp4"></video>`
     : '<div class="profile-video-placeholder"><span class="profile-video-placeholder-icon" aria-hidden="true">▷</span><span>動画準備中</span></div>';
   const videoScreen=`<div class="ragdoll-profile-video-screen">${videoContent}</div>`;
   if(videoBackground){
@@ -90,11 +91,18 @@ if(portraitProfile){
   basicProfile.append(details);
   if(portraitProfile.videoUrl&&!videoBackground){
     const player=basicProfile.querySelector('video');
+    const playbackRate=window.PROFILE_VIDEO_PLAYBACK_RATES?.[breed.id]||1;
+    const applyPlaybackRate=video=>{
+      const setRate=()=>{video.defaultPlaybackRate=playbackRate;video.playbackRate=playbackRate};
+      video.addEventListener('loadedmetadata',setRate);
+      setRate();
+    };
+    applyPlaybackRate(player);
     // Fill the portrait screen, keeping the main cat in view when cropping wide clips.
-    const videoPosition={abyssinian:'36%',exotic:'40%',himalayan:'33%','american-shorthair':'40%','scottish-fold':'36%',munchkin:'64%',ragamuffin:'29%','maine-coon':'40%'}[breed.id]||'50%';
+    const videoPosition={abyssinian:'36%',exotic:'40%',himalayan:'33%','american-shorthair':'40%','scottish-fold':'36%',munchkin:'64%',ragamuffin:'29%','maine-coon':'40%',somali:'36%','norwegian-forest':'55%',persian:'60%',bengal:'30%','russian-blue':'57%',mix:'68%','american-curl':'40%'}[breed.id]||'50%';
     player.style.objectPosition=`${videoPosition} center`;
     basicProfile.querySelector('.ragdoll-profile-video').classList.add('has-video');
-    basicProfile.querySelector('.ragdoll-profile-video').insertAdjacentHTML('beforeend','<figcaption class="profile-video-caption"><span>無音ループ・生成映像</span><div class="profile-video-actions"><button class="profile-video-toggle" type="button" aria-label="動画を一時停止">一時停止</button><button class="profile-video-expand" type="button" aria-haspopup="dialog">動画を拡大</button></div></figcaption>');
+    basicProfile.querySelector('.ragdoll-profile-video').insertAdjacentHTML('beforeend',`<figcaption class="profile-video-caption"><span>${breed.individualProfile?'無音ループ':'無音ループ・生成映像'}</span><div class="profile-video-actions"><button class="profile-video-toggle" type="button" aria-label="動画を一時停止">一時停止</button><button class="profile-video-expand" type="button" aria-haspopup="dialog">動画を拡大</button></div></figcaption>`);
     const toggle=basicProfile.querySelector('.profile-video-toggle');
     const syncPlayback=()=>{toggle.textContent=player.paused?'再生':'一時停止';toggle.setAttribute('aria-label',player.paused?'動画を再生':'動画を一時停止')};
     player.addEventListener('play',syncPlayback);
@@ -102,9 +110,10 @@ if(portraitProfile){
     toggle.addEventListener('click',()=>{if(player.paused)player.play().catch(syncPlayback);else player.pause()});
     if(matchMedia('(prefers-reduced-motion: reduce)').matches){player.autoplay=false;player.pause()}
     syncPlayback();
-    root.insertAdjacentHTML('beforeend',`<dialog class="profile-video-dialog" aria-labelledby="profileVideoTitle"><div class="profile-video-dialog-head"><h2 id="profileVideoTitle">${escapeHtml(breed.name)}の動画</h2><button class="profile-video-close" type="button">閉じる</button></div><video controls muted loop playsinline preload="none" poster="${mediaUrl}" aria-label="${escapeHtml(breed.name)}の生成動画（拡大）"></video><p>ねこパートナー提供の生成映像です。</p></dialog>`);
+    root.insertAdjacentHTML('beforeend',`<dialog class="profile-video-dialog" aria-labelledby="profileVideoTitle"><div class="profile-video-dialog-head"><h2 id="profileVideoTitle">${escapeHtml(breed.name)}の動画</h2><button class="profile-video-close" type="button">閉じる</button></div><video controls muted loop playsinline preload="none" poster="${mediaUrl}" aria-label="${escapeHtml(breed.name)}の${videoLabel}（拡大）"></video><p>ねこパートナー提供の${breed.individualProfile?'映像':'生成映像'}です。</p></dialog>`);
     const dialog=root.querySelector('.profile-video-dialog');
     const expandedPlayer=dialog.querySelector('video');
+    applyPlaybackRate(expandedPlayer);
     let resumePreview=false;
     basicProfile.querySelector('.profile-video-expand').addEventListener('click',()=>{
       resumePreview=!player.paused;player.pause();

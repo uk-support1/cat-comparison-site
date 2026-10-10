@@ -49,8 +49,12 @@ assert.ok(html.includes('href="#encyclopedia"'));
 assert.ok(html.includes('販売・登録数に基づく人気順位ではありません'));
 assert.ok(read('breeds/profile.js').includes('動画準備中'));
 const clips=JSON.parse(read('breeds/video-sources.json')).videos;
-assert.equal(clips.length,11);
-assert.equal(Object.keys(data.PROFILE_VIDEOS).length,11);
+assert.equal(clips.length,19);
+assert.equal(Object.keys(data.PROFILE_VIDEOS).length,19);
+for(const breed of data.BREEDS)assert.ok(data.PROFILE_VIDEOS[breed.id],breed.id+' has supplied video');
+assert.equal(data.PROFILE_VIDEO_PLAYBACK_RATES.siamese,1.5);
+assert.equal(data.PROFILE_VIDEO_PLAYBACK_RATES['american-curl'],1.5);
+assert.equal(data.PROFILE_VIDEO_PLAYBACK_RATES['british-shorthair'],undefined);
 for(const clip of clips){
   assert.ok(data.BREEDS.some(b=>b.id===clip.breed));
   assert.equal(data.PROFILE_VIDEOS[clip.breed],'../assets/breeds/'+clip.file);
