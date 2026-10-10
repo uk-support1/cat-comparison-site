@@ -54,6 +54,8 @@ assert.equal(Object.keys(data.PROFILE_VIDEOS).length,19);
 for(const breed of data.BREEDS)assert.ok(data.PROFILE_VIDEOS[breed.id],breed.id+' has supplied video');
 assert.equal(data.PROFILE_VIDEO_PLAYBACK_RATES.siamese,1.5);
 assert.equal(data.PROFILE_VIDEO_PLAYBACK_RATES['american-curl'],1.5);
+assert.equal(data.PROFILE_VIDEO_PLAYBACK_RATES.ragdoll,1.5);
+assert.equal(data.PROFILE_VIDEO_PLAYBACK_RATES.persian,1.5);
 assert.equal(data.PROFILE_VIDEO_PLAYBACK_RATES['british-shorthair'],undefined);
 for(const clip of clips){
   assert.ok(data.BREEDS.some(b=>b.id===clip.breed));

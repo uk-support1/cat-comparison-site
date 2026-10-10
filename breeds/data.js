@@ -139,7 +139,7 @@ window.PROFILE_VIDEOS={
   'american-curl':'../assets/breeds/american-curl-generated.mp4',
   siberian:'../assets/breeds/siberian-generated.mp4'
 };
-window.PROFILE_VIDEO_PLAYBACK_RATES={siamese:1.5,'american-curl':1.5};
+window.PROFILE_VIDEO_PLAYBACK_RATES={siamese:1.5,'american-curl':1.5,ragdoll:1.5,persian:1.5};
 window.PROFILE_MEDIA={
   'scottish-fold':localBreedMedia('scottish-fold-adult.webp','スコティッシュフォールドの親猫'),munchkin:localBreedMedia('munchkin-adult.webp','マンチカンの親猫'),ragamuffin:localBreedMedia('ragamuffin-adult.webp','ラガマフィンの親猫'),ragdoll:localBreedMedia('ragdoll-adult.webp','ラグドールの親猫'),'maine-coon':localBreedMedia('maine-coon-adult.webp','メインクーンの親猫'),'british-shorthair':localBreedMedia('british-shorthair-adult.webp','ブリティッシュショートヘアの親猫'),'american-shorthair':localBreedMedia('american-shorthair-adult.webp','アメリカンショートヘアの親猫'),'russian-blue':localBreedMedia('russian-blue-adult.webp','ロシアンブルーの親猫'),bengal:localBreedMedia('bengal-adult.webp','ベンガルの親猫'),persian:localBreedMedia('persian-adult.webp','ペルシャ系（ヒマラヤン）の親猫'),siamese:localBreedMedia('siamese-adult.webp','シャムの親猫'),'norwegian-forest':localBreedMedia('norwegian-forest-adult.webp','ノルウェージャンフォレストキャットの親猫')
 };

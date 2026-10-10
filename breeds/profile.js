@@ -99,8 +99,9 @@ if(portraitProfile){
     };
     applyPlaybackRate(player);
     // Fill the portrait screen, keeping the main cat in view when cropping wide clips.
-    // Munchkin: shift the footage right by roughly half a screen to show both kittens.
-    const videoPosition={abyssinian:'36%',exotic:'40%',himalayan:'33%','american-shorthair':'40%','scottish-fold':'36%',munchkin:'45%',ragamuffin:'29%','maine-coon':'40%',somali:'36%','norwegian-forest':'55%',persian:'60%',bengal:'30%','russian-blue':'57%',mix:'68%','american-curl':'40%'}[breed.id]||'50%';
+    // These wide clips move roughly half a phone-screen width for a 19-point
+    // object-position change: decreasing moves the footage right, increasing left.
+    const videoPosition={abyssinian:'55%',exotic:'40%',himalayan:'52%','american-shorthair':'40%','scottish-fold':'36%',munchkin:'45%',ragamuffin:'10%','maine-coon':'40%',somali:'36%','norwegian-forest':'55%',persian:'60%',bengal:'11%','russian-blue':'38%',mix:'49%','american-curl':'40%'}[breed.id]||'50%';
     player.style.objectPosition=`${videoPosition} center`;
     basicProfile.querySelector('.ragdoll-profile-video').classList.add('has-video');
     basicProfile.querySelector('.ragdoll-profile-video').insertAdjacentHTML('beforeend',`<figcaption class="profile-video-caption"><div class="profile-video-actions"><button class="profile-video-toggle" type="button" aria-label="動画を一時停止">一時停止</button><button class="profile-video-expand" type="button" aria-haspopup="dialog">動画を拡大</button></div></figcaption>`);
