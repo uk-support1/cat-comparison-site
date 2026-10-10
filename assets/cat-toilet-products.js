@@ -23,6 +23,12 @@
       variant: 'Lサイズ／61×46×43cm／マルチカラー',
       amazonUrl: 'https://link.amazon/B0244Bhc8',
     },
+    {
+      id: 'richell-m',
+      name: 'リッチェル ラプレ シームレスネコトイレ',
+      variant: 'M／ホワイト／36×48×12cm／156682',
+      amazonUrl: 'https://link.amazon/B02F3yNF6',
+    },
   ];
   const products = [
     {
@@ -144,6 +150,15 @@
   };
 
   const render = () => {
+    document.querySelectorAll('[data-toilet-image]').forEach(link => {
+      const product = byId.get(link.dataset.toiletImage);
+      if (!product?.amazonUrl) return;
+      link.setAttribute('href', product.amazonUrl);
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'sponsored noopener noreferrer');
+      link.setAttribute('data-toilet-purchase', product.id);
+      link.setAttribute('aria-label', product.name + ' ' + product.variant + '：Amazonで見る（新しいタブ）');
+    });
     document.querySelectorAll('[data-toilet-product]').forEach(slot => {
       const product = byId.get(slot.dataset.toiletProduct);
       if (!product?.amazonUrl) return;
