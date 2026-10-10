@@ -43,6 +43,8 @@ assert.ok(css.includes('border-radius:50%'));
 assert.ok(css.includes('object-fit:cover'));
 const html=read('breeds/index.html');
 assert.ok(html.includes('18猫種＋ミックス'));
+assert.ok(read('breeds/style.css').includes('#encyclopedia .breed-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 8px}'));
+assert.ok(read('breeds/style.css').includes('#encyclopedia .breed-card .chips,#encyclopedia .breed-card .read{display:none}'));
 assert.ok(html.includes('<h2 id="popular-breeds-title">人気の猫種ランキング</h2>'));
 assert.ok(!html.includes('ランキングから子猫を探す'));
 assert.ok(html.includes('href="#encyclopedia"'));

@@ -229,3 +229,22 @@ html body main#profileRoot .portrait-profile-hero .ragdoll-hero-backdrop-main{ob
 @media(max-width:1199px){.breed-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:900px){.breed-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.breed-grid{grid-template-columns:1fr}.breed-card{padding:20px}.breed-card-photo{height:172px;margin:-20px -20px 16px;padding:8px}.breed-card h3{font-size:20px;margin:16px 0 2px}.breed-card p{font-size:12px;margin:12px 0 16px}.read{margin-top:16px}.rank-row{grid-template-columns:28px 50px minmax(0,1fr) auto;gap:8px}.mini-mark{width:46px;height:46px}}
+/* Phone directory: scan nine cats at a glance; desktop cards keep their details. */
+@media(max-width:620px){
+  #encyclopedia{padding:28px 0;scroll-margin-top:82px}
+  #encyclopedia .section-head{margin-bottom:16px}
+  #encyclopedia .section-head h2{font-size:23px;line-height:1.35}
+  #encyclopedia .section-head p{font-size:12px;line-height:1.65;margin-top:8px}
+  #encyclopedia .breed-tools{margin-bottom:14px}
+  #encyclopedia .breed-search{width:100%;min-height:44px;padding:9px 14px;font-size:14px}
+  #encyclopedia .breed-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 8px}
+  #encyclopedia .breed-card{min-width:0;min-height:0;padding:0 0 6px;border-radius:13px;text-align:center}
+  #encyclopedia .breed-card-photo{height:clamp(78px,22vw,100px);margin:0 0 6px;padding:4px;border-radius:12px 12px 0 0}
+  #encyclopedia .breed-card-photo img{border-radius:9px;object-fit:contain;object-position:center}
+  #encyclopedia .breed-card h3{display:flex;align-items:center;justify-content:center;min-height:4.2em;margin:0;padding:0 5px;font-size:12px;line-height:1.4;overflow-wrap:anywhere}
+  #encyclopedia .breed-card-top,#encyclopedia .breed-card .en,#encyclopedia .breed-card p,#encyclopedia .breed-card .chips,#encyclopedia .breed-card .read{display:none}
+  #encyclopedia .breed-card:hover{transform:none;box-shadow:none}
+  #encyclopedia .breed-card:hover .breed-card-photo img{transform:none}
+  #encyclopedia .breed-grid>p{grid-column:1/-1;font-size:13px}
+  #encyclopedia .breed-card:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+}
