@@ -127,7 +127,7 @@ window.PROFILE_VIDEOS={
   munchkin:'../assets/breeds/munchkin-generated.mp4',
   ragamuffin:'../assets/breeds/ragamuffin-generated.mp4',
   ragdoll:'../assets/breeds/ragdoll-generated.mp4',
-  'maine-coon':'../assets/breeds/maine-coon-generated.mp4',
+  'maine-coon':'../assets/breeds/maine-coon-generated-v2.mp4',
   'british-shorthair':'../assets/breeds/british-shorthair-generated.mp4',
   siamese:'../assets/breeds/siamese-generated.mp4',
   somali:'../assets/breeds/somali-generated.mp4',
