@@ -1,5 +1,5 @@
 const dots=score=>`<span class="score-dots" aria-label="5段階中${score}">${[1,2,3,4,5].map(n=>`<i class="${n<=score?'on':''}"></i>`).join('')}</span>`;
-const profileHref=id=>`profile.html?breed=${encodeURIComponent(id)}`;
+const profileHref=id=>`${encodeURIComponent(id)}/`;
 const rankTabs=document.getElementById('rankTabs');
 const rankCopy=document.getElementById('rankCopy');
 const rankList=document.getElementById('rankList');

@@ -37,7 +37,7 @@ if(carousel){
   carousel.innerHTML=`<div class="carousel-track">${BREEDS.map(breed=>{
     const url=escapeGallery(imagePath(breed.carouselMedia||breed.media));
     const face=back=>`<span class="carousel-card-face carousel-card-${back?'back':'front'}"${back?' aria-hidden="true"':''}><img class="carousel-photo-bg" src="${url}" alt="" aria-hidden="true" decoding="async"><img class="carousel-photo-main" src="${url}" alt="${back?'':escapeGallery(breed.name)+'の写真'}" decoding="async"><span class="carousel-label">${escapeGallery(breed.name)}<small>${escapeGallery(breed.en)}</small></span></span>`;
-    return `<a class="carousel-card" data-breed="${breed.id}" data-photo-layout="${['somali','abyssinian'].includes(breed.id)?'portrait':'standard'}" href="profile.html?breed=${encodeURIComponent(breed.id)}" aria-label="${escapeGallery(breed.name)}のプロフィール">${face(false)}${face(true)}</a>`;
+    return `<a class="carousel-card" data-breed="${breed.id}" data-photo-layout="${['somali','abyssinian'].includes(breed.id)?'portrait':'standard'}" href="${encodeURIComponent(breed.id)}/" aria-label="${escapeGallery(breed.name)}のプロフィール">${face(false)}${face(true)}</a>`;
   }).join('')}</div>`;
   const track=carousel.querySelector('.carousel-track');
   carousel.insertAdjacentHTML('afterend','<div class="carousel-controls" role="group" aria-label="3Dカルーセルの操作"><button type="button" data-carousel-action="previous" aria-label="前の猫種を正面に表示">←</button><button type="button" data-carousel-action="toggle">回転を一時停止</button><button type="button" data-carousel-action="next" aria-label="次の猫種を正面に表示">→</button><span class="carousel-counter" aria-live="off"></span><span class="carousel-announcement" role="status"></span></div>');

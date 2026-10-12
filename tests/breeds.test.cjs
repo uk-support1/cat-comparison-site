@@ -30,7 +30,11 @@ for(const id of added){
   for(const score of Object.values(breed.stats))assert.ok(score>=1&&score<=5);
   assert.ok(breed.profileMedia.url.endsWith(id+'-adult.webp'));
   assert.ok(data.KITTEN_MEDIA[id].url.endsWith(id+'-kitten.webp'));
-  assert.ok(read('sitemap.xml').includes('profile.html?breed='+id));
+  assert.ok(read('sitemap.xml').includes('/breeds/'+id+'/'));
+  const staticProfile=read('breeds/'+id+'/index.html');
+  assert.ok(staticProfile.includes('data-breed="'+id+'"'));
+  assert.ok(staticProfile.includes('https://cat.kurashi-partner-ku.com/breeds/'+id+'/'));
+  assert.ok(staticProfile.includes('<h1>'+breed.name+'</h1>'));
 }
 assert.equal(data.POPULAR_BREEDS.length,10);
 assert.equal(Array.from(data.POPULAR_BREEDS).join(','),'american-shorthair,ragamuffin,british-shorthair,siberian,ragdoll,scottish-fold,munchkin,maine-coon,norwegian-forest,persian');
@@ -50,6 +54,10 @@ assert.ok(!html.includes('ランキングから子猫を探す'));
 assert.ok(html.includes('href="#encyclopedia"'));
 assert.ok(html.includes('販売・登録数に基づく人気順位ではありません'));
 assert.ok(read('breeds/profile.js').includes('動画準備中'));
+assert.ok(read('breeds/profile.html').includes('name="robots" content="noindex,follow"'));
+assert.ok(read('breeds/profile.html').includes('canonical" href="https://cat.kurashi-partner-ku.com/breeds/"'));
+assert.ok(!read('breeds/app.js').includes('profile.html?breed='));
+assert.ok(!read('breeds/gallery.js').includes('profile.html?breed='));
 const clips=JSON.parse(read('breeds/video-sources.json')).videos;
 assert.equal(clips.length,19);
 assert.equal(Object.keys(data.PROFILE_VIDEOS).length,19);
