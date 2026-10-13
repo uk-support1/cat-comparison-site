@@ -59,7 +59,8 @@ assert.equal(sha(normalizedRichellDetail),'32f874f83a108c2fedad3c7ad27dc1d8220ae
 assert.ok(html.includes('<article class="toilet-pick pick-open">'));
 assert.ok(html.includes('class="toilet-pick-detail" href="#richell"'));
 assert.ok(!html.includes('Amazonリンク準備中'));
-assert.equal(sha(html.match(/<!-- Google tag \(gtag.js\) -->[\s\S]*?<\/script>\s*<script>[\s\S]*?<\/script>/)[0]),'f6e618775e57b34e8f3743a52befb7878da538eed60e19eee25d09b9811729a7','Existing GA4 setup is unchanged.');
+const ga4Block=html.match(/<!-- Google tag \(gtag.js\) -->[\s\S]*?<\/script>\s*<script>[\s\S]*?<\/script>/)[0].replace(/<script src="[^\"]*analytics-control\.js[^\"]*" data-analytics-control><\/script>\s*/,'');
+assert.equal(sha(ga4Block),'f6e618775e57b34e8f3743a52befb7878da538eed60e19eee25d09b9811729a7','Existing GA4 setup is unchanged apart from the approved opt-out bootstrap.');
 assert.ok(html.includes('Amazonのアソシエイトとして、ねこパートナーは適格販売により収入を得ています。'));
 const css=read('assets/cat-toilets.css');
 assert.ok(css.includes('article.toilet-pick{height:auto;min-height:0}'));

@@ -42,6 +42,7 @@ const profileHtml = breed => {
   <link rel="stylesheet" href="../../assets/site.css?v=20261010-nav">
   <script defer src="../../assets/site.js?v=20261010-nav"></script>
   <script defer src="../../assets/paw-cursor.js?v=20261001-1"></script>
+  <script src="../../assets/analytics-control.js?v=20261013-analytics-control2" data-analytics-control></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XNJBFNZKBD"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XNJBFNZKBD');</script>
 </head>
