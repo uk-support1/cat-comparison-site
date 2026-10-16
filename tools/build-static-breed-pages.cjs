@@ -8,15 +8,53 @@ const vm = require('node:vm');
 const root = path.resolve(__dirname, '..');
 const context = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, 'breeds/data.js'), 'utf8'), context);
-const { BREEDS } = context.window;
+const { BREEDS, PROFILE_VIDEOS } = context.window;
 const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 const baseUrl = 'https://cat.kurashi-partner-ku.com';
+const videoPublishedAt = '2026-10-04T15:38:50+09:00';
+
+const jsonLd = value => JSON.stringify(value).replace(/</g, '\\u003c');
 
 const profileHtml = breed => {
   const canonical = `${baseUrl}/breeds/${breed.id}/`;
   const description = `${breed.name}の一般的な性格、体格、被毛、お手入れ、暮らしとの相性を紹介します。`;
   const featured = breed.profileMedia || breed.media;
   const imagePath = featured.url ? featured.url.replace(/^\.\.\//, '') : 'assets/neko-partner-logo.png';
+  const videoPath = PROFILE_VIDEOS[breed.id] ? PROFILE_VIDEOS[breed.id].replace(/^\.\.\//, '') : null;
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': `${canonical}#webpage`,
+        url: canonical,
+        name: `${breed.name}の性格・特徴｜猫種図鑑`,
+        description,
+        inLanguage: 'ja'
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'TOP', item: `${baseUrl}/` },
+          { '@type': 'ListItem', position: 2, name: '猫種図鑑', item: `${baseUrl}/breeds/` },
+          { '@type': 'ListItem', position: 3, name: breed.name, item: canonical }
+        ]
+      }
+    ]
+  };
+  if (videoPath) {
+    structuredData['@graph'].push({
+      '@type': 'VideoObject',
+      name: `${breed.name}の動画｜ねこパートナー`,
+      description: `${breed.name}と暮らす雰囲気を伝える短い無音映像です。実際の個体の行動を示すものではありません。`,
+      thumbnailUrl: `${baseUrl}/${imagePath}`,
+      uploadDate: videoPublishedAt,
+      contentUrl: `${baseUrl}/${videoPath}`,
+      mainEntityOfPage: canonical,
+      creator: { '@type': 'Organization', name: 'ねこパートナー', url: `${baseUrl}/` },
+      inLanguage: 'ja'
+    });
+  }
   return `<!doctype html>
 <html lang="ja">
 <head>
@@ -37,7 +75,7 @@ const profileHtml = breed => {
   <meta name="twitter:title" content="${escapeHtml(breed.name)}の性格・特徴｜猫種図鑑">
   <meta name="twitter:description" content="${escapeHtml(description)}">
   <meta name="twitter:image" content="${baseUrl}/${escapeHtml(imagePath)}">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"${canonical}#webpage","url":"${canonical}","name":"${escapeHtml(breed.name)}の性格・特徴｜猫種図鑑","description":"${escapeHtml(description)}","inLanguage":"ja"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"TOP","item":"${baseUrl}/"},{"@type":"ListItem","position":2,"name":"猫種図鑑","item":"${baseUrl}/breeds/"},{"@type":"ListItem","position":3,"name":"${escapeHtml(breed.name)}","item":"${canonical}"}]}]}</script>
+  <script type="application/ld+json">${jsonLd(structuredData)}</script>
   <link rel="stylesheet" href="../style.css?v=20261010-3">
   <link rel="stylesheet" href="../../assets/site.css?v=20261010-nav">
   <script defer src="../../assets/site.js?v=20261010-nav"></script>
